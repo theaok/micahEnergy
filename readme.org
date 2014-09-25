@@ -1,0 +1,12 @@
+* files
+
+micahEnergyPaperBody.tex is our paper
+graphsAndTables.tex is output for paper
+world.do is stata dofile that produces country level results--guess we
+fcus on those now, so later i can also add state and counties code here
+
+* log
+
+<2014-09-25 Thu>
+aok: i will be beefing up text mostly
+

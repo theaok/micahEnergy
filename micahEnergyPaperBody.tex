@@ -1,0 +1,267 @@
+%to have line numbers
+%\RequirePackage{lineno}
+\documentclass[10pt, letterpaper]{article}      
+\usepackage[margin=.1cm,font=small,labelfont=bf]{caption}[2007/03/09]
+%\usepackage{endnotes}
+\usepackage{setspace}
+\usepackage{longtable}                        
+\usepackage{anysize}                          
+\usepackage{natbib}                           
+%\bibpunct{(}{)}{,}{a}{,}{,}                   
+\bibpunct{(}{)}{,}{a}{}{,}                   
+\usepackage{amsmath}
+\usepackage[pdftex]{graphicx}                
+\usepackage{epstopdf}
+\usepackage{hyperref}                             % For creating hyperlinks in cross references
+
+
+% \usepackage[margins]{trackchanges}
+
+% \note[editor]{The note}
+% \annote[editor]{Text to annotate}{The note}
+%    \add[editor]{Text to add}
+% \remove[editor]{Text to remove}
+% \change[editor]{Text to remove}{Text to add}
+
+
+
+\marginsize{1cm}{1cm}{.5cm}{.5cm}%{left}{right}{top}{bottom}   
+					          % Helps LaTeX put figures where YOU want
+ \renewcommand{\topfraction}{1}	                  % 90% of page top can be a float
+ \renewcommand{\bottomfraction}{1}	          % 90% of page bottom can be a float
+ \renewcommand{\textfraction}{0.0}	          % only 10% of page must to be text
+
+ \usepackage{float}                               %latex will not complain to include float after float
+
+\usepackage[table]{xcolor}                        %for table shading
+\definecolor{gray90}{gray}{0.90}
+\definecolor{orange}{RGB}{255,128,0}
+
+\renewcommand\arraystretch{.9}                    %for spacing of arrays like tabular
+
+%-------------------- my commands -----------------------------------------
+\newenvironment{ig}[1]{
+\begin{center}
+ %\includegraphics[height=5.0in]{#1} 
+ \includegraphics[height=3.3in]{#1}
+\end{center}}
+
+ \newcommand{\cc}[1]{
+\hspace{-.13in}$\bullet$\marginpar{\begin{spacing}{.6}\begin{footnotesize}{#1}\end{footnotesize}\end{spacing}}
+\hspace{-.13in} }
+
+%-------------------- END my commands -----------------------------------------
+
+
+
+%-------------------- extra options -----------------------------------------
+
+%%%%%%%%%%%%%
+% footnotes %
+%%%%%%%%%%%%%
+
+%\long\def\symbolfootnote[#1]#2{\begingroup% %these can be used to make footnote  nonnumeric asterick, dagger etc
+%\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}	%see: http://help-csli.stanford.edu/tex/latex-footnotes.shtml
+
+%%%%%%%%%%%
+% spacing %
+%%%%%%%%%%%
+
+% \abovecaptionskip: space above caption
+% \belowcaptionskip: space below caption
+%\oddsidemargin 0cm
+%\evensidemargin 0cm
+
+%%%%%%%%%
+% style %
+%%%%%%%%%
+
+%\pagestyle{myheadings}         % Option to put page headers
+                               % Needed \documentclass[a4paper,twoside]{article}
+%\markboth{{\small\it Politics and Life Satisfaction }}
+%{{\small\it Adam Okulicz-Kozaryn} }
+
+%\headsep 1.5cm
+% \pagestyle{empty}			% no page numbers
+% \parindent  15.mm			% indent paragraph by this much
+% \parskip     2.mm			% space between paragraphs
+% \mathindent 20.mm			% indent math equations by this much
+
+%%%%%%%%%%%%%%%%%%
+% extra packages %
+%%%%%%%%%%%%%%%%%%
+
+\usepackage{datetime}
+
+
+\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,backgrounds}
+
+
+%\usepackage{color}					% For creating coloured text and background
+%\usepackage{float}
+\usepackage{subfig}                                     % for combined figures
+
+\renewcommand{\ss}[1]{{\colorbox{blue}{\bf \color{white}{#1}}}}
+\newcommand{\ee}[1]{\endnote{\vspace{-.10in}\begin{spacing}{1.0}{\normalsize #1}\end{spacing}\vspace{.20in}}}
+
+
+
+
+\usepackage{sectsty}
+\allsectionsfont{\normalfont\sffamily}
+
+
+
+\usepackage{sectsty}
+\allsectionsfont{\normalfont\sffamily}
+\usepackage[margins]{trackchanges}
+
+\renewcommand\familydefault{\sfdefault}
+
+\usepackage{verbatim}
+\usepackage{rotating}
+\usepackage{catchfilebetweentags}
+%-------------------- END extra options -----------------------------------------
+\date{Draft: {}\today}
+\title{
+  The Paradox of Energy Consumption and Happiness Across US Areas
+}
+\author{
+Adam Okulicz-Kozaryn\thanks{EMAIL: adam.okulicz.kozaryn@gmail.com
+  \hfill I thank XXX.  All mistakes are mine.} \\
+{\small Rutgers - Camden}\\
+Micah Altman\thanks{EMAIL: ???
+  \hfill I ???} \\
+{\small MIT}
+}
+
+\begin{document}
+
+%%\setpagewiselinenumbers
+%\modulolinenumbers[1]
+%\linenumbers
+
+\bibliographystyle{/home/aok/papers/root/tex/ecta}
+\maketitle
+\vspace{-.4in}
+\begin{center}
+
+\end{center}
+
+\begin{abstract}
+\noindent We study energy use and happiness across US census divisions, states,
+and California counties.  Energy
+use is defined in several ways, for instance,  residential electricity and gas consumption per capita at both,
+county and state levels. Happiness data come
+ from General Social Survey and from Centers for Disease Control. We control for known predictors of happiness
+such as income, health and unemployment. There are striking differences in
+energy use across areas within the US--differences are as large as several
+fold. We find that areas consuming more energy are not happier (with possible
+exception of transportation sector).
+ We interpret this finding as another argument to conserve energy and consume
+ less. Fundamentally, the ultimate goal of increased energy consumption is human
+ happiness--if there is no relationship between the two, then we can
+ consume less.
+\end{abstract}
+\vspace{.15in} 
+\noindent{\sc keywords:  energy use,  sustainability, wellbeing,
+  happiness, Subjective Well-Being (SWB)}
+%\vspace{-.25in} 
+
+\begin{spacing}{1.4}
+\rowcolors{1}{white}{gray90}
+
+%  \ExecuteMetaData[../out/tex]{ginipov}
+
+% \begin{figure}[H]
+%  \includegraphics[height=3in]{../out/gov_res_trust.pdf}\centering\label{gov_res_trust}
+% \caption{woo}
+% \end{figure}
+
+\section{Introduction}
+
+energy consumption is important--people wage war for that...Many countries whole
+economies are based on energy exports (e.g. OPEC countries)--many other
+countries rely heavily on energy production and some use it as a political tool
+, e.g. Russia. 
+and aleays seek to get more--fracking etc
+but focus of this jou and this paper is on conservation :)
+the basic idea being that if there is not much happiness gained from energy
+consumption then it would be another, and important, reason for energy
+conservation. 
+
+A common or received wisdom is that tradeoff between happiness and energy
+use--we need to consume energy in order to achieve greater happiness. This is
+true in buivaraite case--the richer areas are happier.
+ We argue
+here that it is not necassarily so, only after taking into account income at
+country level and few other variables at state or county levels, the
+relationship between energyu consymptiona nd happiness disappears.
+
+
+its striking 2 fold or more differences between states like nj and tx and only a
+small fracton of that is due to climate most due to consumption arguably
+wateful/conspicous--calculate how mich explained by climate! give number
+
+related literature is about poolution and happiness CITE; there is even
+literature about happiness and attitudes about conservation CITEe.g. i guess i
+ecol econ; but strikingly there is no research about energy consumprtion and
+happiness with 2 exceptions--research by csikamisky one desctibed below, and the
+other one is just came out 2014
+
+perhaps start with increaisng energy consumption; obvious environmental problem
+--cite taht comssission website; then mayeb easterlin paradox; maybe show
+happiness and energy consymption over time in obe graph !!! yes
+
+There is anectodal evidence pointing to the fact that humans can live happily
+without much energy--among Amish, African Maasai, and Greenlandic Inughuit, most
+people are above neutral in well-being.
+
+TODO copy this sometime soon to goog docs just the whole thing
+
+It is striking then that large happiness literature has omitted topic of energy
+so far--threre ano studies about energy consumption and happiness in an area,
+but there are few studies about personal happiness as discussed later.
+
+\section{Model}
+
+It is critical to control for percoent urban or population density, because
+urban or dense areas are less happy and more energy efficient, and hence
+omission of this variable leads to positive bias on energy use--the estimated
+coefficient   is larger than it should be in a bivariate case. Indeed, bivariate
+relationship appears positive. 
+
+The bottom line is that there appears to be weak relationshio betwen electricity
+consumption and happiness, but it disappears or indeed becomes negative when
+taking into account social support. one explanation is that people who consumer
+more electricity, need to work more, and have less time for social stuff which
+is iomportant for happiness. Per Bowling Alone, we do less and less social stuff
+and robert frank--need to focus on non-epruniary domain!
+
+% \section{Census Divisions}
+
+% Census divisions are shown in figure \ref{cenDiv}
+
+% \begin{centering}
+%   ---------------------------\\
+%   figure \ref{cenDiv} \\
+%   ---------------------------\\
+% \end{centering}
+
+
+% and then all tables and graphs at the very end--upload pdf to goog docs w graphs
+% AND references!!
+
+
+states:
+There are large differences in energy use per capita accross states--twofold or
+larger, yet energy-hungry states are no happier (with possible exceptioon of
+transportation sector)--this is just another argument for energy conservation.
+
+\newpage
+\bibliography{/home/aok/papers/root/tex/ebib.bib}
+
+\end{spacing}
+\end{document}
