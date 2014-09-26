@@ -14,6 +14,9 @@ capture mkdir "/tmp/`pap'"
 
 loc tmp "/tmp/`pap'/"
 
+
+cd `d'
+
 **** energy
 
 //also more indicators here:
@@ -23,6 +26,13 @@ loc tmp "/tmp/`pap'/"
 
 //there is some energy efficiency measure but for 16 countries only
 //http://www.aceee.org/research-report/e1402
+
+//tthis looks like awesome source of cross-country data http://sedac.ciesin.columbia.edu/data/collections/browse
+//environmental sustainability index ESI for over 140 countries :)
+//http://sedac.ciesin.columbia.edu/data/collection/esi/sets/browse
+//may also look at Environmental Performance Index (EPI)
+
+//there may be no energy use by sector, but are emissions by sector which is a good proxy of ene use--energy use and emissions correlate highhly--per jorgenson14B at above .9 http://cait2.wri.org/wri/Country%20GHG%20Emissions?indicator[]=Total%20GHG%20Emissions%20Excluding%20Land-Use%20Change%20and%20Forestry&indicator[]=Total%20GHG%20Emissions%20Including%20Land-Use%20Change%20and%20Forestry&year[]=2011&sortDir=desc&chartType=geo
 
 //Energy use (kg of oil equivalent per capita); guess one used by jorgenson14B
 //EG.USE.PCAP.KG.OE
@@ -57,6 +67,21 @@ ren countrycode ccc
 ren year yr
 save `tmp'wb, replace
 
+
+**** temperature
+
+//http://www.cru.uea.ac.uk/~timm/cty/obs/TYN_CY_1_1.html
+//http://www.cru.uea.ac.uk/~timm/cty/obs/TYN_CY_1_1_var-table.html
+
+insheet using dat/TYN_CY_1_1.csv, clear 
+d
+ta agg
+ren agg c
+keep c jan jul
+ren jan janMax
+ren jul julMax
+
+save `tmp'couTemp,replace
 
 
 **** ruut
@@ -238,7 +263,43 @@ use `tmp'couWvs, clear
 merge 1:1 ccc yr using `tmp'wb
 l if _merge==1
 keep if _merge==3
+drop _merge
 drop if ccc=="TTO"
+
+d
+ren countryname c
+
+
+replace c="Bosnia-Herzegovinia" if c=="Bosnia and Herzegovina"
+replace c="Egypt" if c=="Egypt, Arab Rep."
+replace c="Hong Kong" if c=="Hong Kong SAR, China"
+replace c="Iran" if c=="Iran, Islamic Rep."
+replace c="South Korea" if c=="Korea, Rep."
+replace c="Kyrgyzstan" if c=="Kyrgyz Republic"
+replace c="Macedonia" if c=="Macedonia, FYR"
+replace c="Moldavia" if c=="Moldova"
+replace c="Belgium" if c=="Netherlands" //TODO note in paper!
+replace c="Puerto Rica" if c=="Puerto Rico"
+replace c="Russia" if c=="Russian Federation"
+replace c="Slovakia" if c=="Slovak Republic"
+replace c="USA" if c=="United States"
+replace c="Venezuela" if c=="Venezuela, RB"
+
+merge m:1 c using `tmp'couTemp
+ta c if _merge==1
+keep if _merge==3
+drop _merge
+replace  c="Netherlands" if c=="Belgium" //replacing back after merge
+destring, replace
+
+d
+la var ls "happiness"
+
+
+save `tmp'worldAll,replace
+
+
+**** desSta
 
 
 tw(scatter ls ene,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls ene)
@@ -250,15 +311,25 @@ dy
 ! mv /tmp/g1.pdf `tmp'couWvsLsGdp.pdf
 
 
-reg ls ene, robust
+reg ls ene, robust beta
 reg ls ene gdp, robust
 
-reg ls ene gdp urb, robust //yay!
+reg ls ene  janMax julMax, robust beta
+reg ls ene  janMax julMax gdp, robust beta
+
+
+reg ls ene gdp urb , robust //yay!
+reg ls ene gdp urb janMax julMax , robust 
+
 reg ls ene gdp urb un lexp, robust
+reg ls ene gdp urb un lexp janMax julMax, robust
+reg ls ene gdp urb un lexp janMax julMax co2, robust beta //oh co2 messes up everything!!
 
-need tomperature!!!
+corr ene co2 //that's why :(
 
+//definietly interpret substantively--how much boost in happiness from enerhy say as compare to gdp
 
+reg ls ene gdp, robust
 avplots,ml(ccc)
 dy
 ! mv /tmp/g1.pdf `tmp'couWvsLsEnGdp.pdf

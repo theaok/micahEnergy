@@ -7,8 +7,12 @@ graphsAndTables.tex is output for paper
 world.do is stata dofile that produces country level results--guess we
 fcus on those now, so later i can also add state and counties code here
 
+worldAll is stata dta file (produced by world.do) with all world data already
+merged and labelled (can open in R with foreign package)
+
 * log
 
 <2014-09-25 Thu>
-aok: i will be beefing up text mostly
-
+added temperature, makes energy little more siginifacnt, and esspecially if
+adding co2--that makes energy really significant, which makes sense--they
+correlate at .9; beefed up text
