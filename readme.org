@@ -1,8 +1,8 @@
 * files
 
-micahEnergyPaperBody.tex is our paper
+micahEnergy.tex is our paper
 
-graphsAndTables.tex is output for paper
+variousOtherGraphsAndTables.pdf is extra/old results
 
 world.do is stata dofile that produces country level results--guess we
 fcus on those now, so later i can also add state and counties code here
@@ -11,6 +11,10 @@ worldAll is stata dta file (produced by world.do) with all world data already
 merged and labelled (can open in R with foreign package)
 
 * log
+
+<2014-09-27 Sat>
+ok, this should a first readable paper; curious about your comments; also
+uploaded couple papers to google drive; i think pretty13 is most informative, important so far
 
 <2014-09-25 Thu>
 added temperature, makes energy little more siginifacnt, and esspecially if
