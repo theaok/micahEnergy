@@ -26,6 +26,7 @@ cd `d'
 
 //there is some energy efficiency measure but for 16 countries only
 //http://www.aceee.org/research-report/e1402
+//or can simply do GDP/energy (PPP US$/ kgep) 1999 like in dias06
 
 //tthis looks like awesome source of cross-country data http://sedac.ciesin.columbia.edu/data/collections/browse
 //environmental sustainability index ESI for over 140 countries :)
@@ -41,24 +42,31 @@ wbopendata, indicator(NY.GDP.PCAP.KD; EG.USE.PCAP.KG.OE; SL.UEM.TOTL.ZS; EN.ATM.
 
 ren  ny_gdp_pcap_kd gdp
 la var gdp "PCGDP"
+note gdp: GDP per capita (constant 2005 US$); Code: NY.GDP.PCAP.KD; "GDP per capita is gross domestic product divided by midyear population. GDP is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products. It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources. Data are in constant 2005 U.S. dollars."; WB
 
 ren is_rod_sgas_pc gas
 la var gas "road sector gasoline fuel consumption, pc"
+note gas: Road sector gasoline fuel consumption per capita (kg of oil equivalent); Code: IS.ROD.SGAS.PC; "Gasoline is light hydrocarbon oil use in internal combustion engine such as motor vehicles, excluding aircraft."; WB
 
 ren eg_use_pcap_kg_oe ene 
 la var ene "energy use, pc"
-
+note ene:  Energy use (kg of oil equivalent per capita); Code: EG.USE.PCAP.KG.OE "Energy use refers to use of primary energy before transformation to other end-use fuels, which is equal to indigenous production plus imports and stock changes, minus exports and fuels supplied to ships and aircraft engaged in international transport."; WB
+ 
 ren sl_uem_totl_zs un
-la var un "unemployment"
+la var un "unemployment, %"
+note un: Unemployment, total (% of total labor force) (modeled ILO estimate); Code: SL.UEM.TOTL.ZS; "Unemployment refers to the share of the labor force that is without work but available for and seeking employment."; WB
 
 ren en_atm_co2e_pc co2
 la var co2 "co2 emissions, pc"
-
+note co2: CO2 emissions (metric tons per capita); Code: EN.ATM.CO2E.PC; "Carbon dioxide emissions are those stemming from the burning of fossil fuels and the manufacture of cement. They include carbon dioxide produced during consumption of solid, liquid, and gas fuels and gas flaring."; WB
+ 
 ren sp_dyn_le00_fe_in lexp
 la var lexp "female life expectancy"
-
+note lexp: Life expectancy at birth, female (years); Code: SP.DYN.LE00.FE.IN; "Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life."
+ 
 ren sp_urb_totl_in_zs urb
 la var urb "percent urban"
+note urb:  population (% of total); Code: SP.URB.TOTL.IN.ZS; "Urban population refers to people living in urban areas as defined by national statistical offices. It is calculated using World Bank population estimates and urban ratios from the United Nations World Urbanization Prospects."
 
 d
 
@@ -66,6 +74,7 @@ ren iso2code cc
 ren countrycode ccc
 ren year yr
 save `tmp'wb, replace
+
 
 
 **** temperature
@@ -84,9 +93,12 @@ ren jul julMax
 save `tmp'couTemp,replace
 
 
-**** ruut
 
-//which year? nah use wvs
+**** //MAYBE need governance, say kkz index or something!!
+
+
+
+**** ruut //which year? nah use wvs
 
 /* insheet using `d'dat/ls_ruut_wdh.csv,clear */
 /* ren code cc */
@@ -118,139 +130,141 @@ save `tmp'couTemp,replace
 /* dy */
 
 
-**** manheim
+
+****  manheim //LATER
 
 
-//LATER can use postmaterialist index for somethingh :)
-cd ~/data/eb/manheim/
-ls
-!tar xvzf manheim.dta.gz
-use manheim.dta,clear
-rm manheim.dta
+/* //LATER can use postmaterialist index for somethingh :) */
+/* cd ~/data/eb/manheim/ */
+/* ls */
+/* !tar xvzf manheim.dta.gz */
+/* use manheim.dta,clear */
+/* rm manheim.dta */
 
-alpha SATISLFE HAPPINSS
-//LATER so can have some index
-
-
-//LATER also per parties there are more vars that can use in teh FUTURE
-d EPPI
-lookfor vote
-lookfor party
-
-ren SATISLFE ls
-//la var ls "happiness"
-la var ls "SWB"
-revrs ls, replace
-ren YEAR yr
-ren NATION1 c
-//LATER
-//mention that dropped   NORTHERN IRELAND 10   
-//amd lumped east and west germany together,,,
-gen ccc=""
-replace ccc ="FRA"  if c ==  1
-replace ccc ="BEL"  if c ==  2
-replace ccc ="NLD"  if c ==  3
-replace ccc ="DEU"  if c ==  4
-replace ccc ="ITA"  if c ==  5
-replace ccc ="LUX"  if c ==  6
-replace ccc ="DNK"  if c ==  7
-replace ccc ="IRL"  if c ==  8
-replace ccc ="GBR"  if c ==  9
-replace ccc ="GRC"  if c == 11
-replace ccc ="ESP"  if c == 12
-replace ccc ="PRT"  if c == 13
-replace ccc ="DEU"  if c == 14
-replace ccc ="NOR"  if c == 15
-replace ccc ="FIN"  if c == 16
-replace ccc ="SWE"  if c == 17
-replace ccc ="AUT"  if c == 18
-
-keep ls yr ccc 
-//LATER can think of more
-
-collapse ls, by(yr ccc)
-save `tmp'eb,replace   
+/* alpha SATISLFE HAPPINSS */
+/* //LATER so can have some index */
 
 
+/* //LATER also per parties there are more vars that can use in teh FUTURE */
+/* d EPPI */
+/* lookfor vote */
+/* lookfor party */
 
-****  merging
+/* ren SATISLFE ls */
+/* //la var ls "happiness" */
+/* la var ls "SWB" */
+/* revrs ls, replace */
+/* ren YEAR yr */
+/* ren NATION1 c */
+/* //LATER */
+/* //mention that dropped   NORTHERN IRELAND 10    */
+/* //amd lumped east and west germany together,,, */
+/* gen ccc="" */
+/* replace ccc ="FRA"  if c ==  1 */
+/* replace ccc ="BEL"  if c ==  2 */
+/* replace ccc ="NLD"  if c ==  3 */
+/* replace ccc ="DEU"  if c ==  4 */
+/* replace ccc ="ITA"  if c ==  5 */
+/* replace ccc ="LUX"  if c ==  6 */
+/* replace ccc ="DNK"  if c ==  7 */
+/* replace ccc ="IRL"  if c ==  8 */
+/* replace ccc ="GBR"  if c ==  9 */
+/* replace ccc ="GRC"  if c == 11 */
+/* replace ccc ="ESP"  if c == 12 */
+/* replace ccc ="PRT"  if c == 13 */
+/* replace ccc ="DEU"  if c == 14 */
+/* replace ccc ="NOR"  if c == 15 */
+/* replace ccc ="FIN"  if c == 16 */
+/* replace ccc ="SWE"  if c == 17 */
+/* replace ccc ="AUT"  if c == 18 */
 
+/* keep ls yr ccc  */
+/* //LATER can think of more */
 
-use `tmp'eb,clear
-hilo ls c
-merge 1:1 ccc yr using `tmp'wb
-ta yr if _merge==1 //throwing away hunderd countries bc dropping 70s;also note that in other years one coyuntry did not merge!!
-keep if _merge == 3
-
-drop if ccc=="LUX" //have to drop it--it's not a country
-
-**** desSta
-
-tw(scatter ls ene,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls ene)
-dy
-! mv /tmp/g1.pdf `tmp'couLsEne.pdf
-
-tw(scatter ls gdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls gdp)
-dy
-! mv /tmp/g1.pdf `tmp'couLsGdp.pdf
-
-
-corr ene gdp
-
-
-**** reg
-
-
-reg ls ene, robust
-reg ls ene gdp, robust beta
-reg ls ene ene2 gdp, robust beta
-reg ls ene ene2 gdp gdp2, robust beta
-
-reg ls ene gdp lexp, robust
-
-reg ls ene gdp lexp co2, robust
-reg ls ene ene2 gdp lexp co2, robust
-avplots
-dy
-di _b[ene]/(-2* _b[ene2])
-
-reg ls ene gdp un lexp co2, robust //much fewer obs
-
-corr co2 ene un //aha! more ene less un and more co2
-
-gen ene2=ene^2
-gen gdp2=gdp^2
-
-reg ls ene ene2 gdp  un lexp co2, robust
-di _b[ene]/(-2* _b[ene2])
-sum ene, det
-
-reg ls ene ene2 gdp  gdp2 un lexp co2, robust //aha!
-reg ls ene  gdp  gdp2 un lexp co2, robust beta //aha!
-
-
-encode ccc, gen(Nccc)
-xtset Nccc yr
-
-//guess following jorgenson14B
-xtpcse ls  ene ene2 gdp lexp co2
-xtpcse ls  ene ene2 gdp gdp2 un lexp co2
-xtpcse ls  ene ene2 gdp un lexp co2, correlation(ar1) het
+/* collapse ls, by(yr ccc) */
+/* save `tmp'eb,replace    */
 
 
 
-//so perhaps conclusion from all that is that ene, like income contributes to happiness but up to a point--that is, tehre is a quadratoic relationship...
+/* ***  merging */
+
+
+/* use `tmp'eb,clear */
+/* hilo ls c */
+/* merge 1:1 ccc yr using `tmp'wb */
+/* ta yr if _merge==1 //throwing away hunderd countries bc dropping 70s;also note that in other years one coyuntry did not merge!! */
+/* keep if _merge == 3 */
+
+/* drop if ccc=="LUX" //have to drop it--it's not a country */
+
+/* *** desSta */
+
+/* tw(scatter ls ene,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls ene) */
+/* dy */
+/* ! mv /tmp/g1.pdf `tmp'couLsEne.pdf */
+
+/* tw(scatter ls gdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls gdp) */
+/* dy */
+/* ! mv /tmp/g1.pdf `tmp'couLsGdp.pdf */
+
+
+/* corr ene gdp */
+
+
+/* *** reg */
+
+
+/* reg ls ene, robust */
+/* reg ls ene gdp, robust beta */
+/* reg ls ene ene2 gdp, robust beta */
+/* reg ls ene ene2 gdp gdp2, robust beta */
+
+/* reg ls ene gdp lexp, robust */
+
+/* reg ls ene gdp lexp co2, robust */
+/* reg ls ene ene2 gdp lexp co2, robust */
+/* avplots */
+/* dy */
+/* di _b[ene]/(-2* _b[ene2]) */
+
+/* reg ls ene gdp un lexp co2, robust //much fewer obs */
+
+/* corr co2 ene un //aha! more ene less un and more co2 */
+
+/* gen ene2=ene^2 */
+/* gen gdp2=gdp^2 */
+
+/* reg ls ene ene2 gdp  un lexp co2, robust */
+/* di _b[ene]/(-2* _b[ene2]) */
+/* sum ene, det */
+
+/* reg ls ene ene2 gdp  gdp2 un lexp co2, robust //aha! */
+/* reg ls ene  gdp  gdp2 un lexp co2, robust beta //aha! */
+
+
+/* encode ccc, gen(Nccc) */
+/* xtset Nccc yr */
+
+/* //guess following jorgenson14B */
+/* xtpcse ls  ene ene2 gdp lexp co2 */
+/* xtpcse ls  ene ene2 gdp gdp2 un lexp co2 */
+/* xtpcse ls  ene ene2 gdp un lexp co2, correlation(ar1) het */
+
+/* //so perhaps conclusion from all that is that ene, like income contributes to happiness but up to a point--that is, tehre is a quadratoic relationship... */
 
 
 
 **** wvs
 
 
-$wvs
+$wvs //LATER can update my old wvs to latest incl more waves
+ 
 
 keep ls yr cc
 collapse ls, by(cc yr)
 
+note ls: "All things considered, how satisfied are you with your life as a whole these days?" 1="dissatisfied" to 10="satisfied"; WVS
+la var ls "happiness"
 
 kountry cc, from(iso2c) to(iso3c)
 d
@@ -293,7 +307,13 @@ replace  c="Netherlands" if c=="Belgium" //replacing back after merge
 destring, replace
 
 d
-la var ls "happiness"
+
+
+la var janMax "maximum temperature in January"
+la var julMax "maximum temperature in July"
+note janMax: "near-surface temperature maximum (degrees Celsius)" ; TYN\_CY
+note julMax: "near-surface temperature maximum (degrees Celsius)" ; TYN\_CY
+
 
 
 save `tmp'worldAll,replace
@@ -302,17 +322,69 @@ save `tmp'worldAll,replace
 **** desSta
 
 
+use `tmp'worldAll, clear
+
+d
+aok_var_des , ff(ls gdp ene un co2 lexp gas urb janMax julMax) fname(`tmp'varDes.tex)
+! sed -i "s|\\\$|\\\\\$|g" `tmp'varDes.tex
+! sed -i "s|\%|\\\%|g" `tmp'varDes.tex
+
+//MAYBE do regressions with collapse data as well--simpler more startgtforwrd+othersie they would ask for FE
+//otherwise at least make a note that thsese are collapsed and in body we haeve uncollapsed
+//otherriwise if using uncollapsed in regressions may have FE i guess
+preserve
+
+foreach v of var * {
+local l`v' : variable label `v'
+      if `"`l`v''"' == "" {
+	local l`v' "`v'"
+	}
+}
+collapse ls ene gdp co2 lexp, by(c ccc)
+foreach v of var * {
+label var `v' "`l`v''"
+}
+
+
+format ene gdp  lexp %9.0fc
+format ls co2 %9.1f
+l c ccc ls ene gdp co2 lexp if ls!=.
+
+sort ls
+aok_listtex c ccc ls ene gdp co2 lexp if ls!=., path(`tmp'list.tex) cap(Key variables for each country. Sorted on happiness. Note: if country was observed in more than one year, values are averaged) 
+
 tw(scatter ls ene,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls ene)
 dy
 ! mv /tmp/g1.pdf `tmp'couWvsLsEne.pdf
+//TODO i guess need another graph showing relationship controlling for other stuff!--guess after regressions with margins:)
 
 tw(scatter ls gdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls gdp)
 dy
 ! mv /tmp/g1.pdf `tmp'couWvsLsGdp.pdf
 
 
+restore
+
+**** regressions
+
+
+
+// TODO may see those recent cross country papers; essp in joural to whcih we send
+//maybe add some soft vars like trust or freedom etc etc from wvs
+// guess need some instutions,goivernance like kkz index
+
+
 reg ls ene, robust beta
 reg ls ene gdp, robust
+margins, at(ene=(0(2500)10000)) 
+marginsplot, x(ene) 
+dy
+
+reg ls c.ene c.co2 gdp, robust
+reg ls c.ene c.co2 gdp janMax julMax urb lexp un, robust
+
+gen enePerCo2=ene/co2 //not sure if this makes sense, guess better jsut hav the two speparately on rhs
+reg ls  enePerCo2 gdp urb un lexp janMax julMax, robust
 
 reg ls ene  janMax julMax, robust beta
 reg ls ene  janMax julMax gdp, robust beta
@@ -322,12 +394,24 @@ reg ls ene gdp urb , robust //yay!
 reg ls ene gdp urb janMax julMax , robust 
 
 reg ls ene gdp urb un lexp, robust
-reg ls ene gdp urb un lexp janMax julMax, robust
+reg ls ene gdp urb un lexp janMax julMax, robust beta
 reg ls ene gdp urb un lexp janMax julMax co2, robust beta //oh co2 messes up everything!!
 
 corr ene co2 //that's why :(
 
 //definietly interpret substantively--how much boost in happiness from enerhy say as compare to gdp
+
+//need year dummies in regressions!
+reg ls ene gdp urb un lexp janMax julMax i.yr, robust beta
+reg ls ene gdp urb un lexp janMax julMax co2 i.yr, robust beta
+
+encode c, gen(Nc)
+gen gdp2=gdp^2
+
+reg ls ene gdp urb un lexp janMax julMax co2 i.yr, robust beta
+reg ls ene gdp gdp2 urb un lexp janMax julMax co2 i.yr , robust beta
+
+reg ls ene gdp urb un lexp janMax julMax co2 i.yr i.Nc, robust beta
 
 reg ls ene gdp, robust
 avplots,ml(ccc)
@@ -343,3 +427,39 @@ reg ls ene gdp co2 lexp, robust
 reg ls ene gdp co2 lexp un, robust
 reg ls ene ene2 gdp co2 lexp un, robust
 
+xtset Nc yr
+
+xtreg ls ene gdp, fe
+xtreg ls ene gdp urb lexp, fe
+xtreg ls ene gdp urb lexp co2, fe
+xtreg ls ene gdp gdp2 urb lexp co2, fe
+
+xtreg ls ene gdp urb lexp co2, re
+
+
+** paper
+
+fvset base 2000 yr
+
+reg ls ene i.yr, robust beta
+est sto ols1
+reg ls ene gdp i.yr, robust beta
+est sto ols2
+reg ls ene gdp urb un lexp i.yr, robust beta
+est sto ols3
+reg ls ene gdp urb un lexp janMax julMax i.yr, robust beta
+est sto ols4
+reg ls ene gdp urb un lexp janMax julMax i.yr co2, robust beta
+est sto ols5
+
+
+xtreg ls ene gdp urb un lexp , fe
+est sto fe1
+xtreg ls ene gdp urb un lexp co2, fe
+est sto fe2
+
+estout ols1 ols2 ols3 ols4 ols5 fe1 fe2  using `tmp'regA.tex ,  cells(b(star fmt(%9.3f))) replace style(tex) collabels(, none) stats(N, labels("N")fmt(%9.0f))varlabels(_cons constant) label starlevels(+ 0.10 * 0.05 ** 0.01 *** 0.001)drop(*yr*)
+//order(HH0 HH1 HH2 HH3 HH5 HH6 HH7 inc IS2 IS3 IS4 IS5 IS6 IS7 IS8  age age2  mar  ed  hompop  hea male )
+! sed -i "s|\%|\\\%|g" `tmp'regA.tex
+
+//TODO would need to multiply many vars by 1k or so that nicely can interpet
