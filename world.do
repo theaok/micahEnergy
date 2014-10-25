@@ -75,6 +75,32 @@ ren countrycode ccc
 ren year yr
 save `tmp'wb, replace
 
+**** electricty per hh!
+
+//may be more scientific to get it from UN:Electricity - Consumption by households
+//http://data.un.org/Data.aspx?d=EDATA&f=cmID%3aEL%3btrID%3a1231
+//but here it is already divided by population :)
+
+//http://www.wec-indicators.enerdata.eu/household-electricity-use.html
+//cd ~/data/energy/world
+//! wget http://www.wec-indicators.enerdata.eu/xls/cuelemenele.xls
+// cd `d'
+import excel using ~/data/energy/world/cuelemenele.xls,clear
+l in 1/3
+drop in 1/2
+l in 1
+drop B C K L
+
+renvars D-J \ y2005-y2011
+drop in 104/105
+ren A c
+reshape long y, i(c)j(yr)
+replace y="." if y=="n.a."
+destring y, replace
+ren y eleHH
+la var eleHH "Average electricity consumption per electrified household, kWh"
+
+save `tmp'couEleHH,replace
 
 
 **** temperature
@@ -314,9 +340,14 @@ la var julMax "maximum temperature in July"
 note janMax: "near-surface temperature maximum (degrees Celsius)" ; TYN\_CY
 note julMax: "near-surface temperature maximum (degrees Celsius)" ; TYN\_CY
 
+merge 1:1 c yr using `tmp'couEleHH
+ta c if _merge==1 & yr >2004 & yr<2009
+ta c if _merge==2 & yr >2004 & yr<2009
+//TODO BUG if i end up using thsi measure then need fix it!!
 
+drop _merge
 
-save `tmp'worldAll,replace
+saveold `tmp'worldAll,replace
 
 
 **** desSta
@@ -340,7 +371,7 @@ local l`v' : variable label `v'
 	local l`v' "`v'"
 	}
 }
-collapse ls ene gdp co2 lexp, by(c ccc)
+collapse ls ene gdp co2 lexp eleHH, by(c ccc)
 foreach v of var * {
 label var `v' "`l`v''"
 }
@@ -353,14 +384,37 @@ l c ccc ls ene gdp co2 lexp if ls!=.
 sort ls
 aok_listtex c ccc ls ene gdp co2 lexp if ls!=., path(`tmp'list.tex) cap(Key variables for each country. Sorted on happiness. Note: if country was observed in more than one year, values are averaged) 
 
-tw(scatter ls ene,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls ene)
+tw(scatter ls ene if gdp>10000,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls ene if gdp>10000),saving(ene,replace)
 dy
 ! mv /tmp/g1.pdf `tmp'couWvsLsEne.pdf
-//TODO i guess need another graph showing relationship controlling for other stuff!--guess after regressions with margins:)
+
+tw(scatter ls ene if gdp<10000,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls ene if gdp<10000),saving(ene,replace)
+dy
+! mv /tmp/g1.pdf `tmp'couWvsLsEneLT10kGDP.pdf
+
 
 tw(scatter ls gdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls gdp)
 dy
 ! mv /tmp/g1.pdf `tmp'couWvsLsGdp.pdf
+
+tw(scatter ls co2,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls co2)
+dy
+
+gen eneGdp=ene/gdp
+
+tw(scatter ls eneGdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls eneGdp)
+dy
+
+tw(scatter ls eneGdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(lfit ls eneGdp),saving(eneGdp,replace)
+dy
+! mv /tmp/g1.pdf `tmp'couWvsLsEnePerGdp.pdf
+
+gr combine ene.gph eneGdp.gph
+dy
+! mv /tmp/g1.pdf `tmp'couWvsGrComEneGdp.pdf
+
+tw(scatter ls eleHH,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(lfit ls eleHH),saving(a,replace)
+dy
 
 
 restore
@@ -379,6 +433,11 @@ reg ls ene gdp, robust
 margins, at(ene=(0(2500)10000)) 
 marginsplot, x(ene) 
 dy
+! mv /tmp/g1.pdf `tmp'couWvsLsEneGdp.pdf
+
+reg ls eleHH, robust beta
+reg ls eleHH gdp, robust
+
 
 reg ls c.ene c.co2 gdp, robust
 reg ls c.ene c.co2 gdp janMax julMax urb lexp un, robust
@@ -463,3 +522,153 @@ estout ols1 ols2 ols3 ols4 ols5 fe1 fe2  using `tmp'regA.tex ,  cells(b(star fmt
 ! sed -i "s|\%|\\\%|g" `tmp'regA.tex
 
 //TODO would need to multiply many vars by 1k or so that nicely can interpet
+
+
+
+//###########################################################################
+
+
+
+**** manheim
+
+
+//LATER can use postmaterialist index for somethingh :)
+cd ~/data/eb/manheim/
+ls
+!tar xvzf manheim.dta.gz
+use manheim.dta,clear
+rm manheim.dta
+
+alpha SATISLFE HAPPINSS
+//LATER so can have some index
+
+
+//LATER also per parties there are more vars that can use in teh FUTURE
+d EPPI
+lookfor vote
+lookfor party
+
+ren SATISLFE ls
+//la var ls "happiness"
+la var ls "SWB"
+revrs ls, replace
+ren YEAR yr
+ren NATION1 c
+//LATER
+//mention that dropped   NORTHERN IRELAND 10   
+//amd lumped east and west germany together,,,
+gen ccc=""
+replace ccc ="FRA"  if c ==  1
+replace ccc ="BEL"  if c ==  2
+replace ccc ="NLD"  if c ==  3
+replace ccc ="DEU"  if c ==  4
+replace ccc ="ITA"  if c ==  5
+replace ccc ="LUX"  if c ==  6
+replace ccc ="DNK"  if c ==  7
+replace ccc ="IRL"  if c ==  8
+replace ccc ="GBR"  if c ==  9
+replace ccc ="GRC"  if c == 11
+replace ccc ="ESP"  if c == 12
+replace ccc ="PRT"  if c == 13
+replace ccc ="DEU"  if c == 14
+replace ccc ="NOR"  if c == 15
+replace ccc ="FIN"  if c == 16
+replace ccc ="SWE"  if c == 17
+replace ccc ="AUT"  if c == 18
+
+keep ls yr ccc 
+//LATER can think of more
+
+collapse ls, by(yr ccc)
+save `tmp'eb,replace   
+
+
+
+****  merging
+
+
+use `tmp'eb,clear
+hilo ls c
+merge 1:1 ccc yr using `tmp'wb
+ta yr if _merge==1 //throwing away hunderd countries bc dropping 70s;also note that in other years one coyuntry did not merge!!
+keep if _merge == 3
+
+drop if ccc=="LUX" //have to drop it--it's not a country
+
+**** desSta
+
+preserve
+
+foreach v of var * {
+local l`v' : variable label `v'
+      if `"`l`v''"' == "" {
+	local l`v' "`v'"
+	}
+}
+collapse ls ene gdp co2 lexp, by(ccc)
+foreach v of var * {
+label var `v' "`l`v''"
+}
+
+
+format ene gdp  lexp %9.0fc
+format ls co2 %9.1f
+l  ccc ls ene gdp co2 lexp if ls!=.
+
+
+tw(scatter ls ene,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls ene)
+dy
+! mv /tmp/g1.pdf `tmp'couLsEne.pdf
+
+tw(scatter ls gdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls gdp)
+dy
+! mv /tmp/g1.pdf `tmp'couLsGdp.pdf
+
+
+corr ene gdp
+
+
+**** reg
+
+
+reg ls ene, robust
+reg ls ene gdp, robust beta
+reg ls ene ene2 gdp, robust beta
+reg ls ene ene2 gdp gdp2, robust beta
+
+reg ls ene gdp lexp, robust
+
+reg ls ene gdp lexp co2, robust
+reg ls ene ene2 gdp lexp co2, robust
+avplots
+dy
+di _b[ene]/(-2* _b[ene2])
+
+reg ls ene gdp un lexp co2, robust //much fewer obs
+
+corr co2 ene un //aha! more ene less un and more co2
+
+gen ene2=ene^2
+gen gdp2=gdp^2
+
+reg ls ene ene2 gdp  un lexp co2, robust
+di _b[ene]/(-2* _b[ene2])
+sum ene, det
+
+reg ls ene ene2 gdp  gdp2 un lexp co2, robust //aha!
+reg ls ene  gdp  gdp2 un lexp co2, robust beta //aha!
+
+
+encode ccc, gen(Nccc)
+xtset Nccc yr
+
+//guess following jorgenson14B
+xtpcse ls  ene ene2 gdp lexp co2
+xtpcse ls  ene ene2 gdp gdp2 un lexp co2
+xtpcse ls  ene ene2 gdp un lexp co2, correlation(ar1) het
+
+
+
+//so perhaps conclusion from all that is that ene, like income contributes to happiness but up to a point--that is, tehre is a quadratoic relationship...
+
+

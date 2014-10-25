@@ -10,7 +10,7 @@
 %\bibpunct{(}{)}{,}{a}{,}{,}                   
 \bibpunct{(}{)}{,}{a}{}{,}                   
 \usepackage{amsmath}
-\usepackage{graphicx} %[pdftex] git latex doesn't like it               
+\usepackage[pdftex]{graphicx}  %[pdftex]git latex doesn't like it             
 \usepackage{epstopdf}
 \usepackage{hyperref}                             % For creating hyperlinks in cross references
 
@@ -127,7 +127,10 @@
 \date{Draft: {}\today}
 \title{
 %  The Paradox of Energy Consumption and Happiness Across Countries
-Energy Use And Happiness
+Energy Use And Happiness\footnote{Author Contributions: A.O.K and M.A designed
+  research. A.O.K. performed research. A.O.K. analyzed data. A.O.K. and
+  M.A. wrote the paper.  % Micah: Add author contribution statements. See: http://www.nature.com/news/publishing-credit-where-credit-is-due-1.15033
+}
 }
 \author{
 Adam Okulicz-Kozaryn\thanks{EMAIL: adam.okulicz.kozaryn@gmail.com
@@ -135,9 +138,6 @@ Adam Okulicz-Kozaryn\thanks{EMAIL: adam.okulicz.kozaryn@gmail.com
 {\small Rutgers - Camden}\\
 Micah Altman\thanks{EMAIL: ???
   \hfill I ???} \\
-
-% Micah: Add author contribution statements. See: http://www.nature.com/news/publishing-credit-where-credit-is-due-1.15033
-
 {\small MIT}
 }
 
@@ -147,7 +147,7 @@ Micah Altman\thanks{EMAIL: ???
 %\modulolinenumbers[1]
 %\linenumbers
 
-%\bibliographystyle{/home/aok/papers/root/tex/ecta}
+\bibliographystyle{/home/aok/papers/root/tex/ecta}
 \maketitle
 \vspace{-.4in}
 \begin{center}
@@ -155,32 +155,36 @@ Micah Altman\thanks{EMAIL: ???
 \end{center}
 
 \begin{abstract}
-\noindent Perhaps the biggest gap in large happiness literature is
+\noindent Despite technological advances, energy use continues to
+grow. Environmental consequences of energy use are well known: resurce depletion
+and pollution. Yet, it is difficult to argue reductions because it is assumed
+that energy consumption increases our wellbeing. But does it?
+ Perhaps the biggest gap in large happiness literature is
 consumption--we know little about the effect of consumtion on happiness. Energy
-consumption is critical for many reasons.  We study energy use and happiness across countries.  Energy
-use is defined as total enery used in a country per capita. Happiness data come
- from World Values Survey. There are striking severalfold differences in
-energy use. The bivariate relationship conforms to a traditional tradeoff--the
-more energy we consume, the happier we are, and hence energy conservation faces
-a tradeoff in wellbeing. This apparent relationship disappears, however, when
-income is taken into account. Furthermore, we find that the relationship becomes
-positive again when $CO_2$ emissions are taken into account. We interpret this
- as another argument to curb pollution and conserve natural resources, but also
- as an argument in favor of renevable or clean energy sources, say wind or solar.  %MAYBE or LATER can  control for clean energy
- Fundamentally, the ultimate goal of increased energy consumption is human
- happiness--if there is no increased happiness because energy consumption
- pollutes, then we should either consume less or consume cleaner. We discuss directions for future research.
+consumption is critical for many reasons.  We study energy use and happiness
+across countries, US states, and California counties. Enery consumption
+translates into very little happiness or may even decrase it depending on level
+of analysis and  measurment. We also account for  confounding factors  such as
+income and climate. 
+%  across countries.  Energy
+% use is defined as total enery used in a country per capita. Happiness data come
+%  from World Values Survey. There are striking severalfold differences in
+% energy use. The bivariate relationship conforms to a traditional tradeoff--the
+% more energy we consume, the happier we are, and hence energy conservation faces
+% a tradeoff in wellbeing. This apparent relationship disappears, however, when
+% income is taken into account. Furthermore, we find that the relationship becomes
+% positive again when $CO_2$ emissions are taken into account. We interpret this
+%  as another argument to curb pollution and conserve natural resources, but also
+%  as an argument in favor of renevable or clean energy sources, say wind or solar
+ The ultimate goal of energy consumption is human
+ happiness--if there is none, then we should consume less. We discuss directions for future research.
 \end{abstract}
-
-
 % Micah: This abstract is backward. This will have a broader audience and greater impact if we focus on the problem first, 
 % then do our best to advance the literature in the direction needed to solve the problem.
 % The biggest problem this addresses is the consequences of energy consumption.
 
-
 \vspace{.15in} 
-\noindent{\sc keywords:  energy use,  sustainability, wellbeing,
-  happiness, Subjective Well-Being (SWB)}
+\noindent{\sc keywords:  energy use,  sustainability, wellbeing,  happiness, Subjective Well-Being (SWB)}
 %\vspace{-.25in} 
 
 \begin{spacing}{1.4}
@@ -193,15 +197,18 @@ positive again when $CO_2$ emissions are taken into account. We interpret this
 % \caption{woo}
 % \end{figure}
 
-\section{Introduction}
-
 % Micah: 
 %  Start with the strongest introduction we can possibly support. If we can't rigously support it with the data and analysis, we'll weaken it... but this is the goal. 
 %  -- begin intro -- 
 
-Our energy consumption and  its enviromental consequences constitute the largest challenges to science and to human society today. And it is universally acknowledged that there is a fundamental tradeoff between societal energy consumption and indivdual self-interest -- substantially reducing energy consumption requires individual sacrifices. 
+Enviromental consequences of human consumption are the largest challenges to
+science and to society today.  Energy consumption is an important part--it both
+pollutes and it depletes natural resources. Furthermore energy is a strategic
+resource--many wars were thought over energy and much politics is about it.
+And it is universally acknowledged that there is a fundamental tradeoff between societal energy consumption and indivdual self-interest--substantially reducing energy consumption requires individual sacrifices. 
 
 % We should provide 2-3 solid citations to to establish that these are indeed the received wisdom -- otherwise this could be accused of being a staw-man 
+%AOK TODO
 
 In this paper, we find that this universal assumption is wrong.  By combining data on energy consumption and on life satisifaction we find that  many forms of personal energy consumption do not increase individual's happiness or otherwise make their lives better. This finding is robust across long time periods, and multiple levels of spatial aggregation -- it applies to patterns of energy consumption over months, years and decades,  and to patterns of energy consumption at the local, national, and global scale.  
 
@@ -237,7 +244,9 @@ encourage more research in the area this underexplored area.
 
 A recent report by
 Intergovernmental Panel on Climate Change is alarming 
-(\url{http://www.ipcc.ch/}). Indeed, a threat is serious enough that
+(\url{http://www.ipcc.ch/}). % very important body; another pnas citing it
+                             % already in title http://www.pnas.org/content/104/24/10288.full
+Indeed, a threat is serious enough that
 claims for not growing the economy anymore or even ``degrowing'' it
 appear reasonable \citep{kallis12}.\footnote{Although it is not
   immediately obvious what is the best strategy to achieve greater
@@ -246,9 +255,6 @@ appear reasonable \citep{kallis12}.\footnote{Although it is not
 least curbing consumption is a reasonable soution, perhaps even as high as by
 factor of 10 in affluent societies  as advocated by \citet{pretty13}. This,
 of course, begs a question, what would happen to our happiness?
-
-
-\section{The Happiness-Energy Conservation Tradeoff?}
 
 A common or received wisdom is that there is a tradeoff between happiness and
 energy use--we need to consume energy in order to achieve greater
@@ -292,6 +298,599 @@ activities low in carbon footprint but high in happiness such as gardening or
 yoga \citep{madjar06}. 
 
 
+\section{Results}
+
+% Micah: This needs to be reorganized. 
+
+% In my view the primary goal of this section is to answer this question:
+%  *** Which choices do individuals make, that have a large negative effect on the environment, and which do not make the individuals, their community, or society better off?  ***
+% We aim to provide the best scientifically and empirically supported answer possible, that does not require collecting new primary data. 
+
+
+% AOK:
+% this is interesting, probably more interesting than what we have so far, the
+% problem is that we did not really test for that; now i was actually surprised
+% that there are  data by census or climate
+% regions (9 of them): 
+% http://www.eia.gov/consumption/residential/data/2009/index.cfm?view=consumption
+% and we have happiness there too: but you are asking a grand question; and the
+% data we have just breaks down energy use in a big region estimating how much is
+% used for cooling, heating, lights, etc etc--but there are a function of climate,
+% culture and other collective stuff; for your question we would need person-level
+% data and there are some (PSID for instance), but that's a different paper...
+
+% what we have done so far is that there is not much happiness from energy use;
+% probably much less than expected...
+
+% and then we can say that given that we can cut energy consumptin and stay happy
+
+% so yes in a sense we do answe your question--it is just not ``which choices''
+% buty specifically less energy in general
+
+
+% I suggest the following organization
+%  1. Provide an easy to interpret figure showing happiness vs. energy consumption at the global level (nations), for a single time period. This should illustrate the general weakness of the relationship between happiness and energy consumption without controlling for anything. Discuss the substantive size of the raw - uncontrolled correlation
+% 2. Now discuss the details of the measures. explain that (a) the energy
+% consumption measures include only those that are under personal control, 
+
+% AOK: all residential is personal control; but affected by climate etc--hence we
+% have controls
+
+% and (b) have a substantial effect on environment. Cite the literature as appropriate
+
+% AOK ok, cool will trhow in lit here
+
+% 3. Show that this relationship is durable -- introduce time-series data to show that this holds over significant time-scales
+
+%AOK:by relationship i guess you mean happiness-energy use; but happiness is
+%mostly flat over time; same energy use: in the rich countries mostly flat or
+%increaing a little; in developing it increases;so won't be much there
+
+% 4. Show that this relationship is not an accident of scale. Drill down to states, then counties within california, and show the relationship holds
+% 5. Now discuss other possible explanations for these patterns (a) use these explanations to suggest convariates/confounders (b) show the results of controlling visually first, or with a simple table, (c) use a statistical model to ensure that the visual impressions are not misleading
+
+% AOK: great ! makes sense!
+
+\subsection{Energy}
+
+We start with a cross-section--there is not much variation in happiness over
+time, and energy consumption in developed areas is quite flat, too. 
+We use happiness data from World Values Survey
+(WVS \url{http://www.worldvaluessurvey.org/wvs.jsp})--we use a cumulative file
+covering first 4 waves (1981-2007), hence some countries are observed more than
+once. Happiness is averaged for each country-year and matched with energy use
+ from World Bank (\url{http://data.worldbank.org/indicator}), which are also averaged. 
+% US STATES:
+% There are large differences in energy use per capita accross states--twofold or
+% larger, yet energy-hungry states are no happier (with possible exceptioon of
+% transportation sector)--this is just another argument for energy conservation.
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/couWvsLsEne.pdf}\centering
+\caption{mannheim eurobarometer data couWvsLsEne.pdf}\label{couWvsLsEne.pdf}
+\end{figure}
+{\scriptsize Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+US is horrible--we consume about twice as much energy per capita as other
+developed countires. % also see http://www.ritholtz.com/blog/2010/06/oil-consumption-around-the-world/
+
+And we do not spend any less in the US on energy-- 5-10\% of personal
+expenditure goes on energy over past 80 years, and if anything it increased over
+last decade.\footnote{See
+  \url{http://burnanenergyjournal.com/what-goes-down-steins-law-and-the-cost-of-energy/}
+or \url{http://environmentalresearchweb.org/blog/energy-the-nexus-of-everything/}}
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/couLsEne.pdf}\centering
+\caption{couLsEne.pdf World values survey data country level for countries gt 10k pcgdp}\label{couLsEne.pdf}
+\end{figure}
+{\scriptsize Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+Well, true energy look positive, but so what ! does it mean more energymore
+happiness. no. it is quadratic!!! so it levels off at around 4k of energy
+use--beyond that anergy use does not seem to help much wiuth happiness; like
+with income--it also levels off at country or regional levble (my paper!)
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/couWvsLsEneLT10kGDP.pdf}\centering
+\caption{couWvsLsEneLT10kGDP.pdf World values survey data country level for countries lt 10k pcgdp}\label{couWvsLsEneLT10kGDP.pdf}
+\end{figure}
+{\scriptsize Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+it is interesting that the ere is positive quadratic relationship in rich
+countries and negative in poor countries...the cutoff point is at 10k of pcgdp.
+
+note: happiness and gdp were averaged over time: in wvs there are couple years;
+in mannheim there are 30years so not sure if averaging is a great idea in
+mannheim; but if each country-year plotted, it's quadratic also 
+
+% \begin{figure}[H]
+%  \includegraphics[height=3in]{graphsAndTables/couWvsGrComEneGdp.pdf}\centering
+% \caption{couWvsGrComEneGdp}\label{couWvsGrComEneGdp}
+% \end{figure}
+% {\scriptsize Note: Country codes are in table \ref{ls} in supplementary
+%   material. If country was observed in more than one year, the data were averaged.}
+
+latin american ctries like COL or MEX very little energy per gdp; while post
+soviet like ukraine or MDA BLR AZE ARM are very energy intesive and miserable
+
+% \begin{figure}[H]
+%  \includegraphics[height=3in]{graphsAndTables/grComTETPB_gdp.pdf}\centering
+% \caption{grComTETPBgdp}\label{grComTETPBgdp}
+% \end{figure}
+% {\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
+%   material. If country was observed in more than one year, the data were averaged.}
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/lfTERPBls.pdf}\centering
+\caption{lfTERPBls.pdf residential energy consumptionm; no relationship here !
+  except that hawaii is warm and doesn't consume much and california is green!
+  so now zooming in on california :)}\label{grComTETPBgdp}
+\end{figure}
+{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+
+So california consumes only about half of the energy consumed by an average
+state % also see http://www.skepticalscience.com/print.php?n=1365
+
+
+for states teh positive results are divern only by LA, ND, WY, AK; othersie
+nothing there, can do a graph dropping those
+
+% \begin{figure}[H]
+%  \includegraphics[height=3in]{graphsAndTables/eletot_gdp.pdf}\centering
+% \caption{eletotgdp}\label{eletotgdp}
+% \end{figure}
+% {\scriptsize Note: Country codes are in table \ref{ls} in supplementary
+%   material. If country was observed in more than one year, the data were averaged.}
+
+%note: cen div is somewhat weird...
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/lfELERESls.pdf}\centering
+\caption{residential energy use; nothing reallyu here...wonde why Mono uses so much!}\label{}
+\end{figure}
+{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+so need to have more gdp, less energy use, at least across countries...
+
+What is striking is the differences in energy use by area. Diferences are
+severalfold. Mexico and Columbia
+consume only ??? and yet are as happy as ??? which consumes ???.
+ 
+Table \ref{ls} in supplemenary material lists all countries along with
+happiness, energy use and other key variables.
+
+\subsection{Energy Intensity}
+
+There is not much relatyionship between happpiness and energy use, but there is
+even less if controlling for GDP--energy use correlates with GDP and it if nit
+controlling for GDP then it proxies it and then results are spurioius and what
+we see is the effect of GDP, not energy use.  
+To alleviate that problem we could have controlled for GDP. But we can do it
+another way, too. 
+Another way to look at it is to use so called energy intensity of gross domestic
+product (GDP): (energy/GDP). Below  are graphs doing just that.
+
+Here we think it makes more sense to look at total energy consumption as opposed
+to residental--we use  that at state and county levels 
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/couWvsLsEnePerGdp.pdf}\centering
+\caption{total energy use divided by gdp}\label{}
+\end{figure}
+{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/lfTETPBls.pdf}\centering
+\caption{total energy use divided by gdp}\label{}
+\end{figure}
+{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/caEleTotGdp.pdf}\centering
+\caption{total energy use divided by gdp}\label{}
+\end{figure}
+{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+
+
+and now we see that happiness strikingly actually declines across countries woohoo!
+
+And we also take into accouint more factors in the regressions framework in the
+online appendix
+
+\section{Discussion}
+
+% Micah: We'll rewrite this later. The main goal is to (a) briefly summarize the most significant results; (b) outline the possible causal explanations and frameworks, and thus define the future research agenda; (c) describe potential interventions 
+
+Hence, the messgae of this study is that if we change from society of consumers
+to socitty of conservers, we won't suffer much in terms of happiness.
+
+Much, and  arguably most among the rich, of the consumption is conspicous or
+wasteful \citep{veblen05a, veblen05b}--that is, such consumption is done not to satisfy need but to show that
+one is better than others--many of these consumption items waste energy: for
+instance: Mansions, SUVs.  Many other examples are not necessarily conspicous
+but they waste energy and have no clear contribution to lasting happiness: for
+instance landscaping, fake (unnatural) ponds fountains and other items that
+define American suburbia. Many social scientists \citep[e.g.][]{csikszentmihalyi99, frank04, frank05, frank12} suggested that conspicuous consumption
+does not make us any happier, and there are theoretical reasons to
+expect it, but few actually test it--and again, the only  study testing the
+effect of energy use on happiness was \citet{graef81}.
+
+One implication of the study is for housing: house is most expensive consumption
+item most people buy. Furthermore it costs considerable energy to build and
+maintain. The median house in 1973 was 1,525 sq ft, and 2,169  sq ft in 2010.\footnote{\url{http://www.census.gov/const/C25Ann/sftotalmedavgsqft.pdf}}
+Surely, the families must have gotten bigger over that time. Well,
+actually they gotten smaller--in 1973 the average household size was
+3.01, which dropped to 2.61 in
+2010.\footnote{\url{http://www.census.gov/population/socdemo/hh-fam/tabHH-6.pdf};\url{http://quickfacts.census.gov/qfd/states/00000.html}}
+The problem with big houses is that it is never big enough anyway--we
+compare it to other houses, and size is an obvious metric. But others
+do the same and they get ever bigger houses all the time so we all end
+up with bigger houses but nobody is happier \citep{frank12}. ``A house may be large or small; as long as the neighboring houses are
+likewise small, it satisfies all social requirements for a
+residence. But let there arise next to the little house a palace, and
+the little house shrinks to a hut'' (Marx and Engels 1849, quoted in
+\citet{dittmann10}). \citet{dittmann10} find support for the above
+statement. \citet{luttmer05} also finds that the richer the neighbors,
+the less happy the person.
+\citet{firebaugh09} refine this relationship by confirming that people
+are happier in poor counties, but in  rich neighborhoods. 
+
+We find that energy consumption does contribute to happiess, if pollution is
+taken into account. This is a clear argument in favor of clean energy--if we can
+consume energy without pollution, it should result in greater happiness. Untill
+we can to do so for all of our energy needs, we should curb the energy use and
+our needs.
+
+Then there are needs v wants--how much energy we really need v what we want
+(which is endless). For instance, we need temperature in a dwelling to be above
+a freezing point, but we want temperature to be in 80s in winter, while 60s
+would be fine. We need some transportation--train or perhaps some car, but we
+want an SUV, and so forth. The point is that in the US, easily half of energy
+consumption is a want (for instance Texans consume twice as much as New
+Jersians--they would be fine if they consume at levels of New Jersey).% stover14
+
+ And equity and environmental justice--it is wildly
+recognized that there is income inequality \citep[e.g.,]{piketty14} but there is
+ also plenty of environmental injustice--for instance Americans consume much
+ more resources than Indians, and of course within the US, recource consumption
+ varies enormously as well--for insance Texas consumes twice as much energy per
+ capita than New Jersey TODOciteFromOtehrMaterialHere. It is plainly no fair to
+ require poor countries such as India, or poor areas within countries or poor
+ people to care as much about conservation as the rich.
+ Furthermore, inequality in energy
+ consumption is in some ways more important than inequality in income, because
+ income is unlimited, while energy is (still most of energy comes from fossil
+ fuels TODOdbleCheck).  % stover14
+
+
+Energy efficiency is not ultimate solution and actually often backfires--it is
+like building more reoads or more lanes for traffic or loosening your belt for
+big belly--traffic increases, belly grows further and energy consumption grows
+furtehr too!
+%http://www.nytimes.com/2014/10/09/opinion/the-problem-with-energy-efficiency.html?hp&action=click&pgtype=Homepage&module=c-column-top-span-region&region=c-column-top-span-region&WT.nav=c-column-top-span-region&_r=0
+%hwys and loosening belt come from duany book
+
+Energy use and environmental iussies are  increasingy political in the US, and
+may even become a key issue in the near furtre. There is now a surfge in
+political advertising \citep{davenport_nyt_oct21_14}.
+
+
+\newpage
+\bibliography{/home/aok/papers/root/tex/ebib.bib}
+
+% \begin{thebibliography}{36}
+% \newcommand{\enquote}[1]{``#1''}
+% \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+% \bibitem[\protect\citeauthoryear{Brickman, Coates, and Janoff-Buman}{Brickman
+%   et~al.}{1978}]{brickman78cj}
+% \textsc{Brickman, P., D.~Coates, and R.~Janoff-Buman} (1978): \enquote{Lottery
+%   winners and accident victims: Is happiness relative?} \emph{Journal of
+%   Personality and Social Psychology}, 36, 917--927.
+
+% \bibitem[\protect\citeauthoryear{Brown and Kasser}{Brown and
+%   Kasser}{2005}]{brown05}
+% \textsc{Brown, K.~W. and T.~Kasser} (2005): \enquote{Are psychological and
+%   ecological well-being compatible? The role of values, mindfulness, and
+%   lifestyle,} \emph{Social Indicators Research}, 74, 349--368.
+
+% \bibitem[\protect\citeauthoryear{Corral-Verdugo, Mireles-Acosta, Tapia-Fonllem,
+%   and Fraijo-Sing}{Corral-Verdugo et~al.}{2011}]{corral11}
+% \textsc{Corral-Verdugo, V., J.~Mireles-Acosta, C.~Tapia-Fonllem, and
+%   B.~Fraijo-Sing} (2011): \enquote{Happiness as correlate of sustainable
+%   behavior: A study of pro-ecological, frugal, equitable and altruistic actions
+%   that promote subjective wellbeing,} \emph{Human Ecology Review}, 18, 95--104.
+
+% \bibitem[\protect\citeauthoryear{Csikszentmihalyi}{Csikszentmihalyi}{1999}]{csikszentmihalyi99}
+% \textsc{Csikszentmihalyi, M.} (1999): \enquote{If we are so rich, why aren't we
+%   happy?} \emph{American psychologist}, 54, 821.
+
+% \bibitem[\protect\citeauthoryear{Csikszentmihalyi, Graef, and
+%   Gianinno}{Csikszentmihalyi et~al.}{2014}]{csikszentmihalyi14}
+% \textsc{Csikszentmihalyi, M., R.~Graef, and S.~M. Gianinno} (2014):
+%   \enquote{Energy Consumption in Leisure and Perceived Happiness,} in
+%   \emph{Flow and the Foundations of Positive Psychology}, Springer, 127--133.
+
+% \bibitem[\protect\citeauthoryear{Daly}{Daly}{2013}]{daly13}
+% \textsc{Daly, H.} (2013): \enquote{A further critique of growth economics,}
+%   \emph{Ecological economics}, 88, 20--24.
+
+% \bibitem[\protect\citeauthoryear{Dias, Mattos, and P~Balestieri}{Dias
+%   et~al.}{2006}]{dias06}
+% \textsc{Dias, R.~A., C.~R. Mattos, and J.~A. P~Balestieri} (2006): \enquote{The
+%   limits of human development and the use of energy and natural resources,}
+%   \emph{Energy Policy}, 34, 1026--1031.
+
+% \bibitem[\protect\citeauthoryear{Diener}{Diener}{2009}]{diener09}
+% \textsc{Diener, E.} (2009): \emph{Well-being for public policy}, Oxford
+%   University Press.
+
+% \bibitem[\protect\citeauthoryear{Dietz, Rosa, and York}{Dietz
+%   et~al.}{2009}]{dietz09}
+% \textsc{Dietz, T., E.~A. Rosa, and R.~York} (2009): \enquote{Environmentally
+%   efficient well-being: Rethinking sustainability as the relationship between
+%   human well-being and environmental impacts,} \emph{Human Ecology Review}, 16,
+%   114--123.
+
+% \bibitem[\protect\citeauthoryear{Dittmann and Goebel}{Dittmann and
+%   Goebel}{2010}]{dittmann10}
+% \textsc{Dittmann, J. and J.~Goebel} (2010): \enquote{{Your House, Your Car,
+%   Your Education: The Socioeconomic Situation of the Neighborhood and its
+%   Impact on Life Satisfaction in Germany},} \emph{Social Indicators Research},
+%   1--17.
+
+% \bibitem[\protect\citeauthoryear{Durkheim}{Durkheim}{[1895] 1950}]{durkheim50}
+% \textsc{Durkheim, E.} ([1895] 1950): \emph{The Rules of Sociological Method},
+%   New York: The Free Press.
+
+% \bibitem[\protect\citeauthoryear{Ericson, Kj{\o}nstad, and Barstad}{Ericson
+%   et~al.}{2014}]{ericson14}
+% \textsc{Ericson, T., B.~G. Kj{\o}nstad, and A.~Barstad} (2014):
+%   \enquote{Mindfulness and sustainability,} \emph{Ecological Economics}, 104,
+%   73--79.
+
+% \bibitem[\protect\citeauthoryear{Firebaugh and Schroeder}{Firebaugh and
+%   Schroeder}{2009}]{firebaugh09}
+% \textsc{Firebaugh, G. and M.~B. Schroeder} (2009): \enquote{Does Your
+%   Neighbor's Income Affect Your Happiness?} \emph{American Journal of
+%   Sociology}, 115, 805--831.
+
+% \bibitem[\protect\citeauthoryear{Frank}{Frank}{2012}]{frank12}
+% \textsc{Frank, R.} (2012): \emph{The Darwin economy: Liberty, competition, and
+%   the common good}, Princeton University Press.
+
+% \bibitem[\protect\citeauthoryear{Frank}{Frank}{2004}]{frank04}
+% \textsc{Frank, R.~H.} (2004): \enquote{How not to buy happiness,}
+%   \emph{Daedalus}, 133, 69--79.
+
+% \bibitem[\protect\citeauthoryear{Frank}{Frank}{2005}]{frank05}
+% ---\hspace{-.1pt}---\hspace{-.1pt}--- (2005): \enquote{Does Absolute Income
+%   Matter,} in \emph{Economics and Happiness}, ed. by L.~Bruni and P.~L. Porta,
+%   Oxford University Press.
+
+% \bibitem[\protect\citeauthoryear{Graef, McManama~Gianinno, and
+%   Csikszentmihalyi}{Graef et~al.}{1981}]{graef81}
+% \textsc{Graef, R., S.~McManama~Gianinno, and M.~Csikszentmihalyi} (1981):
+%   \enquote{Energy consumption in leisure and perceived happiness,} in
+%   \emph{Consumers and energy conservation}, ed. by J.~M. Claxton, New York:
+%   Praeger, --.
+
+% \bibitem[\protect\citeauthoryear{Jorgenson, Alekseyko, and
+%   Giedraitis}{Jorgenson et~al.}{2014}]{jorgenson14B}
+% \textsc{Jorgenson, A.~K., A.~Alekseyko, and V.~Giedraitis} (2014):
+%   \enquote{Energy consumption, human well-being and economic development in
+%   central and eastern European nations: A cautionary tale of sustainability,}
+%   \emph{Energy Policy}, 66, 419--427.
+
+% \bibitem[\protect\citeauthoryear{Kallis}{Kallis}{2011}]{kallis11}
+% \textsc{Kallis, G.} (2011): \enquote{In defence of degrowth,} \emph{Ecological
+%   Economics}, 70, 873--880.
+
+% \bibitem[\protect\citeauthoryear{Kallis, Kerschner, and Martinez-Alier}{Kallis
+%   et~al.}{2012}]{kallis12}
+% \textsc{Kallis, G., C.~Kerschner, and J.~Martinez-Alier} (2012): \enquote{The
+%   economics of degrowth,} \emph{Ecological Economics}, 84, 172--180.
+
+% \bibitem[\protect\citeauthoryear{Klugman, Rodr{\'\i}guez, and Choi}{Klugman
+%   et~al.}{2011}]{klugman11}
+% \textsc{Klugman, J., F.~Rodr{\'\i}guez, and H.-J. Choi} (2011): \enquote{The
+%   HDI 2010: new controversies, old critiques,} \emph{The Journal of Economic
+%   Inequality}, 9, 249--288.
+
+% \bibitem[\protect\citeauthoryear{Luttmer}{Luttmer}{2005}]{luttmer05}
+% \textsc{Luttmer, E. F.~P.} (2005): \enquote{Neighbors as Negatives: Relative
+%   Earnings and Well-Being,} \emph{Quarterly Journal of Economics}, 120,
+%   963--02.
+
+% \bibitem[\protect\citeauthoryear{Madjar and Ozawa}{Madjar and
+%   Ozawa}{2006}]{madjar06}
+% \textsc{Madjar, M. and T.~Ozawa} (2006): \enquote{Happiness and Sustainable
+%   Consumption: Psychological and physical rebound effects at work in a tool for
+%   sustainable design,} \emph{The International Journal of Life Cycle
+%   Assessment}, 11, 105--115.
+
+% \bibitem[\protect\citeauthoryear{Michalos}{Michalos}{1985}]{michalos85}
+% \textsc{Michalos, A.} (1985): \enquote{Multiple discrepancies theory (MDT),}
+%   \emph{Social Indicators Research}, 16, 347--413.
+
+% \bibitem[\protect\citeauthoryear{Pretty}{Pretty}{2013}]{pretty13}
+% \textsc{Pretty, J.} (2013): \enquote{The consumption of a finite planet:
+%   well-being, convergence, divergence and the nascent green economy,}
+%   \emph{Environmental and Resource Economics}, 55, 475--499.
+
+% \bibitem[\protect\citeauthoryear{Steel, Schmidt, and Shultz}{Steel
+%   et~al.}{2008}]{steel08}
+% \textsc{Steel, P., J.~Schmidt, and J.~Shultz} (2008): \enquote{Refining the
+%   relationship between personality and subjective well-being.}
+%   \emph{Psychological bulletin}, 134, 138--161.
+
+% \bibitem[\protect\citeauthoryear{Steinberger and Roberts}{Steinberger and
+%   Roberts}{2010}]{steinberger10}
+% \textsc{Steinberger, J.~K. and J.~T. Roberts} (2010): \enquote{From constraint
+%   to sufficiency: The decoupling of energy and carbon from human needs,
+%   1975--2005,} \emph{Ecological Economics}, 70, 425--433.
+
+% \bibitem[\protect\citeauthoryear{Stiglitz, Sen, and Fitoussi}{Stiglitz
+%   et~al.}{2009}]{stiglitz09al}
+% \textsc{Stiglitz, J., A.~Sen, and J.~Fitoussi} (2009): \enquote{Report by the
+%   Commission on the measurement of economic performance and social progress,}
+%   \emph{Available at www.stiglitz-sen-fitoussi.fr}.
+
+% \bibitem[\protect\citeauthoryear{Van~den Bergh}{Van~den Bergh}{2011}]{bergh11}
+% \textsc{Van~den Bergh, J.~C.} (2011): \enquote{Environment versus growth--A
+%   Criticism of "degrowth" and a plea for "a-growth",} \emph{Ecological
+%   Economics}, 70, 881--890.
+
+% \bibitem[\protect\citeauthoryear{Veenhoven}{Veenhoven}{1996}]{veenhoven96B}
+% \textsc{Veenhoven, R.} (1996): \enquote{Happy life-expectancy,} \emph{Social
+%   Indicators Research}, 39, 1--58.
+
+% \bibitem[\protect\citeauthoryear{Veenhoven}{Veenhoven}{2008}]{veenhoven08}
+% ---\hspace{-.1pt}---\hspace{-.1pt}--- (2008): \enquote{Sociological theories of
+%   subjective well-being,} in \emph{The Science of Subjective Well-being: A
+%   tribute to Ed Diener}, ed. by M.~Eid and R.~Larsen, The Guilford Press, New
+%   York, 44--61.
+
+% \bibitem[\protect\citeauthoryear{Veenhoven}{Veenhoven}{2014}]{veenhoven14b}
+% ---\hspace{-.1pt}---\hspace{-.1pt}--- (2014): \enquote{Livability Theory,}
+%   \emph{Encyclopedia of Quality of Life and Well-Being Research}, 3645--3647.
+
+% \bibitem[\protect\citeauthoryear{Veenhoven and Ehrhardt}{Veenhoven and
+%   Ehrhardt}{1995}]{veenhoven95}
+% \textsc{Veenhoven, R. and J.~Ehrhardt} (1995): \enquote{The Cross-National
+%   Pattern of Happiness: Test of Predictions Implied in Three Theories of
+%   Happiness,} \emph{Social Indicators Research}, 34, 33--68.
+
+% \bibitem[\protect\citeauthoryear{Weinhold}{Weinhold}{2012}]{weinhold12}
+% \textsc{Weinhold, D.} (2012): \enquote{The Happiness-Reducing Costs of Noise
+%   Pollution,} \emph{Journal of regional science}.
+
+% \bibitem[\protect\citeauthoryear{Welsch}{Welsch}{2005}]{welsch05}
+% \textsc{Welsch, H.} (2005): \enquote{Environment and happiness: Valuation of
+%   air pollution using life satisfaction data,} \emph{Ecological Economics}, 58,
+%   801--813.
+
+% \bibitem[\protect\citeauthoryear{Welsch}{Welsch}{2009}]{welsch09}
+% ---\hspace{-.1pt}---\hspace{-.1pt}--- (2009): \enquote{Implications of
+%   happiness research for environmental economics,} \emph{Ecological Economics},
+%   68, 2735--2742.
+
+% \end{thebibliography}
+
+
+
+\newpage
+\section{ONLINE SUPPLEMENATRY MATERIAL}
+
+Table
+\ref{var_des} lists variables used and their definitions.
+
+
+\input{graphsAndTables/varDes}
+{\scriptsize \noindent Variable sources. WVS: World Values Survey \url{www.worldvaluessurvey.org};
+TYN\_CY: Tyndall Centre (\url{www.tyndall.ac.uk}) Mitchell,T.D., Hulme,M., and
+New,M., 2002: Climate data for political areas. Area
+34:109-112. \url{http://www.cru.uea.ac.uk/~timm/cty/obs/TYN_CY_1_1_var-table.html};
+WB: World Bank \url{http://data.worldbank.org}}
+
+
+\input{graphsAndTables/list}
+
+\section{How do we use energy?}
+
+Energy use is slightly increasing in the US
+\url{http://www.eia.gov/todayinenergy/detail.cfm?id=4690}, and quite a bit in
+the World. 
+Energy use in the US is farily flat over past 40 yeaars at 70m btu
+pc.\url{http://www.eia.gov/todayinenergy/detail.cfm?id=3590}, and coasts consume
+less than inland middle
+\url{http://energy.gov/maps/2009-energy-consumption-person?page=0%2C1}. 
+Use by sector in the US: 22\% residential, 18\% commercial, 32\% industrial, and
+28\% transportation.\url{http://www.eia.gov/consumption/}. 
+
+
+For the US CBO produced a handy chart \url{http://www.cbo.gov/publication/43232} or \url{http://www.cbo.gov/sites/default/files/43232-infographic-EnergySecurity.pdf}
+
+Some popular media description
+\url{http://www.theatlantic.com/technology/archive/2013/08/a-very-short-history-of-how-americans-use-energy-at-home/278329/}
+
+We know how energy is used in residential sector in the US ( we also know it for
+other sectors but we do not focus on them)--all data are here
+\url{http://www.eia.gov/forecasts/aeo/MT_residentialdemand.cfm}. FOr residential
+sector
+\url{http://www.eia.gov/oiaf/aeo/tablebrowser/aeo_query_server/?event=ehExcel.getFile&study=AEO2014&region=0-0&cases=ref2014-d102413a&table=4-AEO2014&yearFilter=0}:
+table AEO2014: 
+
+
+%LATER may see footnotes for this table
+\begin{table}[H]\centering\footnotesize
+\caption{\label{freq_im_god} Total Energy Consumption by End Use; quadrillion
+  Btu, 2011}
+\begin{tabular}{lll}   \hline 
+Space Heating&	5.6\\
+Space Cooling&	2.6\\
+Water Heating&	2.7\\
+Refrigeration&	1.2\\
+Cooking&	0.6\\
+Clothes Dryers&	0.7\\
+Freezers&	0.2\\
+Lighting&	2\\
+Clothes Washers&	0.1\\
+Dishwashers 1/	0.307437
+Televisions and Related Equipment&	1\\
+Computers and Related Equipment &	0.4\\
+Furnace Fans and Boiler Circulation Pumps&	0.4\\
+Other Uses&	3.7\\\hline
+\end{tabular}\end{table}
+
+How is electricity used in United States homes? This is an important
+consideration because it really shows what we do with this electricity--how we
+consume it, what are the end uses. Data are shown in table
+\ref{eleEndUse}. Furthermore end uses of energy changed over time, for instance
+ from 1993 to 2009: applianes share increased from 24\% to 35\% and space
+ heating dropped from 53\% to 41\%
+ \url{http://www.eia.gov/todayinenergy/detail.cfm?id=10271&src=%E2%80%B9%20Consumption%20%20%20%20%20%20Residential%20Energy%20Consumption%20Survey%20%28RECS%29-b1}. 
+Also, the good news is that average energy consumption per household dropped from 114 m BTU in 1980 to
+90 m BTU in 2009 \url{http://www.eia.gov/consumption/residential/reports/2009/consumption-down.cfm?src=%E2%80%B9%20Consumption%20%20%20%20%20%20Residential%20Energy%20Consumption%20Survey%20%28RECS%29-b5}.  
+
+
+\begin{table}[H]\centering\footnotesize
+\caption{\label{eleEndUse}  Estimated U.S. Residential \underline{Electricity} Consumption by End
+  Use, 2012 \url{www.eia.gov/tools/faqs/faq.cfm?id=96&t=3}}
+\begin{tabular} {llll}   \hline 
+End Use&Quadrillion Btu &Billion kilowatthours& \% Share of total\\\hline 
+Space cooling&0.85&250&18.00\%\\
+Lighting&0.64&186&14.00\%\\
+Water heating&0.45&130&9.00\%\\
+Refrigeration&0.38&111&8.00\%\\
+Televisions and related equipment 1&0.33&98&7.00\%\\
+Space heating&0.29&84&6.00\%\\
+Clothes dryers&0.2&59&4.00\%\\
+Computers and related equipment2&0.12&37&3.00\%\\
+Cooking&0.11&31&2.00\%\\
+Dishwashers3 &0.1&29&2.00\%\\
+Furnace fans and boiler circulation pumps&0.09&28&2.00\%\\
+Freezers&0.08&24&2.00\%\\
+Clothes washers3&0.03&9&1.00\%\\
+Other uses4&1.02&299&22.00\%\\
+Total consumption&4.69&1375&\\\hline
+\end{tabular}\end{table}
+
+there is also consumption by end use by census regiojn or climate region
+
+\url{http://www.eia.gov/consumption/residential/data/2009/index.cfm?view=consumption}
+
 \section{What Do We Know So Far? The Literature}
 
 % Micah -- We shouldn't set out to write a literature review. (No one should, except as part of a student thesis). The point is to put our findings in appropriate context. 
@@ -299,6 +898,12 @@ yoga \citep{madjar06}.
 % - the significance of the broad problem -- which should be supported by cites in the intro
 % - that the problem being solved in the paper is important and hasn't been solved
 % - that the rationale for the methods applied is sound
+
+Energy use is getting more efficient due to technological imporvements and the
+world economy is growing and hence every year we use less energy per gdp, but
+still both energy use and co2 emissions, which correlate at above 90 percent,
+are still growing every year \citep{iea14}. 
+
 
 It is striking then that large happiness literature has omitted topic of energy
 so far--threre are no studies about energy consumption and happiness across
@@ -378,7 +983,6 @@ theories, all relevant to this study.
 % The three paragraphs above don't belong here. The appropriate time to introduce this information is to integrate it into the approach or discussion of interventions, to the extent this prior work is important for  what we should choose to measure, or for the design of appropriate interventions.
 
 
-\section{The three happiness theories}
 
 Before answering a question of how is happiness created, let's define it first. 
   Happiness, or the more scientific term Subjective Well-Being (SWB), is ``both cognitive judgments of one's life
@@ -398,7 +1002,17 @@ happiness measure validity and reliability see \citet{diener09}
 (especially ch. 5). 
 
 % Micah: Explain why this is the best way of defining happiness for the purposes of understanding energy consumption.
+There are many ways to measure human wellbeing. Traditionally, we have used
+income measures such as per capita gross dometic product or health measures such
+as life exectancy or human development measures such as education. %HDI index 
+ It has been recognized recently, however, that these measures do not capture
+ human wellbeing well--two key problems are that these measures are not
+ comprehensive enough and it is difficult to combine them into a single measure
+ because weights are always arbitrary. The co-inventor of the original
+ development metric (Human Development Index), Amartya Sen, has recently
+ proposed happiness as a better measure \citep{stiglitz09al}.
 
+\section{The three happiness theories}
 The adaptation theory \citep{brickman78cj} argues that there is
 adjustment to external circumstances and we are on a 'hedonic
 treadmill.' ``The more one has the more one wants, since satisfactions
@@ -427,62 +1041,84 @@ will not result in geater happiness.
   subjective. Hence, based on this theory, as opposed to the other two theories,
   greater energy use will result in greater happiness.
   
+\section{Future Research}
 
-\section{Data and Results}
+TODO set research agenda somewhare!! for future research!
 
-% Micah: This needs to be reorganized. 
+There are many ideas for future research. Indeed, as mentioned earlier, one of
+the goals of this study is to encourage more research on this important and
+overlooked topic of energy consumption and happiness.
 
-% In my view the primary goal of this section is to answer this question:
-%  *** Which choices do individuals make, that have a large negative effect on the environment, and which do not make the individuals, their community, or society better off?  ***
-% We aim to provide the best scientifically and empirically supported answer possible, that does not require collecting new primary data. 
+We just examined total energy use per capita at country level without
+differentiating between sectors, because we could not find ssuch data. There are
+however enrgy use data by sector for smaller sets of countries--for instance for
+Europe available from Eurostat: 
+\url{http://epp.eurostat.ec.europa.eu/portal/page/portal/energy/data/database}, \url{http://epp.eurostat.ec.europa.eu/portal/page/portal/energy/data/main_tables} 
 
-% I suggest the following organization
-%  1. Provide an easy to interpret figure showing happiness vs. energy consumption at the global level (nations), for a single time period. This should illustrate the general weakness of the relationship between happiness and energy consumption without controlling for anything. Discuss the substantive size of the raw - uncontrolled correlation
-% 2. Now discuss the details of the measures. explain that (a) the energy consumption measures include only those that are under personal control, and (b) have a substantial effect on environment. Cite the literature as appropriate
-% 3. Show that this relationship is durable -- introduce time-series data to show that this holds over significant time-scales
-% 4. Show that this relationship is not an accident of scale. Drill down to states, then counties within california, and show the relationship holds
-% 5. Now discuss other possible explanations for these patterns (a) use these explanations to suggest convariates/confounders (b) show the results of controlling visually first, or with a simple table, (c) use a statistical model to ensure that the visual impressions are not misleading
-
-
-We analyse data in a cross-ection--there is not much variation over time for
-instance in US and West-European countries, %look at world.do: manheim or
-                                %states.do for us states
- but there is lots of varaition across areas.
-
-We use happiness data from World Values Survey
-(\url{http://www.worldvaluessurvey.org/wvs.jsp})--we use a cumulative file
-covering first 4 waves (1981-2007), hence some countries are observed more than
-once. Happiness is averaged for each country-year and matched with energy use
-and other  socioeconomic controls from World Bank
-(\url{http://data.worldbank.org/indicator}). Table \ref{var_des} lists variables
-used and their definitions.
+We suggest that clean energy would result in greater happiness. This idea could
+poissibly be tested more direcly by examining happiness of people in areas where
+clean energy is prevalent. 
 
 
-\input{graphsAndTables/varDes}
-{\scriptsize \noindent Variable sources. WVS: World Values Survey \url{www.worldvaluessurvey.org};
-TYN\_CY: Tyndall Centre (\url{www.tyndall.ac.uk}) Mitchell,T.D., Hulme,M., and
-New,M., 2002: Climate data for political areas. Area
-34:109-112. \url{http://www.cru.uea.ac.uk/~timm/cty/obs/TYN_CY_1_1_var-table.html};
-WB: World Bank \url{http://data.worldbank.org}}
+Yet, energy efficiency or even clean energy is not the final solution due to
+``rebound problem'' or the Jevons paradox--due to innate human greed we are
+likely to consume ever more and more, and hence the only lasting solution is to
+curb our energy hunger possibly through public policy and education.
 
-% US STATES:
-% There are large differences in energy use per capita accross states--twofold or
-% larger, yet energy-hungry states are no happier (with possible exceptioon of
-% transportation sector)--this is just another argument for energy conservation.
+\section{Energy intensity of gross domestic product (GDP) (energy/GDP)}
+
+There is not much relatyionship between happpiness and energy use, but there is
+even less if controlling for GDP--energy use correlates with GDP and it if nit
+controlling for GDP then it proxies it and then results are spurioius and what
+we see is the effect of GDP, not energy use.  
+To alleviate that problem we could have controlled for GDP. But we can do it
+another way, too. 
+Another way to look at it is to use so called energy intensity of gross domestic
+product (GDP): (energy/GDP). Below  are graphs doing just that.
+
 
 \begin{figure}[H]
- \includegraphics[height=3in]{graphsAndTables/couWvsLsEne.pdf}\centering
-\caption{couWvsLsEne.pdf}\label{couWvsLsEne.pdf}
+ \includegraphics[height=3in]{graphsAndTables/couWvsGrComEneGdp.pdf}\centering
+\caption{couWvsGrComEneGdp}\label{couWvsGrComEneGdp}
 \end{figure}
 {\scriptsize Note: Country codes are in table \ref{ls} in supplementary
   material. If country was observed in more than one year, the data were averaged.}
 
+latin american ctries like COL or MEX very little energy per gdp; while post
+soviet like ukraine or MDA BLR AZE ARM are very energy intesive and miserable
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/grComTETPB_gdp.pdf}\centering
+\caption{grComTETPBgdp}\label{grComTETPBgdp}
+\end{figure}
+{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+for states teh positive results are divern only by LA, ND, WY, AK; othersie
+nothing there, can do a graph dropping those
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/eletot_gdp.pdf}\centering
+\caption{eletotgdp}\label{eletotgdp}
+\end{figure}
+{\scriptsize Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+%note: cen div is somewhat weird...
+
+
+
+so need to have more gdp, less energy use, at least across countries...
+
+ 
+
 What is striking is the differences in energy use by area. Diferences are
 severalfold. Mexico and Columbia
 consume only ??? and yet are as happy as ??? which consumes ???.
- 
-Table \ref{ls} in supplemenary material lists all countries along with
-happiness, energy use and other key variables.
+
+
+\section{regression framework: taking into account more factors} 
+
 
 It is critical to control for percoent urban or population density, because
 urban or dense areas are less happy and more energy efficient, and hence
@@ -522,280 +1158,8 @@ heterogeneity. Two fixed effects model follow (temperature drops out, because we
 \begin{table}[H]\centering \caption{regA} \label{regA} \begin{scriptsize} \begin{tabular}{p{1.4in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43 in}p{.43in}p{.43 in}}\hline \input{graphsAndTables/regA.tex} \hline\multicolumn{6}{l}{+p$<$0.10 *p$<$0.05 **p$<$0.01 ***p$<$0.001; robust standard errors} \end{tabular}\end{scriptsize}\end{table}
  
 
-\section{Conclusion and Discussion}
-
-% Micah: We'll rewrite this later. The main goal is to (a) briefly summarize the most significant results; (b) outline the possible causal explanations and frameworks, and thus define the future research agenda; (c) describe potential interventions 
-
-Hence, the messgae of this study is that if we change from society of consumers
-to socitty of conservers, we won't suffer much in terms of happiness.
-
-Much, and  arguably most among the rich, of the consumption is conspicous or
-wasteful \citep{veblen05a, veblen05b}--that is, such consumption is done not to satisfy need but to show that
-one is better than others--many of these consumption items waste energy: for
-instance: Mansions, SUVs.  Many other examples are not necessarily conspicous
-but they waste energy and have no clear contribution to lasting happiness: for
-instance landscaping, fake (unnatural) ponds fountains and other items that
-define American suburbia. Many social scientists \citep[e.g.][]{csikszentmihalyi99, frank04, frank05, frank12} suggested that conspicuous consumption
-does not make us any happier, and there are theoretical reasons to
-expect it, but few actually test it--and again, the only  study testing the
-effect of energy use on happiness was \citet{graef81}.
-
-One implication of the study is for housing: house is most expensive consumption
-item most people buy. Furthermore it costs considerable energy to build and
-maintain. The median house in 1973 was 1,525 sq ft, and 2,169  sq ft in 2010.\footnote{\url{http://www.census.gov/const/C25Ann/sftotalmedavgsqft.pdf}}
-Surely, the families must have gotten bigger over that time. Well,
-actually they gotten smaller--in 1973 the average household size was
-3.01, which dropped to 2.61 in
-2010.\footnote{\url{http://www.census.gov/population/socdemo/hh-fam/tabHH-6.pdf};\url{http://quickfacts.census.gov/qfd/states/00000.html}}
-The problem with big houses is that it is never big enough anyway--we
-compare it to other houses, and size is an obvious metric. But others
-do the same and they get ever bigger houses all the time so we all end
-up with bigger houses but nobody is happier \citep{frank12}. ``A house may be large or small; as long as the neighboring houses are
-likewise small, it satisfies all social requirements for a
-residence. But let there arise next to the little house a palace, and
-the little house shrinks to a hut'' (Marx and Engels 1849, quoted in
-\citet{dittmann10}). \citet{dittmann10} find support for the above
-statement. \citet{luttmer05} also finds that the richer the neighbors,
-the less happy the person.
-\citet{firebaugh09} refine this relationship by confirming that people
-are happier in poor counties, but in  rich neighborhoods. 
-
-We find that energy consumption does contribute to happiess, if pollution is
-taken into account. This is a clear argument in favor of clean energy--if we can
-consume energy without pollution, it should result in greater happiness. Untill
-we can to do so for all of our energy needs, we should curb the energy use and
-our needs.
-
-\section{Future Research}
-
-There are many ideas for future research. Indeed, as mentioned earlier, one of
-the goals of this study is to encourage more research on this important and
-overlooked topic of energy consumption and happiness.
-
-We just examined total energy use per capita at country level without
-differentiating between sectors, because we could not find ssuch data. There are
-however enrgy use data by sector for smaller sets of countries--for instance for
-Europe available from Eurostat: 
-\url{http://epp.eurostat.ec.europa.eu/portal/page/portal/energy/data/database}, \url{http://epp.eurostat.ec.europa.eu/portal/page/portal/energy/data/main_tables} 
-
-We suggest that clean energy would result in greater happiness. This idea could
-poissibly be tested more direcly by examining happiness of people in areas where
-clean energy is prevalent. 
 
 
-Yet, energy efficiency or even clean energy is not the final solution due to
-``rebound problem'' or the Jevons paradox--due to innate human greed we are
-likely to consume ever more and more, and hence the only lasting solution is to
-curb our energy hunger possibly through public policy and education.
-
-\newpage
-%\bibliography{/home/aok/papers/root/tex/ebib.bib}
-
-\begin{thebibliography}{36}
-\newcommand{\enquote}[1]{``#1''}
-\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
-
-\bibitem[\protect\citeauthoryear{Brickman, Coates, and Janoff-Buman}{Brickman
-  et~al.}{1978}]{brickman78cj}
-\textsc{Brickman, P., D.~Coates, and R.~Janoff-Buman} (1978): \enquote{Lottery
-  winners and accident victims: Is happiness relative?} \emph{Journal of
-  Personality and Social Psychology}, 36, 917--927.
-
-\bibitem[\protect\citeauthoryear{Brown and Kasser}{Brown and
-  Kasser}{2005}]{brown05}
-\textsc{Brown, K.~W. and T.~Kasser} (2005): \enquote{Are psychological and
-  ecological well-being compatible? The role of values, mindfulness, and
-  lifestyle,} \emph{Social Indicators Research}, 74, 349--368.
-
-\bibitem[\protect\citeauthoryear{Corral-Verdugo, Mireles-Acosta, Tapia-Fonllem,
-  and Fraijo-Sing}{Corral-Verdugo et~al.}{2011}]{corral11}
-\textsc{Corral-Verdugo, V., J.~Mireles-Acosta, C.~Tapia-Fonllem, and
-  B.~Fraijo-Sing} (2011): \enquote{Happiness as correlate of sustainable
-  behavior: A study of pro-ecological, frugal, equitable and altruistic actions
-  that promote subjective wellbeing,} \emph{Human Ecology Review}, 18, 95--104.
-
-\bibitem[\protect\citeauthoryear{Csikszentmihalyi}{Csikszentmihalyi}{1999}]{csikszentmihalyi99}
-\textsc{Csikszentmihalyi, M.} (1999): \enquote{If we are so rich, why aren't we
-  happy?} \emph{American psychologist}, 54, 821.
-
-\bibitem[\protect\citeauthoryear{Csikszentmihalyi, Graef, and
-  Gianinno}{Csikszentmihalyi et~al.}{2014}]{csikszentmihalyi14}
-\textsc{Csikszentmihalyi, M., R.~Graef, and S.~M. Gianinno} (2014):
-  \enquote{Energy Consumption in Leisure and Perceived Happiness,} in
-  \emph{Flow and the Foundations of Positive Psychology}, Springer, 127--133.
-
-\bibitem[\protect\citeauthoryear{Daly}{Daly}{2013}]{daly13}
-\textsc{Daly, H.} (2013): \enquote{A further critique of growth economics,}
-  \emph{Ecological economics}, 88, 20--24.
-
-\bibitem[\protect\citeauthoryear{Dias, Mattos, and P~Balestieri}{Dias
-  et~al.}{2006}]{dias06}
-\textsc{Dias, R.~A., C.~R. Mattos, and J.~A. P~Balestieri} (2006): \enquote{The
-  limits of human development and the use of energy and natural resources,}
-  \emph{Energy Policy}, 34, 1026--1031.
-
-\bibitem[\protect\citeauthoryear{Diener}{Diener}{2009}]{diener09}
-\textsc{Diener, E.} (2009): \emph{Well-being for public policy}, Oxford
-  University Press.
-
-\bibitem[\protect\citeauthoryear{Dietz, Rosa, and York}{Dietz
-  et~al.}{2009}]{dietz09}
-\textsc{Dietz, T., E.~A. Rosa, and R.~York} (2009): \enquote{Environmentally
-  efficient well-being: Rethinking sustainability as the relationship between
-  human well-being and environmental impacts,} \emph{Human Ecology Review}, 16,
-  114--123.
-
-\bibitem[\protect\citeauthoryear{Dittmann and Goebel}{Dittmann and
-  Goebel}{2010}]{dittmann10}
-\textsc{Dittmann, J. and J.~Goebel} (2010): \enquote{{Your House, Your Car,
-  Your Education: The Socioeconomic Situation of the Neighborhood and its
-  Impact on Life Satisfaction in Germany},} \emph{Social Indicators Research},
-  1--17.
-
-\bibitem[\protect\citeauthoryear{Durkheim}{Durkheim}{[1895] 1950}]{durkheim50}
-\textsc{Durkheim, E.} ([1895] 1950): \emph{The Rules of Sociological Method},
-  New York: The Free Press.
-
-\bibitem[\protect\citeauthoryear{Ericson, Kj{\o}nstad, and Barstad}{Ericson
-  et~al.}{2014}]{ericson14}
-\textsc{Ericson, T., B.~G. Kj{\o}nstad, and A.~Barstad} (2014):
-  \enquote{Mindfulness and sustainability,} \emph{Ecological Economics}, 104,
-  73--79.
-
-\bibitem[\protect\citeauthoryear{Firebaugh and Schroeder}{Firebaugh and
-  Schroeder}{2009}]{firebaugh09}
-\textsc{Firebaugh, G. and M.~B. Schroeder} (2009): \enquote{Does Your
-  Neighbor's Income Affect Your Happiness?} \emph{American Journal of
-  Sociology}, 115, 805--831.
-
-\bibitem[\protect\citeauthoryear{Frank}{Frank}{2012}]{frank12}
-\textsc{Frank, R.} (2012): \emph{The Darwin economy: Liberty, competition, and
-  the common good}, Princeton University Press.
-
-\bibitem[\protect\citeauthoryear{Frank}{Frank}{2004}]{frank04}
-\textsc{Frank, R.~H.} (2004): \enquote{How not to buy happiness,}
-  \emph{Daedalus}, 133, 69--79.
-
-\bibitem[\protect\citeauthoryear{Frank}{Frank}{2005}]{frank05}
----\hspace{-.1pt}---\hspace{-.1pt}--- (2005): \enquote{Does Absolute Income
-  Matter,} in \emph{Economics and Happiness}, ed. by L.~Bruni and P.~L. Porta,
-  Oxford University Press.
-
-\bibitem[\protect\citeauthoryear{Graef, McManama~Gianinno, and
-  Csikszentmihalyi}{Graef et~al.}{1981}]{graef81}
-\textsc{Graef, R., S.~McManama~Gianinno, and M.~Csikszentmihalyi} (1981):
-  \enquote{Energy consumption in leisure and perceived happiness,} in
-  \emph{Consumers and energy conservation}, ed. by J.~M. Claxton, New York:
-  Praeger, --.
-
-\bibitem[\protect\citeauthoryear{Jorgenson, Alekseyko, and
-  Giedraitis}{Jorgenson et~al.}{2014}]{jorgenson14B}
-\textsc{Jorgenson, A.~K., A.~Alekseyko, and V.~Giedraitis} (2014):
-  \enquote{Energy consumption, human well-being and economic development in
-  central and eastern European nations: A cautionary tale of sustainability,}
-  \emph{Energy Policy}, 66, 419--427.
-
-\bibitem[\protect\citeauthoryear{Kallis}{Kallis}{2011}]{kallis11}
-\textsc{Kallis, G.} (2011): \enquote{In defence of degrowth,} \emph{Ecological
-  Economics}, 70, 873--880.
-
-\bibitem[\protect\citeauthoryear{Kallis, Kerschner, and Martinez-Alier}{Kallis
-  et~al.}{2012}]{kallis12}
-\textsc{Kallis, G., C.~Kerschner, and J.~Martinez-Alier} (2012): \enquote{The
-  economics of degrowth,} \emph{Ecological Economics}, 84, 172--180.
-
-\bibitem[\protect\citeauthoryear{Klugman, Rodr{\'\i}guez, and Choi}{Klugman
-  et~al.}{2011}]{klugman11}
-\textsc{Klugman, J., F.~Rodr{\'\i}guez, and H.-J. Choi} (2011): \enquote{The
-  HDI 2010: new controversies, old critiques,} \emph{The Journal of Economic
-  Inequality}, 9, 249--288.
-
-\bibitem[\protect\citeauthoryear{Luttmer}{Luttmer}{2005}]{luttmer05}
-\textsc{Luttmer, E. F.~P.} (2005): \enquote{Neighbors as Negatives: Relative
-  Earnings and Well-Being,} \emph{Quarterly Journal of Economics}, 120,
-  963--02.
-
-\bibitem[\protect\citeauthoryear{Madjar and Ozawa}{Madjar and
-  Ozawa}{2006}]{madjar06}
-\textsc{Madjar, M. and T.~Ozawa} (2006): \enquote{Happiness and Sustainable
-  Consumption: Psychological and physical rebound effects at work in a tool for
-  sustainable design,} \emph{The International Journal of Life Cycle
-  Assessment}, 11, 105--115.
-
-\bibitem[\protect\citeauthoryear{Michalos}{Michalos}{1985}]{michalos85}
-\textsc{Michalos, A.} (1985): \enquote{Multiple discrepancies theory (MDT),}
-  \emph{Social Indicators Research}, 16, 347--413.
-
-\bibitem[\protect\citeauthoryear{Pretty}{Pretty}{2013}]{pretty13}
-\textsc{Pretty, J.} (2013): \enquote{The consumption of a finite planet:
-  well-being, convergence, divergence and the nascent green economy,}
-  \emph{Environmental and Resource Economics}, 55, 475--499.
-
-\bibitem[\protect\citeauthoryear{Steel, Schmidt, and Shultz}{Steel
-  et~al.}{2008}]{steel08}
-\textsc{Steel, P., J.~Schmidt, and J.~Shultz} (2008): \enquote{Refining the
-  relationship between personality and subjective well-being.}
-  \emph{Psychological bulletin}, 134, 138--161.
-
-\bibitem[\protect\citeauthoryear{Steinberger and Roberts}{Steinberger and
-  Roberts}{2010}]{steinberger10}
-\textsc{Steinberger, J.~K. and J.~T. Roberts} (2010): \enquote{From constraint
-  to sufficiency: The decoupling of energy and carbon from human needs,
-  1975--2005,} \emph{Ecological Economics}, 70, 425--433.
-
-\bibitem[\protect\citeauthoryear{Stiglitz, Sen, and Fitoussi}{Stiglitz
-  et~al.}{2009}]{stiglitz09al}
-\textsc{Stiglitz, J., A.~Sen, and J.~Fitoussi} (2009): \enquote{Report by the
-  Commission on the measurement of economic performance and social progress,}
-  \emph{Available at www.stiglitz-sen-fitoussi.fr}.
-
-\bibitem[\protect\citeauthoryear{Van~den Bergh}{Van~den Bergh}{2011}]{bergh11}
-\textsc{Van~den Bergh, J.~C.} (2011): \enquote{Environment versus growth--A
-  Criticism of "degrowth" and a plea for "a-growth",} \emph{Ecological
-  Economics}, 70, 881--890.
-
-\bibitem[\protect\citeauthoryear{Veenhoven}{Veenhoven}{1996}]{veenhoven96B}
-\textsc{Veenhoven, R.} (1996): \enquote{Happy life-expectancy,} \emph{Social
-  Indicators Research}, 39, 1--58.
-
-\bibitem[\protect\citeauthoryear{Veenhoven}{Veenhoven}{2008}]{veenhoven08}
----\hspace{-.1pt}---\hspace{-.1pt}--- (2008): \enquote{Sociological theories of
-  subjective well-being,} in \emph{The Science of Subjective Well-being: A
-  tribute to Ed Diener}, ed. by M.~Eid and R.~Larsen, The Guilford Press, New
-  York, 44--61.
-
-\bibitem[\protect\citeauthoryear{Veenhoven}{Veenhoven}{2014}]{veenhoven14b}
----\hspace{-.1pt}---\hspace{-.1pt}--- (2014): \enquote{Livability Theory,}
-  \emph{Encyclopedia of Quality of Life and Well-Being Research}, 3645--3647.
-
-\bibitem[\protect\citeauthoryear{Veenhoven and Ehrhardt}{Veenhoven and
-  Ehrhardt}{1995}]{veenhoven95}
-\textsc{Veenhoven, R. and J.~Ehrhardt} (1995): \enquote{The Cross-National
-  Pattern of Happiness: Test of Predictions Implied in Three Theories of
-  Happiness,} \emph{Social Indicators Research}, 34, 33--68.
-
-\bibitem[\protect\citeauthoryear{Weinhold}{Weinhold}{2012}]{weinhold12}
-\textsc{Weinhold, D.} (2012): \enquote{The Happiness-Reducing Costs of Noise
-  Pollution,} \emph{Journal of regional science}.
-
-\bibitem[\protect\citeauthoryear{Welsch}{Welsch}{2005}]{welsch05}
-\textsc{Welsch, H.} (2005): \enquote{Environment and happiness: Valuation of
-  air pollution using life satisfaction data,} \emph{Ecological Economics}, 58,
-  801--813.
-
-\bibitem[\protect\citeauthoryear{Welsch}{Welsch}{2009}]{welsch09}
----\hspace{-.1pt}---\hspace{-.1pt}--- (2009): \enquote{Implications of
-  happiness research for environmental economics,} \emph{Ecological Economics},
-  68, 2735--2742.
-
-\end{thebibliography}
-
-
-
-\newpage
-\section{ONLINE SUPPLEMENATRY MATERIAL}
-
-\input{graphsAndTables/list}
 
 \end{spacing}
 \end{document}
