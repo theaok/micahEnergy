@@ -366,8 +366,15 @@ once. Happiness is averaged for each country-year and matched with energy use
 % transportation sector)--this is just another argument for energy conservation.
 
 \begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/couLsEne.pdf}\centering
+\caption{couLsEne.pdf Eurobarometer dataset for west european (rich countries)}\label{couLsEne.pdf}
+\end{figure}
+{\scriptsize Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+\begin{figure}[H]
  \includegraphics[height=3in]{graphsAndTables/couWvsLsEne.pdf}\centering
-\caption{mannheim eurobarometer data couWvsLsEne.pdf}\label{couWvsLsEne.pdf}
+\caption{World Values Survey Data data; countries$>$10k pcgdp couWvsLsEne.pdf}\label{couWvsLsEne.pdf}
 \end{figure}
 {\scriptsize Note: Country codes are in table \ref{ls} in supplementary
   material. If country was observed in more than one year, the data were averaged.}
@@ -381,12 +388,6 @@ last decade.\footnote{See
   \url{http://burnanenergyjournal.com/what-goes-down-steins-law-and-the-cost-of-energy/}
 or \url{http://environmentalresearchweb.org/blog/energy-the-nexus-of-everything/}}
 
-\begin{figure}[H]
- \includegraphics[height=3in]{graphsAndTables/couLsEne.pdf}\centering
-\caption{couLsEne.pdf World values survey data country level for countries gt 10k pcgdp}\label{couLsEne.pdf}
-\end{figure}
-{\scriptsize Note: Country codes are in table \ref{ls} in supplementary
-  material. If country was observed in more than one year, the data were averaged.}
 
 Well, true energy look positive, but so what ! does it mean more energymore
 happiness. no. it is quadratic!!! so it levels off at around 4k of energy
@@ -488,10 +489,10 @@ to residental--we use  that at state and county levels
   material. If country was observed in more than one year, the data were averaged.}
 
 \begin{figure}[H]
- \includegraphics[height=3in]{graphsAndTables/lfTETPBls.pdf}\centering
+ \includegraphics[height=3in]{graphsAndTables/lfTETPBgdpLS.pdf}\centering
 \caption{total energy use divided by gdp}\label{}
 \end{figure}
-{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
+{\scriptsize TODO Note: state codes are in table \ref{ls} in supplementary
   material. If country was observed in more than one year, the data were averaged.}
 
 \begin{figure}[H]
@@ -1156,9 +1157,29 @@ heterogeneity. Two fixed effects model follow (temperature drops out, because we
  contribute more to happiness than just energy consumption.  
 
 \begin{table}[H]\centering \caption{regA} \label{regA} \begin{scriptsize} \begin{tabular}{p{1.4in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43 in}p{.43in}p{.43 in}}\hline \input{graphsAndTables/regA.tex} \hline\multicolumn{6}{l}{+p$<$0.10 *p$<$0.05 **p$<$0.01 ***p$<$0.001; robust standard errors} \end{tabular}\end{scriptsize}\end{table}
- 
+
+\begin{verbatim}
+             |      ene      gdp      urb       un     lexp   janMax   julMax
+-------------+---------------------------------------------------------------
+         ene |   1.0 
+         gdp |   0.7*  1.0 
+         urb |   0.5*  0.5*  1.0 
+          un |  -0.1* -0.2*  0.0   1.0 
+        lexp |   0.5*  0.5*  0.7* -0.0   1.0 
+      janMax |  -0.4* -0.3* -0.1  -0.0  -0.4*  1.0 
+      julMax |  -0.3* -0.3* -0.3*  0.0  -0.2*  0.2*  1.0 
+         co2 |   0.9*  0.6*  0.5* -0.0   0.4* -0.4* -0.2*
+
+\end{verbatim}
 
 
+\section{Comparability of Results}
+
+We did not make same scales on graphs for reason of interpretaility. We could
+make both scales, happiness and energy standarized, but then it is more
+difficult to intepret results, we think. In this approach, we have followed
+\citet{easterlin10B,easterlin12}, who also used different unstandarized
+happiness scales in the same study. 
 
 
 \end{spacing}

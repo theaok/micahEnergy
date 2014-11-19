@@ -384,13 +384,13 @@ l c ccc ls ene gdp co2 lexp if ls!=.
 sort ls
 aok_listtex c ccc ls ene gdp co2 lexp if ls!=., path(`tmp'list.tex) cap(Key variables for each country. Sorted on happiness. Note: if country was observed in more than one year, values are averaged) 
 
-tw(scatter ls ene if gdp>10000,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls ene if gdp>10000),saving(ene,replace)
+tw(scatter ls ene if gdp>10000,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls ene if gdp>10000, fcolor(none)),saving(ene,replace)
 dy
-! mv /tmp/g1.pdf `tmp'couWvsLsEne.pdf
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEne.pdf
 
-tw(scatter ls ene if gdp<10000,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls ene if gdp<10000),saving(ene,replace)
+tw(scatter ls ene if gdp<10000,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls ene if gdp<10000, fcolor(none)),saving(ene,replace)
 dy
-! mv /tmp/g1.pdf `tmp'couWvsLsEneLT10kGDP.pdf
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEneLT10kGDP.pdf
 
 
 tw(scatter ls gdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls gdp)
@@ -405,9 +405,9 @@ gen eneGdp=ene/gdp
 tw(scatter ls eneGdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls eneGdp)
 dy
 
-tw(scatter ls eneGdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(lfit ls eneGdp),saving(eneGdp,replace)
+tw(scatter ls eneGdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls eneGdp,fcolor(none)),saving(eneGdp,replace)
 dy
-! mv /tmp/g1.pdf `tmp'couWvsLsEnePerGdp.pdf
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEnePerGdp.pdf
 
 gr combine ene.gph eneGdp.gph
 dy
@@ -517,9 +517,9 @@ est sto fe1
 xtreg ls ene gdp urb un lexp co2, fe
 est sto fe2
 
-estout ols1 ols2 ols3 ols4 ols5 fe1 fe2  using `tmp'regA.tex ,  cells(b(star fmt(%9.3f))) replace style(tex) collabels(, none) stats(N, labels("N")fmt(%9.0f))varlabels(_cons constant) label starlevels(+ 0.10 * 0.05 ** 0.01 *** 0.001)drop(*yr*)
+estout ols1 ols2 ols3 ols4 ols5 fe1 fe2  using  /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/regA.tex ,  cells(b(star fmt(%9.3f))) replace style(tex) collabels(, none) stats(N r2 bic aic, labels("N"))varlabels(_cons constant) label starlevels(+ 0.10 * 0.05 ** 0.01 *** 0.001)drop(*yr*)
 //order(HH0 HH1 HH2 HH3 HH5 HH6 HH7 inc IS2 IS3 IS4 IS5 IS6 IS7 IS8  age age2  mar  ed  hompop  hea male )
-! sed -i "s|\%|\\\%|g" `tmp'regA.tex
+! sed -i "s|\%|\\\%|g" /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/regA.tex
 
 //TODO would need to multiply many vars by 1k or so that nicely can interpet
 
@@ -616,9 +616,9 @@ format ls co2 %9.1f
 l  ccc ls ene gdp co2 lexp if ls!=.
 
 
-tw(scatter ls ene,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls ene)
+tw(scatter ls ene,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls ene,fcolor(none))
 dy
-! mv /tmp/g1.pdf `tmp'couLsEne.pdf
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couLsEne.pdf
 
 tw(scatter ls gdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls gdp)
 dy
