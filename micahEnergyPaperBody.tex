@@ -351,7 +351,7 @@ yoga \citep{madjar06}.
 
 % AOK: great ! makes sense!
 
-\subsection{Energy}
+\subsection{bivariate: happiness and energy}
 
 We start with a cross-section--there is not much variation in happiness over
 time, and energy consumption in developed areas is quite flat, too. 
@@ -366,18 +366,12 @@ once. Happiness is averaged for each country-year and matched with energy use
 % transportation sector)--this is just another argument for energy conservation.
 
 \begin{figure}[H]
- \includegraphics[height=3in]{graphsAndTables/couLsEne.pdf}\centering
-\caption{couLsEne.pdf Eurobarometer dataset for west european (rich countries)}\label{couLsEne.pdf}
+ \includegraphics[width=6in]{graphsAndTables/couWvsLsEnePerGdp2.pdf}\centering
+ \caption{WVS all countries, avergaed over time;  received wisdom is that richer countries are happier and those are countries that consume more energy, but if we lookk at energy intesity of gdp, it i sstrongly negative! }\label{couWvsLsEnePerGdp2.pdf}
 \end{figure}
 {\scriptsize Note: Country codes are in table \ref{ls} in supplementary
   material. If country was observed in more than one year, the data were averaged.}
 
-\begin{figure}[H]
- \includegraphics[height=3in]{graphsAndTables/couWvsLsEne.pdf}\centering
-\caption{World Values Survey Data data; countries$>$10k pcgdp couWvsLsEne.pdf}\label{couWvsLsEne.pdf}
-\end{figure}
-{\scriptsize Note: Country codes are in table \ref{ls} in supplementary
-  material. If country was observed in more than one year, the data were averaged.}
 
 US is horrible--we consume about twice as much energy per capita as other
 developed countires. % also see http://www.ritholtz.com/blog/2010/06/oil-consumption-around-the-world/
@@ -394,12 +388,6 @@ happiness. no. it is quadratic!!! so it levels off at around 4k of energy
 use--beyond that anergy use does not seem to help much wiuth happiness; like
 with income--it also levels off at country or regional levble (my paper!)
 
-\begin{figure}[H]
- \includegraphics[height=3in]{graphsAndTables/couWvsLsEneLT10kGDP.pdf}\centering
-\caption{couWvsLsEneLT10kGDP.pdf World values survey data country level for countries lt 10k pcgdp}\label{couWvsLsEneLT10kGDP.pdf}
-\end{figure}
-{\scriptsize Note: Country codes are in table \ref{ls} in supplementary
-  material. If country was observed in more than one year, the data were averaged.}
 
 it is interesting that the ere is positive quadratic relationship in rich
 countries and negative in poor countries...the cutoff point is at 10k of pcgdp.
@@ -426,13 +414,12 @@ soviet like ukraine or MDA BLR AZE ARM are very energy intesive and miserable
 %   material. If country was observed in more than one year, the data were averaged.}
 
 \begin{figure}[H]
- \includegraphics[height=3in]{graphsAndTables/lfTERPBls.pdf}\centering
-\caption{lfTERPBls.pdf residential energy consumptionm; no relationship here !
-  except that hawaii is warm and doesn't consume much and california is green!
-  so now zooming in on california :)}\label{grComTETPBgdp}
-\end{figure}
-{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
-  material. If country was observed in more than one year, the data were averaged.}
+ \includegraphics[width=6in]{graphsAndTables/stateCa.pdf}\centering
+\caption{WVS all countries, avergaed over time;; in this second step we explore
+at state and county lev and nothing there whether with or without gdp--and
+importantly as at ctry lev also energy intencsity attenuates slope albeit much
+less dramatcally}\label{stateCa}
+ \end{figure} {\scriptsize Note: Country codes are in table \ref{ls} in supplementary material. If country was observed in more than one year, the data were averaged. }
 
 
 So california consumes only about half of the energy consumed by an average
@@ -451,13 +438,6 @@ nothing there, can do a graph dropping those
 
 %note: cen div is somewhat weird...
 
-\begin{figure}[H]
- \includegraphics[height=3in]{graphsAndTables/lfELERESls.pdf}\centering
-\caption{residential energy use; nothing reallyu here...wonde why Mono uses so much!}\label{}
-\end{figure}
-{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
-  material. If country was observed in more than one year, the data were averaged.}
-
 so need to have more gdp, less energy use, at least across countries...
 
 What is striking is the differences in energy use by area. Diferences are
@@ -467,7 +447,6 @@ consume only ??? and yet are as happy as ??? which consumes ???.
 Table \ref{ls} in supplemenary material lists all countries along with
 happiness, energy use and other key variables.
 
-\subsection{Energy Intensity}
 
 There is not much relatyionship between happpiness and energy use, but there is
 even less if controlling for GDP--energy use correlates with GDP and it if nit
@@ -481,33 +460,22 @@ product (GDP): (energy/GDP). Below  are graphs doing just that.
 Here we think it makes more sense to look at total energy consumption as opposed
 to residental--we use  that at state and county levels 
 
-\begin{figure}[H]
- \includegraphics[height=3in]{graphsAndTables/couWvsLsEnePerGdp.pdf}\centering
-\caption{total energy use divided by gdp}\label{}
-\end{figure}
-{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
-  material. If country was observed in more than one year, the data were averaged.}
-
-\begin{figure}[H]
- \includegraphics[height=3in]{graphsAndTables/lfTETPBgdpLS.pdf}\centering
-\caption{total energy use divided by gdp}\label{}
-\end{figure}
-{\scriptsize TODO Note: state codes are in table \ref{ls} in supplementary
-  material. If country was observed in more than one year, the data were averaged.}
-
-\begin{figure}[H]
- \includegraphics[height=3in]{graphsAndTables/caEleTotGdp.pdf}\centering
-\caption{total energy use divided by gdp}\label{}
-\end{figure}
-{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
-  material. If country was observed in more than one year, the data were averaged.}
-
-
 
 and now we see that happiness strikingly actually declines across countries woohoo!
 
+\subsection{multivariate: other things}
+
 And we also take into accouint more factors in the regressions framework in the
 online appendix
+
+\begin{figure}[H]
+ \includegraphics[width=6in]{graphsAndTables/ols4ols5.pdf}\centering
+\caption{WVS all countries, first is ols4; second is ols5--the latter controls
+  for co2--if we could have energy without pollution it would increase happiness! }\label{ols4ols5}
+\end{figure}
+{\scriptsize Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
 
 \section{Discussion}
 
@@ -1159,7 +1127,7 @@ heterogeneity. Two fixed effects model follow (temperature drops out, because we
 \begin{table}[H]\centering \caption{regA} \label{regA} \begin{scriptsize} \begin{tabular}{p{1.4in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43 in}p{.43in}p{.43 in}}\hline \input{graphsAndTables/regA.tex} \hline\multicolumn{6}{l}{+p$<$0.10 *p$<$0.05 **p$<$0.01 ***p$<$0.001; robust standard errors} \end{tabular}\end{scriptsize}\end{table}
 
 \begin{verbatim}
-             |      ene      gdp      urb       un     lexp   janMax   julMax
+             |   ene   gdp   urb   un   lexp  janMax julMax
 -------------+---------------------------------------------------------------
          ene |   1.0 
          gdp |   0.7*  1.0 
@@ -1180,6 +1148,75 @@ make both scales, happiness and energy standarized, but then it is more
 difficult to intepret results, we think. In this approach, we have followed
 \citet{easterlin10B,easterlin12}, who also used different unstandarized
 happiness scales in the same study. 
+
+\section{earlier results}
+
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/couLsEne.pdf}\centering
+\caption{couLsEne.pdf Eurobarometer dataset for west european (rich countries)}\label{couLsEne.pdf}
+\end{figure}
+{\scriptsize Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/couWvsLsEne.pdf}\centering
+\caption{World Values Survey Data data; countries$>$10k pcgdp couWvsLsEne.pdf}\label{couWvsLsEne.pdf}
+\end{figure}
+{\scriptsize Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/couWvsLsEneLT10kGDP.pdf}\centering
+\caption{couWvsLsEneLT10kGDP.pdf World values survey data country level for countries lt 10k pcgdp}\label{couWvsLsEneLT10kGDP.pdf}
+\end{figure}
+{\scriptsize Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/lfTERPBls.pdf}\centering
+\caption{lfTERPBls.pdf residential energy consumptionm; no relationship here !
+  except that hawaii is warm and doesn't consume much and california is green!
+  so now zooming in on california :)}\label{grComTETPBgdp}
+\end{figure}
+{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/lfELERESls.pdf}\centering
+\caption{residential energy use; nothing reallyu here...wonde why Mono uses so much!}\label{}
+\end{figure}
+{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+\subsection{energy intesity}
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/couWvsLsEnePerGdp.pdf}\centering
+\caption{total energy use divided by gdp}\label{}
+\end{figure}
+{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/lfTETPBgdpLS.pdf}\centering
+\caption{total energy use divided by gdp}\label{}
+\end{figure}
+{\scriptsize TODO Note: state codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+\begin{figure}[H]
+ \includegraphics[height=3in]{graphsAndTables/caEleTotGdp.pdf}\centering
+\caption{total energy use divided by gdp}\label{}
+\end{figure}
+{\scriptsize TODO Note: Country codes are in table \ref{ls} in supplementary
+  material. If country was observed in more than one year, the data were averaged.}
+
+
 
 
 \end{spacing}

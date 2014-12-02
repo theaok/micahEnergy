@@ -384,7 +384,7 @@ l c ccc ls ene gdp co2 lexp if ls!=.
 sort ls
 aok_listtex c ccc ls ene gdp co2 lexp if ls!=., path(`tmp'list.tex) cap(Key variables for each country. Sorted on happiness. Note: if country was observed in more than one year, values are averaged) 
 
-tw(scatter ls ene if gdp>10000,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls ene if gdp>10000, fcolor(none)),saving(ene,replace)
+tw(scatter ls ene if gdp>10000,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls ene if gdp>10000, fcolor(none)),saving(ene10,replace)
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEne.pdf
 
@@ -402,16 +402,19 @@ dy
 
 gen eneGdp=ene/gdp
 
-tw(scatter ls eneGdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls eneGdp)
+tw(scatter ls eneGdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls eneGdp,fcolor(none))
+dy
+
+tw(scatter ls ene ,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls ene, fcolor(none)),saving(ene,replace)
 dy
 
 tw(scatter ls eneGdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls eneGdp,fcolor(none)),saving(eneGdp,replace)
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEnePerGdp.pdf
 
-gr combine ene.gph eneGdp.gph
+gr combine ene.gph eneGdp.gph, ycommon
 dy
-! mv /tmp/g1.pdf `tmp'couWvsGrComEneGdp.pdf
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEnePerGdp2.pdf
 
 tw(scatter ls eleHH,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(lfit ls eleHH),saving(a,replace)
 dy
@@ -508,9 +511,13 @@ reg ls ene gdp urb un lexp i.yr, robust beta
 est sto ols3
 reg ls ene gdp urb un lexp janMax julMax i.yr, robust beta
 est sto ols4
+margins, at(ene=(0(2500)10000)) 
+marginsplot, x(ene)saving(ols4, replace) 
+
 reg ls ene gdp urb un lexp janMax julMax i.yr co2, robust beta
 est sto ols5
-
+margins, at(ene=(0(2500)10000)) 
+marginsplot, x(ene)saving(ols5, replace) 
 
 xtreg ls ene gdp urb un lexp , fe
 est sto fe1
@@ -523,6 +530,12 @@ estout ols1 ols2 ols3 ols4 ols5 fe1 fe2  using  /home/aok/papers/ls_en/gitMicahE
 
 //TODO would need to multiply many vars by 1k or so that nicely can interpet
 
+pwcorr ene gdp urb un lexp janMax julMax  co2, star(.05)
+
+
+gr combine ols4.gph ols5.gph, ycommon
+dy
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/ols4ols5.pdf
 
 
 //###########################################################################
