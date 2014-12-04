@@ -397,7 +397,7 @@ local l`v' : variable label `v'
 	local l`v' "`v'"
 	}
 }
-collapse ls ene gdp co2 lexp eleHH (first) ccc, by(c)
+collapse ls ene gdp co2 lexp eleHH janMax julMax (first) ccc, by(c)
 foreach v of var * {
 label var `v' "`l`v''"
 }
@@ -413,10 +413,27 @@ aok_listtex c ccc ls ene gdp co2 lexp if ls!=., path(`tmp'list.tex) cap(Key vari
 tw(scatter ls ene if gdp>10000,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls ene if gdp>10000, fcolor(none)),saving(ene10,replace)
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEne.pdf
-
 tw(scatter ls ene if gdp<10000,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls ene if gdp<10000, fcolor(none)),saving(ene,replace)
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEneLT10kGDP.pdf
+
+
+tw(scatter ls co2,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls co2 if co2<5.2, fcolor(none))(qfitci ls co2 if co2>5.2, fcolor(none))
+dy
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/co2twice.pdf
+
+tw(scatter ls jan,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls jan if jan<13, fcolor(none))(qfitci ls jan if jan>13, fcolor(none))
+dy
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/JanTwice.pdf
+
+tw(scatter ls jul,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls jul if jul<26.5, fcolor(none))(qfitci ls jul if jul>26.5, fcolor(none))
+dy
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/JulTwice.pdf
+
+tw(scatter ls ene,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls ene if jan<2300, fcolor(none))(qfitci ls ene if ene>2300, fcolor(none))
+dy
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/eneTwice.pdf
+
 
 
 tw(scatter ls gdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfit ls gdp)
@@ -590,8 +607,16 @@ loc cGdp `cGdp' gdp`v'.gph
 }
 gr combine `cGdp', ycommon row(1) imargin(0) saving(cGdp, replace)
 
+gen eneGdp=ene/gdp
 
-gr combine cLs.gph cEne.gph cGdp.gph, row(3)
+foreach v of varlist  urb jan jul co2{
+tw(qfit eneGdp `v', ytitle("eneGdp")), saving(eneGdp`v', replace)
+loc ceneGdp `ceneGdp' eneGdp`v'.gph
+}
+gr combine `ceneGdp', ycommon row(1) imargin(0) saving(ceneGdp, replace)
+
+
+gr combine cLs.gph cEne.gph cGdp.gph ceneGdp.gph, row(4)
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/mat1.pdf
 
@@ -677,6 +702,15 @@ keep if _merge == 3
 drop if ccc=="LUX" //have to drop it--it's not a country
 
 **** desSta
+
+ta yr
+tw(line ls yr, yscale(range(2.5 3.5)) ylabel(2.5[.5]3.5))(line ene yr, yaxis(2)), by(ccc)yscale(range(1000 6000) axis(2))ylabel(#2,axis(2)) //1000[3000]6000
+dy
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/ebTS.pdf
+
+bys ccc: cor ls ene
+cor ls ene
+
 
 preserve
 

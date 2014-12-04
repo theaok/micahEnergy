@@ -465,10 +465,20 @@ to residental--we use  that at state and county levels
 
 and now we see that happiness strikingly actually declines across countries woohoo!
 
+\subsection{over time}
+
+not much there
+
 \begin{figure}[H]
  \includegraphics[width=6in]{graphsAndTables/cenDivLsYrSm.pdf}\centering
-\caption{and over time no relationship either ! for unsmotthened happipiness see fig \ref{cenDivLsYr} on p \pageref{cenDivLsYr}}\label{cenDivLsYrSm}
- \end{figure}
+\caption{and over time no relationship either ! correlation is .2 only (for
+  unsmoothened series) for unsmotthened happipiness see fig \ref{cenDivLsYr} on p \pageref{cenDivLsYr}}\label{cenDivLsYrSm}
+\end{figure}
+
+\begin{figure}[H]
+ \includegraphics[width=6in]{graphsAndTables/ebTS.pdf}\centering
+\caption{and over time not much relationship either !yet somehow corr is actually .5 }\label{ebTS}
+\end{figure}
 
 
 \section{Discussion}
@@ -1248,7 +1258,8 @@ online appendix
 
 \begin{figure}[H]
  \includegraphics[width=6in]{graphsAndTables/mat1.pdf}\centering
-\caption{idea}\label{stateCa}
+\caption{id: mat1;  note that this is total energy, not residential, and it is not avergaed
+over yrs}\label{mat1}
  \end{figure}
 
 \begin{figure}[H]
@@ -1271,6 +1282,31 @@ place--activity or even business cycle i guess
  \includegraphics[width=6in]{graphsAndTables/caEleGas.pdf}\centering
 \caption{driving is good in california s well ! (left electrisity; right gas)}\label{cenDivLsYrMGAPB}
  \end{figure}
+
+\subsubsection{multivariate: other things:: breaking it down by other things: hi--lo}
+
+\begin{figure}[H]
+ \includegraphics[width=6in]{graphsAndTables/co2twice.pdf}\centering
+\caption{}\label{cenDivLsYrMGAPB}
+ \end{figure}
+
+\begin{figure}[H]
+ \includegraphics[width=6in]{graphsAndTables/JanTwice.pdf}\centering
+\caption{}\label{JanTwice}
+ \end{figure}
+
+\begin{figure}[H]
+ \includegraphics[width=6in]{graphsAndTables/JulTwice.pdf}\centering
+\caption{}\label{JulTwice}
+ \end{figure}
+
+\begin{figure}[H]
+ \includegraphics[width=6in]{graphsAndTables/eneTwice.pdf}\centering
+\caption{}\label{eneTwice}
+ \end{figure}
+
+
+
 
 
 \newpage
@@ -1362,18 +1398,18 @@ ecological economics paper--shoudl be in ebib)
 
 \subsection{europe-mannheim}
 
-\ig{/tmp/ls_en/couLsEne.pdf}
+\ig{graphsAndTables/couLsEne.pdf}
 
-\ig{/tmp/ls_en/couLsGdp.pdf}
+\ig{graphsAndTables/couLsGdp.pdf}
 
 \subsection{world}
 
-\ig{/tmp/ls_en/couWvsLsEne.pdf}
+\ig{graphsAndTables/couWvsLsEne.pdf}
 
-\ig{/tmp/ls_en/couWvsLsGdp.pdf}
+\ig{graphsAndTables/couWvsLsGdp.pdf}
 
 very interesting--when controlling fpr gdp, energy becomes negativbe!!
-\ig{/tmp/ls_en/couWvsLsEnGdp.pdf}
+\ig{graphsAndTables/couWvsLsEnGdp.pdf}
 
 
 
@@ -1564,7 +1600,6 @@ Delaware, which is very supportive and surrounded by unsupportive states.
 
 
 \begin{spacing}{.8}
-{\footnotesize
 \begin{verbatim}
   | state     popDen   perUrb |  .  +---------------------+ 
   |---------------------------|     | state   supp     gh | 
@@ -1631,7 +1666,6 @@ Delaware, which is very supportive and surrounded by unsupportive states.
   |    DC          .      100 |     |---------------------| 
   +---------------------------+     |    TN   4.32   3.42 | 
 \end{verbatim}                      +---------------------+ 
-}
 \end{spacing}
 
 
@@ -1674,7 +1708,7 @@ to be more consumption of energyu  in ransportatin in states woith more suburbs.
 Likewise, when considering total energy use (TETPB) a positive relationship
 persists. This warrants further exploration. 
 
-\begin{table}[H]\centering \caption{ols1} \label{ols1} \begin{scriptsize} \begin{tabular}{p{1.4in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43 in}p{.43in}p{.43 in}}\hline \input{/tmp/ls_en/ols1.tex} \hline\multicolumn{6}{l}{+p$<$0.10 *p$<$0.05 **p$<$0.01 ***p$<$0.001; robust standard errors} \end{tabular}\end{scriptsize}\end{table}
+\begin{table}[H]\centering \caption{ols1} \label{ols1} \begin{scriptsize} \begin{tabular}{p{1.4in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43 in}p{.43in}p{.43 in}}\hline \input{graphsAndTables/ols1.tex} \hline\multicolumn{6}{l}{+p$<$0.10 *p$<$0.05 **p$<$0.01 ***p$<$0.001; robust standard errors} \end{tabular}\end{scriptsize}\end{table}
 
 
 First considering enrgy use in residential and in commerce (columns a),
@@ -1730,7 +1764,6 @@ weaker.
 
 
 \begin{spacing}{.8}
-{\footnotesize
 \begin{verbatim}
 SORTED OON ELERES
   ----------------------------------+
@@ -1884,7 +1917,6 @@ SORTED ON GASRES
   ----------------------------------+
 
 \end{verbatim}
-}
 \end{spacing}
 
 
@@ -1912,13 +1944,6 @@ likely due to sampling. To perform a robustness check whether these results may
 !!TODO!!  
 
 
-\begin{verbatim}
-
-\end{verbatim}
-
-
-\newpage
-%\bibliography{/home/aok/papers/root/tex/ebib.bib}
 
 
 \end{spacing}
