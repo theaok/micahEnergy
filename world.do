@@ -75,6 +75,15 @@ ren countrycode ccc
 ren year yr
 save `tmp'wb, replace
 
+gen eneGdp=ene/gdp
+line eneGdp yr if ccc=="USA"
+
+collapse gdp ene un co2 lexp gas urb eneGdp, by(region yr)        
+line eneGdp yr, by(region)
+line ene yr, by(region)
+dy
+
+
 **** electricty per hh!
 
 //may be more scientific to get it from UN:Electricity - Consumption by households
@@ -100,7 +109,22 @@ destring y, replace
 ren y eleHH
 la var eleHH "Average electricity consumption per electrified household, kWh"
 
+replace c ="Hong Kong" if c=="Hong-Kong"
+replace c="USA" if c=="United States"
+
 save `tmp'couEleHH,replace
+
+line ele yr, by(c)
+dy
+
+keep if c=="Asia"|c=="CIS"|c=="China"|c=="European Union"|c=="Latin America"|c=="Middle-East"|c=="North America"|c=="USA"|c=="World"
+line ele yr, by(c)
+dy
+
+keep if c=="China"|c=="European Union"|c=="USA"|c=="World"
+line ele yr, by(c)
+dy
+
 
 
 **** temperature
@@ -343,11 +367,13 @@ note julMax: "near-surface temperature maximum (degrees Celsius)" ; TYN\_CY
 merge 1:1 c yr using `tmp'couEleHH
 ta c if _merge==1 & yr >2004 & yr<2009
 ta c if _merge==2 & yr >2004 & yr<2009
-//TODO BUG if i end up using thsi measure then need fix it!!
+drop if _merge==2
 
 drop _merge
 
 saveold `tmp'worldAll,replace
+
+
 
 
 **** desSta
@@ -371,7 +397,7 @@ local l`v' : variable label `v'
 	local l`v' "`v'"
 	}
 }
-collapse ls ene gdp co2 lexp eleHH, by(c ccc)
+collapse ls ene gdp co2 lexp eleHH (first) ccc, by(c)
 foreach v of var * {
 label var `v' "`l`v''"
 }
@@ -418,6 +444,17 @@ dy
 
 tw(scatter ls eleHH,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(lfit ls eleHH),saving(a,replace)
 dy
+
+
+*per hh
+tw(scatter ls eleHH ,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls eleHH, fcolor(none)),saving(eleHH,replace)
+dy
+gen eleHHgdp=eleHH/gdp
+tw(scatter ls eleHHgdp ,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls eleHHgdp, fcolor(none)),saving(eleHHgdp,replace)
+dy
+gr combine eleHH.gph eleHHgdp.gph, ycommon
+dy
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEleHHgdp.pdf
 
 
 restore
@@ -531,6 +568,37 @@ estout ols1 ols2 ols3 ols4 ols5 fe1 fe2  using  /home/aok/papers/ls_en/gitMicahE
 //TODO would need to multiply many vars by 1k or so that nicely can interpet
 
 pwcorr ene gdp urb un lexp janMax julMax  co2, star(.05)
+
+macro drop  _c*
+
+foreach v of varlist  urb jan jul co2{
+tw(qfit ene `v', ytitle("energy use")), saving(ene`v', replace)
+loc cEne `cEne' ene`v'.gph
+}
+
+gr combine `cEne', ycommon row(1) imargin(0) saving(cEne, replace)   //iscale(1) prevent fornt from shrinking
+
+foreach v of varlist  urb jan jul co2{
+tw(qfit ls `v', ytitle("happiness")), saving(ls`v', replace)
+loc cLs `cLs' ls`v'.gph
+}
+gr combine `cLs', ycommon row(1) imargin(0) saving(cLs, replace)
+
+foreach v of varlist  urb jan jul co2{
+tw(qfit gdp `v', ytitle("gdp")), saving(gdp`v', replace)
+loc cGdp `cGdp' gdp`v'.gph
+}
+gr combine `cGdp', ycommon row(1) imargin(0) saving(cGdp, replace)
+
+
+gr combine cLs.gph cEne.gph cGdp.gph, row(3)
+dy
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/mat1.pdf
+
+
+gr matrix ene gdp urb un lexp janMax julMax  co2, half
+dy
+
 
 
 gr combine ols4.gph ols5.gph, ycommon
