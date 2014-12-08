@@ -125,7 +125,7 @@ keep if c=="China"|c=="European Union"|c=="USA"|c=="World"
 line ele yr, by(c)
 dy
 
-
+sum eleHH if yr==2011 & c=="USA", det
 
 **** temperature
 
@@ -397,7 +397,7 @@ local l`v' : variable label `v'
 	local l`v' "`v'"
 	}
 }
-collapse ls ene gdp co2 lexp eleHH janMax julMax (first) ccc, by(c)
+collapse ls ene gdp co2 lexp eleHH janMax julMax (first) ccc (first) region (first) regioncode, by(c)
 foreach v of var * {
 label var `v' "`l`v''"
 }
@@ -418,7 +418,7 @@ dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEneLT10kGDP.pdf
 
 
-tw(scatter ls co2,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls co2 if co2<5.2, fcolor(none))(qfitci ls co2 if co2>5.2, fcolor(none))
+tw(scatter ls co2,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls co2 if co2<4, fcolor(none))(qfitci ls co2 if co2>4, fcolor(none))
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/co2twice.pdf
 
@@ -448,6 +448,9 @@ gen eneGdp=ene/gdp
 tw(scatter ls eneGdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls eneGdp,fcolor(none))
 dy
 
+tw(scatter ls gdp ,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls gdp, fcolor(none)),saving(gdp,replace)
+dy
+
 tw(scatter ls ene ,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls ene, fcolor(none)),saving(ene,replace)
 dy
 
@@ -459,8 +462,26 @@ gr combine ene.gph eneGdp.gph, ycommon
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEnePerGdp2.pdf
 
+gr combine gdp.gph ene.gph eneGdp.gph, ycommon imargin(0)row(1)
+dy
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEnePerGdp3.pdf
+
+
 tw(scatter ls eleHH,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(lfit ls eleHH),saving(a,replace)
 dy
+
+* symbols; meh not much except LCN in top left; LATER: try by income or temp etc
+
+tw(scatter ls gdp if regionc=="EAS",mcolor(black)msize(vsmall)msymbol(diamond))(scatter ls gdp if regionc=="ECS",mcolor(black)msize(vsmall)msymbol(circle))(scatter ls gdp if regionc=="LCN",mcolor(black)msize(small)msymbol(plus))(scatter ls gdp if regionc=="MEA",mcolor(black)msize(small)msymbol(triangle))(scatter ls gdp if regionc=="NAC",mcolor(black)msize(small)msymbol(circle_hollow))(scatter ls gdp if regionc=="SAS",mcolor(black)msize(small)msymbol(diamond_hollow))(scatter ls gdp if regionc=="SSF",mcolor(black)msize(small)msymbol(square))(qfitci ls gdp, fcolor(none)),saving(gdp,replace)
+dy
+
+tw(scatter ls ene if regionc=="EAS",mcolor(black)msize(vsmall)msymbol(diamond))(scatter ls ene if regionc=="ECS",mcolor(black)msize(vsmall)msymbol(circle))(scatter ls ene if regionc=="LCN",mcolor(black)msize(small)msymbol(plus))(scatter ls ene if regionc=="MEA",mcolor(black)msize(small)msymbol(triangle))(scatter ls ene if regionc=="NAC",mcolor(black)msize(small)msymbol(circle_hollow))(scatter ls ene if regionc=="SAS",mcolor(black)msize(small)msymbol(diamond_hollow))(scatter ls ene if regionc=="SSF",mcolor(black)msize(small)msymbol(square))(qfitci ls ene, fcolor(none)),saving(ene,replace)
+dy
+
+tw(scatter ls eneGdp if regionc=="EAS",mcolor(black)msize(vsmall)msymbol(diamond))(scatter ls eneGdp if regionc=="ECS",mcolor(black)msize(vsmall)msymbol(circle))(scatter ls eneGdp if regionc=="LCN",mcolor(black)msize(small)msymbol(plus))(scatter ls eneGdp if regionc=="MEA",mcolor(black)msize(small)msymbol(triangle))(scatter ls eneGdp if regionc=="NAC",mcolor(black)msize(small)msymbol(circle_hollow))(scatter ls eneGdp if regionc=="SAS",mcolor(black)msize(small)msymbol(diamond_hollow))(scatter ls eneGdp if regionc=="SSF",mcolor(black)msize(small)msymbol(square))(qfitci ls eneGdp, fcolor(none)),saving(eneGdp,replace)
+dy
+
+
 
 
 *per hh
@@ -615,7 +636,6 @@ loc ceneGdp `ceneGdp' eneGdp`v'.gph
 }
 gr combine `ceneGdp', ycommon row(1) imargin(0) saving(ceneGdp, replace)
 
-
 gr combine cLs.gph cEne.gph cGdp.gph ceneGdp.gph, row(4)
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/mat1.pdf
@@ -704,9 +724,21 @@ drop if ccc=="LUX" //have to drop it--it's not a country
 **** desSta
 
 ta yr
+d
+gen eneGdp=ene/gdp
 tw(line ls yr, yscale(range(2.5 3.5)) ylabel(2.5[.5]3.5))(line ene yr, yaxis(2)), by(ccc)yscale(range(1000 6000) axis(2))ylabel(#2,axis(2)) //1000[3000]6000
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/ebTS.pdf
+
+tw(line ls yr, yscale(range(2.5 3.5)) ylabel(2.5[.5]3.5))(line eneGdp yr, yaxis(2)), by(ccc)yscale(range(.05 .25) axis(2))ylabel(#4,axis(2)) //1000[3000]6000
+dy
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/ebTSeneGdp.pdf
+
+gen eneLs=ene/ls
+tw(line eneLs yr), by(ccc)
+dy
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/ebTSeneLs.pdf
+
 
 bys ccc: cor ls ene
 cor ls ene
