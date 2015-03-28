@@ -444,6 +444,7 @@ tw(scatter ls co2,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(t
 dy
 
 gen eneGdp=ene/gdp
+la var eneGdp "energy/GDP"
 
 tw(scatter ls eneGdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls eneGdp,fcolor(none))
 dy
@@ -451,14 +452,14 @@ dy
 tw(scatter ls gdp ,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls gdp, fcolor(none)),saving(gdp,replace)
 dy
 
-tw(scatter ls ene ,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls ene, fcolor(none)),saving(ene,replace)
+tw(scatter ls ene ,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(vsmall) mlabcolor(black) mlabposition(0))(qfitci ls ene, fcolor(none)),saving(ene,replace)legend(off)
 dy
 
-tw(scatter ls eneGdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(qfitci ls eneGdp,fcolor(none)),saving(eneGdp,replace)
+tw(scatter ls eneGdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsize(vsmall) mlabcolor(black) mlabposition(0))(qfitci ls eneGdp,fcolor(none)),saving(eneGdp,replace)legend(off)
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEnePerGdp.pdf
 
-gr combine ene.gph eneGdp.gph, ycommon
+gr combine ene.gph eneGdp.gph, ycommon  
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEnePerGdp2.pdf
 
