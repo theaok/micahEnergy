@@ -459,7 +459,7 @@ tw(scatter ls eneGdp,mcolor(white) msize(zero) msymbol(point) mlabel(ccc)mlabsiz
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEnePerGdp.pdf
 
-gr combine ene.gph eneGdp.gph, ycommon  
+gr combine ene.gph eneGdp.gph, ycommon  imargin(zero) xsize(8)  //iscale(1) //for fonts
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWvsLsEnePerGdp2.pdf
 
