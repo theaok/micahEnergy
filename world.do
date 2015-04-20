@@ -17,6 +17,24 @@ loc tmp "/tmp/`pap'/"
 
 cd `d'
 
+**** WDH happiness
+
+
+//micah doesn't like colombia guatemala and mexico to be veryy happy--reveiewers too mauy complain that this is awrong way to measyure happiness
+//http://www1.eur.nl/fsw/happiness/hap_nat/nat_fp.php?mode=8
+
+insheet using ~/papers/ls_en/dat/wdhSWB_HLY.csv, clear comma names
+d
+ren code cc
+drop rank
+la var swb "happiness (WDH)"
+la var lexp "life expectancy (WDH)"
+la var hly "happy life years (WDH)"
+
+save `tmp'wdh, replace
+
+
+
 **** energy
 
 //also more indicators here:
@@ -819,4 +837,61 @@ xtpcse ls  ene ene2 gdp un lexp co2, correlation(ar1) het
 
 //so perhaps conclusion from all that is that ene, like income contributes to happiness but up to a point--that is, tehre is a quadratoic relationship...
 
+
+
+
+*******************************************************************************
+***using ruut's WDH! 
+
+
+use `tmp'wb,clear
+d
+
+//keeo 00-09 to match wdh
+keep if yr>1999 & yr<2010
+drop yr
+
+
+foreach v of var * {
+local l`v' : variable label `v'
+      if `"`l`v''"' == "" {
+	local l`v' "`v'"
+	}
+}
+collapse gdp ene un co2 lexp gas urb (first) ccc (first) countryname, by(cc)
+foreach v of var * {
+label var `v' "`l`v''"
+}
+
+merge 1:1 cc using `tmp'wdh
+l if _merge==2 //meh
+
+
+gen eneGdp=ene/gdp
+la var eneGdp "energy/GDP"
+
+l nation if ene>10000 & ene<. & swb<.
+tw(scatter swb ene if ene<10000,mcolor(white) msize(zero) msymbol(point) mlabel(cc)mlabsize(vsmall) mlabcolor(black) mlabposition(0))(qfitci swb ene if ene<10000,fcolor(none)),saving(ene,replace)legend(off)
+dy
+
+l nation if eneGdp>2 & eneGdp<. & swb<.
+tw(scatter swb eneGdp if eneGdp<2,mcolor(white) msize(zero) msymbol(point) mlabel(cc)mlabsize(vsmall) mlabcolor(black) mlabposition(0) )(qfitci swb eneGdp if eneGdp<2,fcolor(none) ),saving(eneGdp,replace)legend(off)
+dy
+
+gr combine  ene.gph eneGdp.gph, ycommon imargin(zero)row(1) //xsize(8)  //iscale(1)
+dy
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWdhEneGdp.pdf
+
+
+
+** hly
+
+tw(scatter hly ene if ene<10000,mcolor(white) msize(zero) msymbol(point) mlabel(cc)mlabsize(vsmall) mlabcolor(black) mlabposition(0))(qfitci hly ene if ene<10000,fcolor(none)),saving(eneHly,replace)legend(off)
+dy
+tw(scatter hly eneGdp if eneGdp<2,mcolor(white) msize(zero) msymbol(point) mlabel(cc)mlabsize(vsmall) mlabcolor(black) mlabposition(0) )(qfitci hly eneGdp if eneGdp<2,fcolor(none) ),saving(eneGdpHly,replace)legend(off)
+dy
+
+gr combine  eneHly.gph eneGdpHly.gph, ycommon imargin(zero)row(1) //xsize(8)  //iscale(1)
+dy
+! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWdhEneGdpHly.pdf
 
