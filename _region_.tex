@@ -1,0 +1,108 @@
+\message{ !name(micahEnergyPaperBody.tex)}%to have line numbers
+%\RequirePackage{lineno}
+\documentclass[10pt, letterpaper]{article}      
+\usepackage[margin=.1cm,font=small,labelfont=bf]{caption}[2007/03/09]
+%\usepackage{endnotes}
+\usepackage{setspace}
+\usepackage{longtable}                        
+\usepackage{anysize}                          
+%\bibpunct{(}{)}{,}{a}{,}{,}                   
+%\bibpunct{(}{)}{,}{a}{}{,}                   
+\usepackage{amsmath}
+\usepackage[pdftex]{graphicx}  %[pdftex]git latex doesn't like it             
+\usepackage{epstopdf}
+\usepackage{hyperref}                             % For creating hyperlinks in cross references
+
+
+% \usepackage[margins]{trackchanges}
+
+% \note[editor]{The note}
+% \annote[editor]{Text to annotate}{The note}
+%    \add[editor]{Text to add}
+% \remove[editor]{Text to remove}
+% \change[editor]{Text to remove}{Text to add}
+
+
+
+\marginsize{1cm}{1cm}{.5cm}{.5cm}%{left}{right}{top}{bottom}   
+					          % Helps LaTeX put figures where YOU want
+ \renewcommand{\topfraction}{1}	                  % 90% of page top can be a float
+ \renewcommand{\bottomfraction}{1}	          % 90% of page bottom can be a float
+ \renewcommand{\textfraction}{0.0}	          % only 10% of page must to be text
+
+ \usepackage{float}                               %latex will not complain to include float after float
+
+\usepackage[table]{xcolor}                        %for table shading
+\definecolor{gray90}{gray}{0.90}
+\definecolor{orange}{RGB}{255,128,0}
+
+\renewcommand\arraystretch{.9}                    %for spacing of arrays like tabular
+
+\newenvironment{ig}[1]{
+\begin{center}
+ %\includegraphics[height=5.0in]{#1} 
+ \includegraphics[height=3.3in]{#1}
+\end{center}}
+
+ \newcommand{\cc}[1]{
+\hspace{-.13in}$\bullet$\marginpar{\begin{spacing}{.6}\begin{footnotesize}{#1}\end{footnotesize}\end{spacing}}
+\hspace{-.13in} }
+
+\usepackage{datetime}
+
+
+%\usepackage[latin1]{inputenc} %git latex compiler doesn't likeit
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,backgrounds}
+
+
+%\usepackage{color}					% For creating coloured text and background
+%\usepackage{float}
+\usepackage{subfig}                                     % for combined figures
+
+\renewcommand{\ss}[1]{{\colorbox{blue}{\bf \color{white}{#1}}}}
+\newcommand{\ee}[1]{\endnote{\vspace{-.10in}\begin{spacing}{1.0}{\normalsize #1}\end{spacing}\vspace{.20in}}}
+
+
+
+
+\usepackage{sectsty}
+\allsectionsfont{\normalfont\sffamily}
+
+
+
+\usepackage{sectsty}
+\allsectionsfont{\normalfont\sffamily}
+%\usepackage[margins]{trackchanges}
+
+\renewcommand\familydefault{\sfdefault}
+
+\usepackage{verbatim}
+\usepackage{rotating}
+\usepackage{catchfilebetweentags}
+%-------------------- END extra options -----------------------------------------
+\date{Draft: {}\today}
+\title{
+%  The Paradox of Energy Consumption and Happiness Across Countries
+%Presonal 
+Energy Use And Happiness\footnote{Author Contributions: A.O.K and M.A designed
+  research. A.O.K. performed research. A.O.K. analyzed data. A.O.K. and
+  M.A. wrote the paper.  % Micah: Add author contribution statements. See: http://www.nature.com/news/publishing-credit-where-credit-is-due-1.15033
+}
+}
+\author{
+Adam Okulicz-Kozaryn\thanks{EMAIL: adam.okulicz.kozaryn@gmail.com
+  \hfill I thank XXX.  All mistakes are mine.} \\
+{\small Rutgers - Camden}\\
+Micah Altman\thanks{EMAIL: ???
+  \hfill I ???} \\
+{\small MIT}
+}
+
+\begin{document}
+
+\message{ !name(micahEnergyPaperBody.tex) !offset(967) }
+
+\message{ !name(micahEnergyPaperBody.tex) !offset(966) }
+
+\end{document}

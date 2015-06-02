@@ -1,3 +1,4 @@
+e
 stata
 clear                                  
 capture set maxvar 10000
@@ -870,8 +871,20 @@ l if _merge==2 //meh
 gen eneGdp=ene/gdp
 la var eneGdp "energy/GDP"
 
+aok_var_des , ff(cc countryname swb gdp urb ene co2 lexp ) fname(/home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/varDes.tex)
+! sed -i "s|\\\$|\\\\\$|g" /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/varDes.tex
+! sed -i "s|\%|\\\%|g" /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/varDes.tex
+
+
+format ene gdp  lexp %9.0fc
+format swb co2 %9.1f
+l cc countryname swb ene gdp co2 lexp if swb!=. & countryname!=""
+
+//sort ls
+aok_listtex cc countryname swb ene gdp co2 lexp if swb!=. & countryname!="", path(/home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/list.tex) cap(Key variables for each country.) 
+
 l nation if ene>10000 & ene<. & swb<.
-tw(scatter swb ene if ene<10000,mcolor(white) msize(zero) msymbol(point) mlabel(cc)mlabsize(vsmall) mlabcolor(black) mlabposition(0))(qfitci swb ene if ene<10000,fcolor(none)),saving(ene,replace)legend(off)
+tw(scatter swb ene if ene<10000,mcolor(white) msize(zero) msymbol(point) mlabel(cc)mlabsize(vsmall) mlabcolor(black) mlabposition(0))(qfitci swb ene if ene<10000,fcolor(none)),saving(ene,replace)legend(off)ytitle("Happiness")
 dy
 
 l nation if eneGdp>2 & eneGdp<. & swb<.
