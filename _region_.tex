@@ -85,24 +85,44 @@
 \title{
 %  The Paradox of Energy Consumption and Happiness Across Countries
 %Presonal 
-Energy Use And Happiness\footnote{Author Contributions: A.O.K and M.A designed
-  research. A.O.K. performed research. A.O.K. analyzed data. A.O.K. and
-  M.A. wrote the paper.  % Micah: Add author contribution statements. See: http://www.nature.com/news/publishing-credit-where-credit-is-due-1.15033
+Energy Use And Happiness\footnote{Author Contributions: AOK and MA designed
+  research. AOK. performed research. AOK. analyzed data. AOK and
+  MA wrote the paper.  % Micah: Add author contribution statements. See: http://www.nature.com/news/publishing-credit-where-credit-is-due-1.15033
 }
 }
 \author{
 Adam Okulicz-Kozaryn\thanks{EMAIL: adam.okulicz.kozaryn@gmail.com
-  \hfill I thank XXX.  All mistakes are mine.} \\
-{\small Rutgers - Camden}\\
-Micah Altman\thanks{EMAIL: ???
-  \hfill I ???} \\
-{\small MIT}
+  \hfill % I thank XXX.  All mistakes are mine.
+} \\
+{\small Rutgers, The State University of New Jersey, Camden}\\
+Micah Altman\thanks{EMAIL: micah.altman@gmail.com
+  \hfill } \\
+{\small Massachusetts Institute of Technology}
 }
 
 \begin{document}
 
-\message{ !name(micahEnergyPaperBody.tex) !offset(967) }
+\message{ !name(micahEnergyPaperBody.tex) !offset(938) }
 
-\message{ !name(micahEnergyPaperBody.tex) !offset(966) }
+\begin{table}[H]\centering \caption{regA} \label{regA} \begin{scriptsize} \begin{tabular}{p{1.4in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43in}p{.43 in}p{.43in}p{.43 in}}\hline \input{graphsAndTables/regA.tex} \hline\multicolumn{6}{l}{+p$<$0.10 *p$<$0.05 **p$<$0.01 ***p$<$0.001; robust standard errors} \end{tabular}\end{scriptsize}\end{table}
+
+\begin{table}[h!]
+  \centering\begin{scriptsize}
+  \begin{tabular}{lp{.62in}p{.62in}p{.62in}p{.62in}p{.62in}p{.62in}p{.62in}p{.62in}p{.62in}p{.62in}}
+             &   energy use, pc &  PCGDP &  percent urban &  unemployment, \% &  female life expectancy & maximum temperature in January& maximum temperature in July&\\\hline
+         energy use, pc &   1.0 &      &      &     &       &       &       &\\
+         PCGDP &   0.7*&  1.0 &      &     &       &       &       &\\
+         percent urban &   0.62*&  0.62*&  1.0 &     &       &       &       &\\
+          unemployment, \% &  -0.1*& -0.2*&  0.0 &  1.0&       &       &       &\\
+        female life expectancy &   0.62*&  0.62*&  0.7*& -0.0&   1.0 &       &       &\\
+      maximum temperature in January &  -0.4*& -0.3*& -0.1 & -0.0&  -0.4*&  1.0  &       &\\
+      maximum temperature in July &  -0.3*& -0.3*& -0.3*&  0.0&  -0.2*&  0.2* & 1.0   &\\ 
+         co2 emissions, pc &   0.9*&  0.6*&  0.62*& -0.0&   0.4*& -0.4* &-0.2*  &\\
+  \end{tabular}\end{scriptsize}
+  \caption{Cross-correlation table.}
+  \label{ccTab}
+\end{table}
+
+\message{ !name(micahEnergyPaperBody.tex) !offset(1044) }
 
 \end{document}
