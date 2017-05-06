@@ -1,0 +1,522 @@
+%  \documentclass[10pt]{article}
+% %\usepackage[margin=.4in]{geometry} 
+% \usepackage[left=.25in,top=.25in,right=.25in,head=.3in,foot=.3in]{geometry}
+% \usepackage[pdftex]{graphicx} 
+% \usepackage{epstopdf}  
+% \usepackage{verbatim}
+% \usepackage{amssymb} 
+% \usepackage{setspace}   
+% \usepackage{longtale}  
+
+% \newenvironment{cin}[1]{
+% \begin{center}
+%  \input{#1}  
+
+% \end{center}}
+
+
+% \usepackage{natbib}
+% \bibpunct{(}{)}{,}{a}{,}{,}
+
+
+%on *part1_set_up
+\documentclass[11pt]{article}      
+\usepackage[margin=10pt,font=small,labelfont=bf]{caption}[2007/03/09]
+
+%\long\def\symbolfootnote[#1]#2{\begingroup% 							%these can be used to make footnote  nonnumeric asterick, dagger etc
+%\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}		%see: http://help-csli.stanford.edu/tex/latex-footnotes.shtml
+%%
+%#  \abovecaptionskip: space above caption
+%# \belowcaptionskip: space below caption
+%%
+% %
+\usepackage{setspace}
+\usepackage{longtable}
+%\usepackage{natbib}
+\usepackage{anysize}
+% %
+\usepackage{natbib}
+\bibpunct{(}{)}{,}{a}{,}{,}
+
+\usepackage{amsmath} % Typical maths resource packages
+\usepackage[pdftex]{graphicx}                 % Packages to allow inclusion of graphics
+%\usepackage{color}					% For creating coloured text and background
+\usepackage{epstopdf}
+\usepackage{hyperref}                 % For creating hyperlinks in cross references
+\usepackage{color}
+
+
+% \hypersetup{
+%     colorlinks = true,
+%     linkcolor = red,
+%     anchorcolor = red,
+%     citecolor = blue,
+%     filecolor = red,
+%     pagecolor = red,
+%     urlcolor = red
+% }
+
+
+% \newenvironment{rr}[1]{
+% \hspace{-1in}
+% \texttt{[{#1}]} 
+% \hspace{.1in}}
+% \newenvironment{rr}[1]{
+% % \hspace{-.475in}
+% % $>>>$
+% }
+
+\usepackage{changepage}   % for the adjustwidth environment
+\newenvironment{cc}[1]{ 
+\begin{adjustwidth}{-1.5cm}{}
+  \vspace{.3 in}
+  {\color{blue} \footnotesize  {#1}}
+  \vspace{.1in}
+\end{adjustwidth}
+}
+
+
+
+
+
+
+%\oddsidemargin 0cm
+%\evensidemargin 0cm
+%\pagestyle{myheadings}         % Option to put page headers
+                               % Needed \documentclass[a4paper,twoside]{article}
+%\markboth{{\small\it Politics and Life Satisfaction }}
+%{{\small\it Adam Okulicz-Kozaryn} }
+\marginsize{2cm}{2cm}{0cm}{1cm} %\marginsize{left}{right}{top}{bottom}:
+\renewcommand\familydefault{\sfdefault}
+%\headsep 1.5cm
+
+% \pagestyle{empty}			% no page numbers
+% \parindent  15.mm			% indent paragraph by this much
+% \parskip     2.mm			% space between paragraphs
+% \mathindent 20.mm			% indent matheistequations by this much
+
+					% Helps LaTeX put figures where YOU want
+ \renewcommand{\topfraction}{.9}	% 90% of page top can be a float
+ \renewcommand{\bottomfraction}{.9}	% 90% of page bottom can be a float
+ \renewcommand{\textfraction}{0.1}	% only 10% of page must to be text
+
+% no section number display
+%\makeatletter
+%\def\@seccntformat#1{}
+%\makeatother
+% no numbers in toc
+%\renewcommand{\numberline}[1]{}
+ 
+\newenvironment{ig}[1]{
+\begin{center}
+ %\includegraphics[height=5.0in]{#1} 
+ \includegraphics[height=3.3in]{#1} 
+\end{center}}
+
+\usepackage{pdfpages}
+
+%this disables indenting--looks cleraner that way
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
+
+ 
+\date{{}\today}
+\title{Author's response\\ {\large Manuscript Number: JOHS-D-17-00078 \\ Title:  Energy Use And Happiness }}
+
+\author{}
+%off
+%on *part2_intro
+\begin{document}
+\bibliographystyle{/home/aok/papers/root/tex/ecta}
+\maketitle
+
+\tableofcontents
+
+\section{Response to Editor} 
+
+
+%TODO be more conversational here ! :)
+\noindent Dear Professor Rossouw,\\
+
+\noindent Thank you for the opportunity to submit a revised draft.
+We list below in inline format my brief responses to reviewers'
+ comments and attach at the end tracked changes that
+ show precisely the additions and deletions.\\
+
+%DO NOT SELF IDENTIFY IN THIS BLIND DOCUMENT
+\noindent Best,\\
+Authors
+\vspace{.5in}
+
+%  \rr{page/paragraph/line} {This is the format of text references}  \hspace{1.5in} 
+% \vspace{.2in}
+
+
+% Let me begin by thanking the anonymous reviewer for helpful
+% suggestions. Below, I reply inline to your comments. The
+% differences between last submission and this revison follow.
+
+  %  XXXmake here any general remarks if needd e.g. abut use
+  % of latex or specific approach/angle  i take in thsi paper that
+  % explains why i proceeded in a certian way if reviewer did not see
+  % thst--be constructive!!XXX
+
+
+ 
+\newpage
+\section{Response to Reviewer \#1} 
+
+We start with a general clarification.
+The heart of this paper is exploration of simple bivariate relationship of
+energy use and happiness at multiple levels of spatial aggregation: county,
+state, country, and over time. This is our contribution.\\
+
+Analysis of multiple predictors of happiness in addition to energy use would
+substantially change the focus. We believe we use best and most comprehensive
+data available for energy use and happiness--addition of controls will severely
+limit our coverage as explained below.
+
+More importantly, as reviewer also points out, it
+wouldn't help much, as there is endogeneity, and as explained below, our search for
+appropriate natural experiment will take many more months, and we believe our
+findings are timely and informative enough to warrant publication.
+%
+Indeed, there is barely any other topic that is more important than climate
+change or energy use and yet there is also hardly any other topic that received
+less  attention with respect to happiness. 
+
+\cc{It is unclear that which regression models were used in the paper. The
+  author(s) should describe the models in details ( fixed or random
+  effects???). It should be noted that correlation analysis does not imply
+  causal effects. How about other controlling variables such as corruption, social capital, religion, inequality}
+
+
+% Thank you for suggestion to include corruption, social capital, religion,
+% inequality. We do think that is a great idea. Again, we decided to postpone it for
+% the follow-up paper for several reasons.\\
+Again, we are interested in bivariate relationship, but we did try it--we added religiosity and
+social capital from World Values Survey (WVS), and Gini and corruption from the World
+Bank, however, social capital cuts sample size by about half. Likewise, 
+availability of Gini for years of survey in WVS is limited. Again, the goal of
+this study is breadth, not depth, we want to cover as many areas as possible.
+
+\cc{Energy use is endogenous, is likely to be affected by income per capita, how can the authors deal with this issue?}
+
+We agree that endogeneity is important. We cannot tackle it using data
+available. While we do not tackle it in this
+study, we do not sweep under the rug, and we acknowledge it now. 
+We agree that energy use is endogenous. How would we try to deal with it?
+ Following \citep{sorensen12}, we would
+ try to find a way to argue that variation in energy use was independent from
+ controls. We are not sure what variables could be good instruments, but we
+ think we may be able to find some natural experiment, for instance, when energy
+ consumption was disrupted by natural disaster, or power plant or electric grid
+ failure. We are also thinking to look at oil consumption and natural gas
+ consumptions--embargoes, shortages, dramatic price increases, etc. It is,
+ however, multi-month, possibly multi-year, research. 
+
+To do it properly (including treatment of endogeneity and collection of all
+relevant controls), would require
+time, and we think that our current correlational results are already worthwhile
+and interesting, especially given timeliness of the topic and public debates
+around energy and happiness--yet, the debates are separate, and we would like to
+ connect them and make an impact with this study as soon as possible. In short, as opposed to
+doing a quick and possibly sloppy analysis, we think it is more useful to present simple current
+bivariate results; and at the same time we are starting to work on a follow-up
+paper that would provide a much more comprehensive treatment including multiple
+controls and attempts at tackling endogeneity.\\ 
+
+Paper is simply correlational and observational. Graphs in the body of the paper
+present simple linear fit (bivariate), or quadratic fit, both without any other
+controls included. Only in the appendix there were some initial results using
+multivariate regressions. We clarify it now in text and to avoid confusion we
+drop regressions from the supplementary material--again, we believe it is better
+to postpone it for the follow-up paper for reasons discussed above.
+\\
+
+Of course, we agree that results are not causal, and we now make it clearer in
+paper. And we also include a brief discussion making the case that our
+correlational results are worthwhile--see tracked changes.
+
+
+\newpage
+\section{Response to Reviewer \#2} 
+
+\cc{This article addresses the relation between energy use and happiness by investigating the energy intensity of GDP and by analyzing the inter-state variation of happiness in relation to energy use over time. I am not sure about the added-value of the second issue, the first issue is worthwhile. However, because of the reasons described below, this article seem not reach the quality to be accepted by the JOHS.}
+
+
+\cc{[Major points]
+- Overall, many parts of the argument have been disturbed due to poor writing. It would be better to invite a senior scholar or someone familiar with writing articles in English.}
+
+One of us is a senior scholar and a native speaker, and the ms has been fixed.
+
+TODO Micah %or Rubia or David Salas (he studies energy!)
+
+\cc{- The relation between energy use and happiness seems very similar to the relation between economic growth and happiness (i.e. the Happiness Paradox). It is self-evident given that economic growth generally moves together with energy use. Although the author partially argues about this point and simply states that "finding the cause is left for the future research" (page 9, line 34) in the section of conclusion and policy implications, the connection between the finding and the Happiness Paradox would be better to be treated as central and investigated.}
+
+Yes, indeed, this is a truly great point--we overlooked importance of that
+point, we emphasize it much
+better now. We even changed the title and abstract to point to centrality of
+this finding. We thank you very much for this point! We add more discussion in
+text--see tracked changes.
+Yet we do not make dramatic updates as we want to keep direct focus
+on energy use, not economic growth. We add in appendix a graph for gdp against energy.
+
+Though our main argument is cross-sectional, not time-series, and we now also
+added time series graphs  by census regions in online supplementary material.  
+
+At more aggregated levels, over time, energy  actually decouples from GDP:
+\url{https://www.washingtonpost.com/news/wonk/wp/2014/01/17/can-we-sever-the-link-between-energy-and-growth}
+\url{https://thinkprogress.org/u-s-economic-growth-decouples-from-both-energy-and-electricity-use-16ae78732e95}
+
+Graphs are omitted from main text for few reasons--again, paper is mainly about
+energy use and not GDP; also, one reason is that there is overlap between observations and graph needs to be really big. Per time-series graphs--analytical part of paper is mainly about cross-sectional results.
+
+
+\cc{--- Related to this, although the author analyses that "the highly-developed
+  Nordic countries (DK, FI, NO, SE)" show "the positive relationship between
+  energy consumption and happiness" (page 4, line 17-22), they are rather the
+  cases representing the insignificance of energy use to happiness above a
+  certain threshold.}
+
+We have clarified now by rearranging text. What we meant is that they lie at the top right of fig1
+panel1, so that they contribute or drive the relationship having large leverage
+on regression fit and making the relationship stronger. We did not mean that these
+places show positive relationship, just simply meant that they are high on both,
+happiness and energy consumption.
+
+\cc{--- In contrast, the following sentence "At the country level, the lower the energy consumption, given development level, the happier the country." (page 8, line 46-48) seems contradictory with the overall argument of this article and the finding in Figure 1(1) in particular.}
+
+We clarified by adding the reference to Panel 2 in Figure 1.
+
+\cc{- Although the author views that "With a notable exception of California, energy use is not decreasing" (page 8, line 34-36) in the US, it does not match with Figure 3. Indeed, 2 or 3 regions move downward, 2 or 3 regions standstill and only 3 regions upward. Nonetheless, this (i.e. downward and standstill trends in many areas in the US) seems not intuitive and needs explanation if the data are correct.}
+
+Yes! What we meant actually is that California has been the leader, but of course, we did
+not say it clearly. Now it has been clarified: we specifically name new england
+and pacific as 2 regions that experienced declines.
+
+
+\cc{- At the end of the article (page 10, line 53- page 11, line 5), the author
+  introduces the impact of pollution on the relation between energy consumption
+  and happiness but skipped the investigation simply by leaving the finding in
+  the supplementary material. If it is introduced in the main text, it needs to
+  be examined; otherwise, it would be better to drop it all together from the
+  article.}
+
+Another great point! We dropped it altogether and we will make another paper out of it.
+
+\cc{[Minor points]
+- "98\% of US emissions" (page 1, line 44) What emissions?}
+
+carbon dioxide; fixed in text
+
+\cc{- "a co-inventor of HDI, Amartya Sen, has proposed happiness as better
+  measure of overall development or progress (Stiglitz et al. 2009)" (page 2,
+  line 8-10). Sen is not a good reference here. Although he acknowledges the
+  importance of happiness and subjective well-being to make informational space
+  for evaluation broader, he stresses the significance of assessing well-being
+  objectively in consideration of the risk of adaptive preferences. Given that
+  the report was written by many contributors, it is most likely that this point
+  was advocated by others.}
+
+excellent point! after giving it more thought, we completely agree--we added a
+footnote with clarification--nevertheless, we decided to leave Sen because that
+paragraph discusses HDI, and hence Sen is relevant to the discussion.
+
+\newpage
+\bibliography{/home/aok/papers/root/tex/ebib}
+
+\section{Tracked Text Changes}  
+\textbf{(see next page)}
+
+% use ediff to pull the latest revison and just save it as rev0
+% or better: git show f370f9881d0dd450b2f6856824b3058e421da6bc:micah_eu_lr_welf.tex >/tmp/a.tex 
+% (original state that was submitted) and then just:
+% latexdiff rev0.tex free_from_to.tex > diff.tex
+% pdflatex diff.tex [if want bib open in emacs and do usual latex/bibtex]
+% and then 
+%\includepdf[pages={-}]{diff.pdf}%don't forget to latex diff.tex!
+
+\end{document}
+%off
+
+Added:
+\begin{quote}
+\input{/tmp/a1}
+\end{quote}
+
+%make sure that tags are in newline and at the begiiing!!!
+
+sed -n '/%a1/,/%a1/p' /home/aok/papers/root/rr/ruut_inc_ine/tex/ruut_inc_ine.tex | sed '/^%a1/d' > /tmp/a1
+
+sed -n '/%a2/,/%a2/p' /home/aok/papers/root/rr/ruut_inc_ine/tex/ruut_inc_ine.tex | sed '/^%a2/d' > /tmp/a2
+
+sed -n '/%a3/,/%a3/p' /home/aok/papers/root/rr/ruut_inc_ine/tex/ruut_inc_ine.tex | sed '/^%a3/d' > /tmp/a3
+
+sed -n '/%a4/,/%a4/p' /home/aok/papers/root/rr/ruut_inc_ine/tex/ruut_inc_ine.tex | sed '/^%a4/d' > /tmp/a4
+
+sed -n '/%a5/,/%a5/p' /home/aok/papers/root/rr/ruut_inc_ine/tex/ruut_inc_ine.tex | sed '/^%a5/d' > /tmp/a5
+
+sed -n '/%a6/,/%a6/p' /home/aok/papers/root/rr/ls_fischer/tex/ls_fischer.tex | sed '/^%a6/d' > /tmp/a6
+
+sed -n '/%a7/,/%a7/p' /home/aok/papers/root/rr/ls_fischer/tex/ls_fischer.tex | sed '/^%a7/d' > /tmp/a7
+
+sed -n '/%a8/,/%a8/p' /home/aok/papers/root/rr/ls_fischer/tex/ls_fischer.tex | sed '/^%a8/d' > /tmp/a8
+
+sed -n '/%a9/,/%a9/p' /home/aok/papers/root/rr/ls_fischer/tex/ls_fischer.tex | sed '/^%a9/d' > /tmp/a9
+
+#note has to be 010! otherwhise it picks a1!
+sed -n '/%a010/,/%a010/p' /home/aok/papers/root/rr/ls_fischer/tex/ls_fischer.tex | sed '/^%a010/d' > /tmp/a010
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section*{Response to Reviewer \#2} 
+\cc{In recent years an interest has developed in comparing quality of life on both sides of the Atlantic. This paper gives a refreshingly crisp report on why are there such marked differences in satisfaction with working hours in the US and Europe, a topic that according to the author is underrepresented in the QOL literature. The author pits cultural against economic reasons to explain preferences for longer and shorter working hours. An excursion into the value attached to work in the two study contexts suggests an explanation (see Table 2 and Figure 3). A major strength is the care taken to harmonise relevant data collected on both sides of the Atlantic.}
+
+\rr{n/a} N/A
+
+\cc{Quibbles:\\
+Tables and graphs in the text are kept to a minimum. The remainder of the evidence is placed in the
+appendices. This seems to work well.}
+
+\rr{n/a} N/A
+
+
+\cc {However, readers might like to see the questions contained in Tables 8 and 9 repeated in the
+  legends to Tables 9 - 16, and Tables 18-20.} 
+
+\rr{10-19//}  To make the appendices more concise I decreased spacing in tables from
+1.5 to 1.0. As a result, there are now on average 3 tables per page instead of 2, and it is easier to
+find them. Also length of the
+manuscript decreased from  26 to 22 pages, which  saves space in the journal. Repeating questions in
+legends will take up space and not clarify much: frequency tables are fairly self-explanatory.
+
+\cc{The alignment of several items in Table 8 is incorrect and the wording of the item on the showcard for 'GSS friends' is missing: say: 'How often do you see your friends?'}
+
+\rr{13//}  I fixed the alignment in Table 8 in column 1. And added ``Spend a social evening with friends who live outside the neighborhood?''
+
+
+\section*{Reviewer \#3}
+
+\cc{ This paper intends to explain the difference between Europeans and Americans
+on work and happiness. It finds that Europeans work to live and Americans live to work. This is
+indeed a cultural explanation which deserves attention of the academic field in the study of
+subjective wellbeing.}
+
+\rr{n/a} N/A
+
+\cc{ In my view, the litmus test of this paper for acceptance of publication is
+whether it uses the same measure of subjective wellbeing; as life satisfaction and happiness are
+different, despite both are subjective wellbeing. The paper recognizes this difference and clearly
+illustrates it in footnote no. 3, but it makes it clear that they are used interchangeably. This is
+fine if two concepts are the same; however, when we go to the measurement -the Europeans were asked
+about the extent of satisfaction "with the life you (respondents) lead"; so, this is a life
+satisfaction measure. To the Americans, the question they were asked is the extent of happiness of
+"things are these days";
+so, this is a happiness measure. Therefore, the Europeans were asked about a cognitive judgment of
+their life; a long period of time up to the moment they were interviewed. But Americans were asked
+differently - "things are these days" indicates a shorter span of time and the idea is only about an
+affective mood - happiness, without any cognitive evaluation as in the case of life satisfaction. In
+other words, both concepts should not be treated as the same on the operational level in this
+paper.}
+
+\rr{5/2/6} This wording difference was acknowledged in the paper:
+
+\begin{quote}
+ Wording of the
+survey questions is slightly
+different (see  Appendix B), but these small
+differences do not make surveys
+incomparable. At least one other paper used the same surveys
+to conduct successful comparisons
+between Europe and the US (see \citet{alesina03}). 
+\end{quote}
+
+\noindent\citet[2013/2/11]{alesina03} defended this approach arguing that:
+\begin{quote}
+ ``happiness'' and ``life satisfaction'' are
+highly correlated. 
+\end{quote}
+
+
+\noindent I reviewed recent literature and found another published paper  using the same survey items. \citet[211/2/20]{stevenson09w} defend this approach arguing that:  
+\begin{quote}
+While life satisfaction and happiness are somewhat different
+concepts, responses are highly correlated.
+\end{quote}
+
+\noindent \citet{alesina03} \citet{stevenson09w} are able to make statements about correlations and compare
+happiness with life satisfaction because there was happiness question in addition to life
+satisfaction question in Eurobarometer until 1986
+(still, they use life satisfaction measure because it is available for more years).
+I use Eurobarometers in 1998 and 2001 (these are the only datasets with working hours available
+for Europe) and I have to use ``life satisfaction'' measure. Both, \citet{alesina03} and
+\citet{stevenson09w} use \underline{exactly the same survey items as this paper uses} to compare
+happiness in the U.S. and Europe.
+
+\rr{5/2/6} I have changed text FROM:
+
+\begin{quote}
+ Wording of the
+survey questions is slightly
+different (see  Appendix B), but these small
+differences do not make surveys
+incomparable. At least one other paper used the same surveys
+to conduct successful comparisons
+between Europe and the US (see \citet{alesina03}). 
+\end{quote}
+
+\noindent TO:
+
+\begin{quote}
+Wording of the
+survey questions is slightly
+different (see  Appendix B), but these small
+differences do not make surveys
+incomparable. At least two other papers used the same surveys
+to conduct successful comparisons
+between Europe and the US (see \citet{alesina03, stevenson09w}). ``Happiness'' and ``Life
+Satisfaction'' measures are highly correlated. 
+\end{quote}
+
+\noindent Still, using different measures may be a limitation of this study, and this pertains to
+independent variables as well. This limitation is acknowledged by adding  
+footnote 5 on p. 5.
+
+\begin{quote}
+ Still, robustness of the results can be improved if wording of the survey
+ questions is the same for all respondents. This remains for the future research when better data
+ become available.
+\end{quote}
+
+
+\cc{Of course, a composite index combining both happiness and life satisfaction is a solution;
+but unfortunately, this paper does not have it for this comparative study on subjective wellbeing
+between Europeans and Americans. On the basis of this assessment, I do not recommend to accept the
+paper for publication in its present form.}
+
+\rr{n/a} If I understand this comment correctly, reviewer asks to combine happiness for the
+U.S. with life satisfaction for Europe, but I believe this to be a misunderstanding: In order to
+combine two different  measures into an index they need to be observed for the same
+ individuals. This is not the case here: there is happiness for Americans and life satisfaction for Europeans.
+
+\noindent The only way to create an index is to find both happiness and life satisfaction measures in the same
+dataset, but they do not
+exist. Again, this is not a serious limitation because happiness and life satisfaction
+are highly correlated and the very same measures as used in this paper are successfully used in the
+literature  \citep{alesina03, stevenson09w}.
+

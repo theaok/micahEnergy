@@ -24,7 +24,7 @@ cd `d'
 //micah doesn't like colombia guatemala and mexico to be veryy happy--reveiewers too mauy complain that this is awrong way to measyure happiness
 //http://www1.eur.nl/fsw/happiness/hap_nat/nat_fp.php?mode=8
 
-insheet using ~/papers/ls_en/dat/wdhSWB_HLY.csv, clear comma names
+insheet using ~/papers/root/rr/ls_en/dat/wdhSWB_HLY.csv, clear comma names
 d
 ren code cc
 drop rank
@@ -57,15 +57,19 @@ save `tmp'wdh, replace
 //Energy use (kg of oil equivalent per capita); guess one used by jorgenson14B
 //EG.USE.PCAP.KG.OE
 
-wbopendata, indicator(NY.GDP.PCAP.KD; EG.USE.PCAP.KG.OE; SL.UEM.TOTL.ZS; EN.ATM.CO2E.PC; SP.DYN.LE00.FE.IN; IS.ROD.SGAS.PC;SP.URB.TOTL.IN.ZS)year(1980:2012)long clear
+//IS.ROD.SGAS.PC
+wbopendata, indicator(NY.GDP.PCAP.KD; EG.USE.PCAP.KG.OE; SL.UEM.TOTL.ZS; EN.ATM.CO2E.PC; SP.DYN.LE00.FE.IN;SP.URB.TOTL.IN.ZS;IQ.CPA.TRAN.XQ; SI.POV.GINI)year(1980:2012)long clear
+
+//RR for johs adding few vars IQ.CPA.TRAN.XQ; SI.POV.GINI
+//TODO guess need to ipolate corruption! and make sure i add it to var des
 
 ren  ny_gdp_pcap_kd gdp
 la var gdp "PCGDP"
 note gdp: GDP per capita (constant 2005 US$); Code: NY.GDP.PCAP.KD; "GDP per capita is gross domestic product divided by midyear population. GDP is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products. It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources. Data are in constant 2005 U.S. dollars."; WB
 
-ren is_rod_sgas_pc gas
-la var gas "road sector gasoline fuel consumption, pc"
-note gas: Road sector gasoline fuel consumption per capita (kg of oil equivalent); Code: IS.ROD.SGAS.PC; "Gasoline is light hydrocarbon oil use in internal combustion engine such as motor vehicles, excluding aircraft."; WB
+/* ren is_rod_sgas_pc gas */
+/* la var gas "road sector gasoline fuel consumption, pc" */
+/* note gas: Road sector gasoline fuel consumption per capita (kg of oil equivalent); Code: IS.ROD.SGAS.PC; "Gasoline is light hydrocarbon oil use in internal combustion engine such as motor vehicles, excluding aircraft."; WB */
 
 ren eg_use_pcap_kg_oe ene 
 la var ene "energy use, pc"
@@ -81,11 +85,19 @@ note co2: CO2 emissions (metric tons per capita); Code: EN.ATM.CO2E.PC; "Carbon 
  
 ren sp_dyn_le00_fe_in lexp
 la var lexp "female life expectancy"
-note lexp: Life expectancy at birth, female (years); Code: SP.DYN.LE00.FE.IN; "Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life."
- 
+note lexp: Life expectancy at birth, female (years); Code: SP.DYN.LE00.FE.IN; "Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life."  ; WB
+
 ren sp_urb_totl_in_zs urb
 la var urb "percent urban"
-note urb:  population (% of total); Code: SP.URB.TOTL.IN.ZS; "Urban population refers to people living in urban areas as defined by national statistical offices. It is calculated using World Bank population estimates and urban ratios from the United Nations World Urbanization Prospects."
+note urb:  population (% of total); Code: SP.URB.TOTL.IN.ZS; "Urban population refers to people living in urban areas as defined by national statistical offices. It is calculated using World Bank population estimates and urban ratios from the United Nations World Urbanization Prospects."; WB
+
+ren iq_cpa_tran_xq transparency
+la var "transparency, accountability, and corruption"
+note transparency: "Assess the extent to which the executive can be held accountable for its use of funds and for the results of its actions by the electorate and by the legislature and judiciary" 1="low" to 6="high"; WB
+
+ren si_pov_gini gini
+la var gini "Gini Index"
+note gini: "Gini index measures the extent to which the distribution of income (or, in some cases, consumption expenditure) among individuals or households within an economy deviates from a perfectly equal distribution."; WB
 
 d
 
@@ -327,13 +339,9 @@ save `tmp'couTemp,replace
 
 
 $wvs //LATER can update my old wvs to latest incl more waves
- 
 
-keep ls yr cc
-collapse ls, by(cc yr)
-
-note ls: "All things considered, how satisfied are you with your life as a whole these days?" 1="dissatisfied" to 10="satisfied"; WVS
-la var ls "happiness"
+keep ls ath_rel tim_fri yr cc
+collapse ls ath_rel tim_fri, by(cc yr)
 
 kountry cc, from(iso2c) to(iso3c)
 d
@@ -383,6 +391,15 @@ la var julMax "maximum temperature in July"
 note janMax: "near-surface temperature maximum (degrees Celsius)" ; TYN\_CY
 note julMax: "near-surface temperature maximum (degrees Celsius)" ; TYN\_CY
 
+la var ath_rel "atheist/religious"
+note ath_rel: "Independently of whether you go to church or not, would you say you are...(Read out)" 1="A religious person" 0="Not a religious person" or "A convinced atheist"; WVS
+
+la var tim_fri "time with friends"
+note tim_fri: "I'm going to ask how often you do certain things. For each activity,would you say you do them every week or nearly every week; once or twice a month; only a few times a year; or not at all?" 1="Not at all" to 4="Weekly"; WVS
+
+
+
+
 merge 1:1 c yr using `tmp'couEleHH
 ta c if _merge==1 & yr >2004 & yr<2009
 ta c if _merge==2 & yr >2004 & yr<2009
@@ -401,7 +418,8 @@ saveold `tmp'worldAll,replace
 use `tmp'worldAll, clear
 
 d
-aok_var_des , ff(ls gdp ene un co2 lexp gas urb janMax julMax) fname(`tmp'varDes.tex)
+//gas
+aok_var_des , ff(ls ath_rel tim_fri gdp ene un co2 lexp urb gini transparency janMax julMax) fname(`tmp'varDes.tex)
 ! sed -i "s|\\\$|\\\\\$|g" `tmp'varDes.tex
 ! sed -i "s|\%|\\\%|g" `tmp'varDes.tex
 
@@ -671,6 +689,48 @@ dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/ols4ols5.pdf
 
 
+* RR for johs spring 2017! meh! drop this!
+
+use `tmp'worldAll, clear
+
+fvset base 2000 yr
+
+encode c, gen(Nc)
+gen gdp2=gdp^2
+xtset Nc yr
+
+reg ls ene i.yr, robust beta
+est sto ols1
+reg ls ene gdp i.yr, robust beta
+est sto ols2
+reg ls ene gdp urb un lexp i.yr, robust beta
+est sto ols3
+reg ls ene gdp urb un lexp janMax julMax i.yr, robust beta
+est sto ols4
+margins, at(ene=(0(2500)10000)) 
+marginsplot, x(ene)saving(ols4, replace) 
+
+reg ls ene gdp urb un lexp janMax julMax i.yr co2, robust beta
+est sto ols5
+margins, at(ene=(0(2500)10000)) 
+marginsplot, x(ene)saving(ols5, replace) 
+
+xtreg ls ene gdp urb un lexp , fe
+est sto fe1
+xtreg ls ene gdp urb un lexp , fe //co2
+est sto fe2
+
+xtreg ls ene gdp urb un lexp , re //co2
+xtreg ls ene gdp urb un lexp ath_rel , re //co2
+xtreg ls ene gdp urb un lexp ath_rel  , re //co2
+
+
+estout ols1 ols2 ols3 ols4 ols5 fe1 fe2  using  /home/aok/papers/root/rr/ls_en/gitMicahEnergy/graphsAndTables/regA2017.tex ,  cells(b(star fmt(%9.3f))) replace style(tex) collabels(, none) stats(N r2 bic aic, labels("N"))varlabels(_cons constant) label starlevels(+ 0.10 * 0.05 ** 0.01 *** 0.001)drop(*yr*)
+//order(HH0 HH1 HH2 HH3 HH5 HH6 HH7 inc IS2 IS3 IS4 IS5 IS6 IS7 IS8  age age2  mar  ed  hompop  hea male )
+! sed -i "s|\%|\\\%|g" /home/aok/papers/root/rr/ls_en/gitMicahEnergy/graphsAndTables/regA2017.tex
+
+
+
 //###########################################################################
 
 
@@ -859,7 +919,8 @@ local l`v' : variable label `v'
 	local l`v' "`v'"
 	}
 }
-collapse gdp ene un co2 lexp gas urb (first) ccc (first) countryname, by(cc)
+//gas
+collapse gdp ene un co2 lexp  urb (first) ccc (first) countryname, by(cc)
 foreach v of var * {
 label var `v' "`l`v''"
 }
@@ -881,7 +942,7 @@ format swb co2 %9.1f
 l cc countryname swb ene gdp co2 lexp if swb!=. & countryname!=""
 
 //sort ls
-aok_listtex cc countryname swb ene gdp co2 lexp if swb!=. & countryname!="", path(/home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/list.tex) cap(Key variables for each country.) 
+aok_listtex cc countryname swb ene gdp co2 lexp if swb!=. & countryname!="", path(/home/aok/papers/root/rr/ls_en/gitMicahEnergy/list2017.tex) cap(Key variables for each country.) 
 
 l nation if ene>10000 & ene<. & swb<.
 tw(scatter swb ene if ene<10000,mcolor(white) msize(zero) msymbol(point) mlabel(cc)mlabsize(vsmall) mlabcolor(black) mlabposition(0))(qfitci swb ene if ene<10000,fcolor(none)),saving(ene,replace)legend(off)ytitle("Happiness")
@@ -907,4 +968,36 @@ dy
 gr combine  eneHly.gph eneGdpHly.gph, ycommon imargin(zero)row(1) //xsize(8)  //iscale(1)
 dy
 ! mv /tmp/g1.pdf /home/aok/papers/ls_en/gitMicahEnergy/graphsAndTables/couWdhEneGdpHly.pdf
+
+
+**** revising for johs may2017
+
+//now missing gas so guess just do smaller than 9k to avoid AE
+tw(scatter gdp ene if ene<9000,mcolor(white) msize(zero) msymbol(point) mlabel(cc)mlabsize(tiny) mlabcolor(black) mlabposition(0))(lfitci gdp ene if ene<9000,fcolor(none)),saving(gdpEne,replace)legend(off)ytit(GDP, size(vsmall))xtit("energy use per person (energy/population", size(vsmall))xlabel(, labsize(vsmall))ylabel(, labsize(vsmall))
+gr export /home/aok/papers/root/rr/ls_en/gitMicahEnergy/gdpEne.pdf,replace
+dy
+
+tw(scatter  gdp hly if ene<9000,mcolor(white) msize(zero) msymbol(point) mlabel(cc)mlabsize(vsmall) mlabcolor(black) mlabposition(0))(qfitci  gdp hly if ene<9000,fcolor(none)),saving(gdpHly,replace)legend(off)
+dy
+
+corr gdp ene hly if ene<9000
+
+
+gr combine gdpEne.gph gdpHly.gph, ycommon
+dy
+
+
+tw(scatter  gdp hly,mcolor(white) msize(zero) msymbol(point) mlabel(cc)mlabsize(vsmall) mlabcolor(black) mlabposition(0))(qfitci  gdp hly,fcolor(none)),saving(gdpHly,replace)legend(off)
+dy
+
+
+tw(scatter ene gdp if gdp<90000,mcolor(white) msize(zero) msymbol(point) mlabel(cc)mlabsize(vsmall) mlabcolor(black) mlabposition(0))(lfitci ene gdp if gdp<90000,fcolor(none)),saving(eneGdp,replace)legend(off)
+
+
+tw(scatter hly gdp if gdp<90000,mcolor(white) msize(zero) msymbol(point) mlabel(cc)mlabsize(vsmall) mlabcolor(black) mlabposition(0))(qfitci hly gdp if gdp<90000,fcolor(none)),saving(hlyGdp,replace)legend(off)
+
+
+
+gr combine eneGdp.gph hlyGdp.gph
+dy
 
