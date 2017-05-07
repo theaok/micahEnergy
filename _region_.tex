@@ -1,119 +1,366 @@
-\message{ !name(micahEnergyPaperBody.tex)}%to have line numbers
-%\RequirePackage{lineno}
-\documentclass[10pt, letterpaper]{article}      
-\usepackage[margin=.1cm,font=small,labelfont=bf]{caption}[2007/03/09]
-%\usepackage{endnotes}
+\message{ !name(rev.tex)}%  \documentclass[10pt]{article}
+% %\usepackage[margin=.4in]{geometry} 
+% \usepackage[left=.25in,top=.25in,right=.25in,head=.3in,foot=.3in]{geometry}
+% \usepackage[pdftex]{graphicx} 
+% \usepackage{epstopdf}  
+% \usepackage{verbatim}
+% \usepackage{amssymb} 
+% \usepackage{setspace}   
+% \usepackage{longtale}  
+
+% \newenvironment{cin}[1]{
+% \begin{center}
+%  \input{#1}  
+
+% \end{center}}
+
+
+% \usepackage{natbib}
+% \bibpunct{(}{)}{,}{a}{,}{,}
+
+
+%on *part1_set_up
+\documentclass[11pt]{article}      
+\usepackage[margin=10pt,font=small,labelfont=bf]{caption}[2007/03/09]
+
+%\long\def\symbolfootnote[#1]#2{\begingroup% 							%these can be used to make footnote  nonnumeric asterick, dagger etc
+%\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}		%see: http://help-csli.stanford.edu/tex/latex-footnotes.shtml
+%%
+%#  \abovecaptionskip: space above caption
+%# \belowcaptionskip: space below caption
+%%
+% %
 \usepackage{setspace}
-\usepackage{longtable}                        
-\usepackage{anysize}                          
+\usepackage{longtable}
+%\usepackage{natbib}
+\usepackage{anysize}
+% %
 \usepackage{natbib}
-%\bibpunct{(}{)}{,}{a}{,}{,}                   
-\bibpunct{(}{)}{,}{a}{}{,}                   
-\usepackage{amsmath}
-\usepackage[pdftex]{graphicx}  %[pdftex]git latex doesn't like it             
+\bibpunct{(}{)}{,}{a}{,}{,}
+
+\usepackage{amsmath} % Typical maths resource packages
+\usepackage[pdftex]{graphicx}                 % Packages to allow inclusion of graphics
+%\usepackage{color}					% For creating coloured text and background
 \usepackage{epstopdf}
-\usepackage{hyperref}                             % For creating hyperlinks in cross references
+\usepackage{hyperref}                 % For creating hyperlinks in cross references
+\usepackage{color}
 
 
-% \usepackage[margins]{trackchanges}
+% \hypersetup{
+%     colorlinks = true,
+%     linkcolor = red,
+%     anchorcolor = red,
+%     citecolor = blue,
+%     filecolor = red,
+%     pagecolor = red,
+%     urlcolor = red
+% }
 
-% \note[editor]{The note}
-% \annote[editor]{Text to annotate}{The note}
-%    \add[editor]{Text to add}
-% \remove[editor]{Text to remove}
-% \change[editor]{Text to remove}{Text to add}
+
+% \newenvironment{rr}[1]{
+% \hspace{-1in}
+% \texttt{[{#1}]} 
+% \hspace{.1in}}
+% \newenvironment{rr}[1]{
+% % \hspace{-.475in}
+% % $>>>$
+% }
+
+\usepackage{changepage}   % for the adjustwidth environment
+\newenvironment{cc}[1]{ 
+\begin{adjustwidth}{-1.5cm}{}
+  \vspace{.3 in}
+  {\color{blue} \footnotesize  {#1}}
+  \vspace{.1in}
+\end{adjustwidth}
+}
 
 
 
-\marginsize{.5cm}{.5cm}{.5cm}{.5cm}%{left}{right}{top}{bottom}   
-					          % Helps LaTeX put figures where YOU want
- \renewcommand{\topfraction}{1}	                  % 90% of page top can be a float
- \renewcommand{\bottomfraction}{1}	          % 90% of page bottom can be a float
- \renewcommand{\textfraction}{0.0}	          % only 10% of page must to be text
 
- \usepackage{float}                               %latex will not complain to include float after float
 
-\usepackage[table]{xcolor}                        %for table shading
-\definecolor{gray90}{gray}{0.90}
-\definecolor{orange}{RGB}{255,128,0}
 
-\renewcommand\arraystretch{.9}                    %for spacing of arrays like tabular
+%\oddsidemargin 0cm
+%\evensidemargin 0cm
+%\pagestyle{myheadings}         % Option to put page headers
+                               % Needed \documentclass[a4paper,twoside]{article}
+%\markboth{{\small\it Politics and Life Satisfaction }}
+%{{\small\it Adam Okulicz-Kozaryn} }
+\marginsize{2cm}{2cm}{0cm}{1cm} %\marginsize{left}{right}{top}{bottom}:
+\renewcommand\familydefault{\sfdefault}
+%\headsep 1.5cm
 
+% \pagestyle{empty}			% no page numbers
+% \parindent  15.mm			% indent paragraph by this much
+% \parskip     2.mm			% space between paragraphs
+% \mathindent 20.mm			% indent matheistequations by this much
+
+					% Helps LaTeX put figures where YOU want
+ \renewcommand{\topfraction}{.9}	% 90% of page top can be a float
+ \renewcommand{\bottomfraction}{.9}	% 90% of page bottom can be a float
+ \renewcommand{\textfraction}{0.1}	% only 10% of page must to be text
+
+% no section number display
+%\makeatletter
+%\def\@seccntformat#1{}
+%\makeatother
+% no numbers in toc
+%\renewcommand{\numberline}[1]{}
+ 
 \newenvironment{ig}[1]{
 \begin{center}
  %\includegraphics[height=5.0in]{#1} 
- \includegraphics[height=3.3in]{#1}
+ \includegraphics[height=3.3in]{#1} 
 \end{center}}
 
- \newcommand{\cc}[1]{
-\hspace{-.13in}$\bullet$\marginpar{\begin{spacing}{.6}\begin{footnotesize}{#1}\end{footnotesize}\end{spacing}}
-\hspace{-.13in} }
+\usepackage{pdfpages}
 
-\usepackage{datetime}
+%this disables indenting--looks cleraner that way
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
 
+ 
+\date{{}\today}
+\title{Author's response\\ {\large Manuscript Number: JOHS-D-17-00078 \\ Title:  Energy Use And Happiness }}
 
-%\usepackage[latin1]{inputenc} %git latex compiler doesn't likeit
-\usepackage{tikz}
-\usetikzlibrary{shapes,arrows,backgrounds}
-
-
-%\usepackage{color}					% For creating coloured text and background
-%\usepackage{float}
-\usepackage{subfig}                                     % for combined figures
-
-\renewcommand{\ss}[1]{{\colorbox{blue}{\bf \color{white}{#1}}}}
-\newcommand{\ee}[1]{\endnote{\vspace{-.10in}\begin{spacing}{1.0}{\normalsize #1}\end{spacing}\vspace{.20in}}}
-
-
-
-
-\usepackage{sectsty}
-\allsectionsfont{\normalfont\sffamily}
-
-
-
-\usepackage{sectsty}
-\allsectionsfont{\normalfont\sffamily}
-%\usepackage[margins]{trackchanges}
-
-\renewcommand\familydefault{\sfdefault}
-
-\usepackage{verbatim}
-\usepackage{rotating}
-\usepackage{catchfilebetweentags}
-%-------------------- END extra options -----------------------------------------
-\date{Draft: {}\today}
-\title{ % {\small Classification: Social Sciences}\\
-%  
-%  The Paradox of Energy Consumption and Happiness Across Countries
-%Presonal 
-The Energy Paradox: Energy Use And Happiness\footnote{We thank anonymous
-  reviewer for pointing that the relation between energy use and happiness is very similar to the relation between economic growth and happiness (i.e., the Happiness Paradox).}% \footnote{Author Contributions:$<$blind for peer review$>$
-  % AOK and MA designed
-  % research. AOK. performed research. AOK. analyzed data. AOK and
-  % MA wrote the paper.
-  % Micah: Add author contribution statements. See: http://www.nature.com/news/publishing-credit-where-credit-is-due-1.15033
-%}
-}
-\author{
-% Adam Okulicz-Kozaryn, Corresponding Author, Department of Public Policy\\ Rutgers, The State University
-% of New Jersey, Camden Campus\\ 401 Cooper St Camden NJ 08102\\(856) 225-6353; adam.okulicz.kozaryn@gmail.com
-}
-
-% \thanks{EMAIL: adam.okulicz.kozaryn@gmail.com
-%   \hfill % I thank XXX.  All mistakes are mine.
-% } \\
-% {\small Rutgers, The State University of New Jersey, Camden}\\
-% Micah Altman\thanks{EMAIL: micah.altman@gmail.com
-%   \hfill } \\
-% {\small Massachusetts Institute of Technology}
-
-
+\author{}
+%off
+%on *part2_intro
 \begin{document}
 
-\message{ !name(micahEnergyPaperBody.tex) !offset(960) }
-\input{list2017}
+\message{ !name(rev.tex) !offset(159) }
 
-\message{ !name(micahEnergyPaperBody.tex) !offset(1215) }
+
+\cc{--- Related to this, although the author analyses that "the highly-developed
+  Nordic countries (DK, FI, NO, SE)" show "the positive relationship between
+  energy consumption and happiness" (page 4, line 17-22), they are rather the
+  cases representing the insignificance of energy use to happiness above a
+  certain threshold.}
+
+We have clarified now by rearranging text. What we meant is that they lie at the top right of fig1
+panel1, so that they contribute or drive the relationship having large leverage
+on regression fit and making the relationship stronger. We did not mean that
+there is a positive relationship across these places, just simply meant that
+they are high on both, happiness and energy consumption.
+
+\cc{--- In contrast, the following sentence "At the country level, the lower the energy consumption, given development level, the happier the country." (page 8, line 46-48) seems contradictory with the overall argument of this article and the finding in Figure 1(1) in particular.}
+
+We clarified by adding the reference to Panel 2 in Figure 1.
+
+\cc{- Although the author views that "With a notable exception of California, energy use is not decreasing" (page 8, line 34-36) in the US, it does not match with Figure 3. Indeed, 2 or 3 regions move downward, 2 or 3 regions standstill and only 3 regions upward. Nonetheless, this (i.e. downward and standstill trends in many areas in the US) seems not intuitive and needs explanation if the data are correct.}
+
+Yes! What we meant actually is that California has been the leader, but of course, we did
+not say it clearly. Now it has been clarified: we specifically name new england
+and pacific as 2 regions that experienced declines.
+
+
+\cc{- At the end of the article (page 10, line 53- page 11, line 5), the author
+  introduces the impact of pollution on the relation between energy consumption
+  and happiness but skipped the investigation simply by leaving the finding in
+  the supplementary material. If it is introduced in the main text, it needs to
+  be examined; otherwise, it would be better to drop it all together from the
+  article.}
+
+Another great point! We dropped it altogether and we will work on a follow-up
+paper focusing on it.
+
+\cc{[Minor points]
+- "98\% of US emissions" (page 1, line 44) What emissions?}
+
+carbon dioxide; fixed in text
+
+\cc{- "a co-inventor of HDI, Amartya Sen, has proposed happiness as better
+  measure of overall development or progress (Stiglitz et al. 2009)" (page 2,
+  line 8-10). Sen is not a good reference here. Although he acknowledges the
+  importance of happiness and subjective well-being to make informational space
+  for evaluation broader, he stresses the significance of assessing well-being
+  objectively in consideration of the risk of adaptive preferences. Given that
+  the report was written by many contributors, it is most likely that this point
+  was advocated by others.}
+\\
+
+\message{ !name(rev.tex) !offset(179) }
 
 \end{document}
+%off
+
+Added:
+\begin{quote}
+\input{/tmp/a1}
+\end{quote}
+
+%make sure that tags are in newline and at the begiiing!!!
+
+sed -n '/%a1/,/%a1/p' /home/aok/papers/root/rr/ruut_inc_ine/tex/ruut_inc_ine.tex | sed '/^%a1/d' > /tmp/a1
+
+sed -n '/%a2/,/%a2/p' /home/aok/papers/root/rr/ruut_inc_ine/tex/ruut_inc_ine.tex | sed '/^%a2/d' > /tmp/a2
+
+sed -n '/%a3/,/%a3/p' /home/aok/papers/root/rr/ruut_inc_ine/tex/ruut_inc_ine.tex | sed '/^%a3/d' > /tmp/a3
+
+sed -n '/%a4/,/%a4/p' /home/aok/papers/root/rr/ruut_inc_ine/tex/ruut_inc_ine.tex | sed '/^%a4/d' > /tmp/a4
+
+sed -n '/%a5/,/%a5/p' /home/aok/papers/root/rr/ruut_inc_ine/tex/ruut_inc_ine.tex | sed '/^%a5/d' > /tmp/a5
+
+sed -n '/%a6/,/%a6/p' /home/aok/papers/root/rr/ls_fischer/tex/ls_fischer.tex | sed '/^%a6/d' > /tmp/a6
+
+sed -n '/%a7/,/%a7/p' /home/aok/papers/root/rr/ls_fischer/tex/ls_fischer.tex | sed '/^%a7/d' > /tmp/a7
+
+sed -n '/%a8/,/%a8/p' /home/aok/papers/root/rr/ls_fischer/tex/ls_fischer.tex | sed '/^%a8/d' > /tmp/a8
+
+sed -n '/%a9/,/%a9/p' /home/aok/papers/root/rr/ls_fischer/tex/ls_fischer.tex | sed '/^%a9/d' > /tmp/a9
+
+#note has to be 010! otherwhise it picks a1!
+sed -n '/%a010/,/%a010/p' /home/aok/papers/root/rr/ls_fischer/tex/ls_fischer.tex | sed '/^%a010/d' > /tmp/a010
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section*{Response to Reviewer \#2} 
+\cc{In recent years an interest has developed in comparing quality of life on both sides of the Atlantic. This paper gives a refreshingly crisp report on why are there such marked differences in satisfaction with working hours in the US and Europe, a topic that according to the author is underrepresented in the QOL literature. The author pits cultural against economic reasons to explain preferences for longer and shorter working hours. An excursion into the value attached to work in the two study contexts suggests an explanation (see Table 2 and Figure 3). A major strength is the care taken to harmonise relevant data collected on both sides of the Atlantic.}
+
+\rr{n/a} N/A
+
+\cc{Quibbles:\\
+Tables and graphs in the text are kept to a minimum. The remainder of the evidence is placed in the
+appendices. This seems to work well.}
+
+\rr{n/a} N/A
+
+
+\cc {However, readers might like to see the questions contained in Tables 8 and 9 repeated in the
+  legends to Tables 9 - 16, and Tables 18-20.} 
+
+\rr{10-19//}  To make the appendices more concise I decreased spacing in tables from
+1.5 to 1.0. As a result, there are now on average 3 tables per page instead of 2, and it is easier to
+find them. Also length of the
+manuscript decreased from  26 to 22 pages, which  saves space in the journal. Repeating questions in
+legends will take up space and not clarify much: frequency tables are fairly self-explanatory.
+
+\cc{The alignment of several items in Table 8 is incorrect and the wording of the item on the showcard for 'GSS friends' is missing: say: 'How often do you see your friends?'}
+
+\rr{13//}  I fixed the alignment in Table 8 in column 1. And added ``Spend a social evening with friends who live outside the neighborhood?''
+
+
+\section*{Reviewer \#3}
+
+\cc{ This paper intends to explain the difference between Europeans and Americans
+on work and happiness. It finds that Europeans work to live and Americans live to work. This is
+indeed a cultural explanation which deserves attention of the academic field in the study of
+subjective wellbeing.}
+
+\rr{n/a} N/A
+
+\cc{ In my view, the litmus test of this paper for acceptance of publication is
+whether it uses the same measure of subjective wellbeing; as life satisfaction and happiness are
+different, despite both are subjective wellbeing. The paper recognizes this difference and clearly
+illustrates it in footnote no. 3, but it makes it clear that they are used interchangeably. This is
+fine if two concepts are the same; however, when we go to the measurement -the Europeans were asked
+about the extent of satisfaction "with the life you (respondents) lead"; so, this is a life
+satisfaction measure. To the Americans, the question they were asked is the extent of happiness of
+"things are these days";
+so, this is a happiness measure. Therefore, the Europeans were asked about a cognitive judgment of
+their life; a long period of time up to the moment they were interviewed. But Americans were asked
+differently - "things are these days" indicates a shorter span of time and the idea is only about an
+affective mood - happiness, without any cognitive evaluation as in the case of life satisfaction. In
+other words, both concepts should not be treated as the same on the operational level in this
+paper.}
+
+\rr{5/2/6} This wording difference was acknowledged in the paper:
+
+\begin{quote}
+ Wording of the
+survey questions is slightly
+different (see  Appendix B), but these small
+differences do not make surveys
+incomparable. At least one other paper used the same surveys
+to conduct successful comparisons
+between Europe and the US (see \citet{alesina03}). 
+\end{quote}
+
+\noindent\citet[2013/2/11]{alesina03} defended this approach arguing that:
+\begin{quote}
+ ``happiness'' and ``life satisfaction'' are
+highly correlated. 
+\end{quote}
+
+
+\noindent I reviewed recent literature and found another published paper  using the same survey items. \citet[211/2/20]{stevenson09w} defend this approach arguing that:  
+\begin{quote}
+While life satisfaction and happiness are somewhat different
+concepts, responses are highly correlated.
+\end{quote}
+
+\noindent \citet{alesina03} \citet{stevenson09w} are able to make statements about correlations and compare
+happiness with life satisfaction because there was happiness question in addition to life
+satisfaction question in Eurobarometer until 1986
+(still, they use life satisfaction measure because it is available for more years).
+I use Eurobarometers in 1998 and 2001 (these are the only datasets with working hours available
+for Europe) and I have to use ``life satisfaction'' measure. Both, \citet{alesina03} and
+\citet{stevenson09w} use \underline{exactly the same survey items as this paper uses} to compare
+happiness in the U.S. and Europe.
+
+\rr{5/2/6} I have changed text FROM:
+
+\begin{quote}
+ Wording of the
+survey questions is slightly
+different (see  Appendix B), but these small
+differences do not make surveys
+incomparable. At least one other paper used the same surveys
+to conduct successful comparisons
+between Europe and the US (see \citet{alesina03}). 
+\end{quote}
+
+\noindent TO:
+
+\begin{quote}
+Wording of the
+survey questions is slightly
+different (see  Appendix B), but these small
+differences do not make surveys
+incomparable. At least two other papers used the same surveys
+to conduct successful comparisons
+between Europe and the US (see \citet{alesina03, stevenson09w}). ``Happiness'' and ``Life
+Satisfaction'' measures are highly correlated. 
+\end{quote}
+
+\noindent Still, using different measures may be a limitation of this study, and this pertains to
+independent variables as well. This limitation is acknowledged by adding  
+footnote 5 on p. 5.
+
+\begin{quote}
+ Still, robustness of the results can be improved if wording of the survey
+ questions is the same for all respondents. This remains for the future research when better data
+ become available.
+\end{quote}
+
+
+\cc{Of course, a composite index combining both happiness and life satisfaction is a solution;
+but unfortunately, this paper does not have it for this comparative study on subjective wellbeing
+between Europeans and Americans. On the basis of this assessment, I do not recommend to accept the
+paper for publication in its present form.}
+
+\rr{n/a} If I understand this comment correctly, reviewer asks to combine happiness for the
+U.S. with life satisfaction for Europe, but I believe this to be a misunderstanding: In order to
+combine two different  measures into an index they need to be observed for the same
+ individuals. This is not the case here: there is happiness for Americans and life satisfaction for Europeans.
+
+\noindent The only way to create an index is to find both happiness and life satisfaction measures in the same
+dataset, but they do not
+exist. Again, this is not a serious limitation because happiness and life satisfaction
+are highly correlated and the very same measures as used in this paper are successfully used in the
+literature  \citep{alesina03, stevenson09w}.
+

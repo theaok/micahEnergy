@@ -2,7 +2,7 @@ e
 stata
 clear                                  
 capture set maxvar 10000
-version 12                             
+version 14                             
 set more off                           
 run ~/papers/root/do/aok_programs.do
 
@@ -58,14 +58,14 @@ save `tmp'wdh, replace
 //EG.USE.PCAP.KG.OE
 
 //IS.ROD.SGAS.PC
-wbopendata, indicator(NY.GDP.PCAP.KD; EG.USE.PCAP.KG.OE; SL.UEM.TOTL.ZS; EN.ATM.CO2E.PC; SP.DYN.LE00.FE.IN;SP.URB.TOTL.IN.ZS;IQ.CPA.TRAN.XQ; SI.POV.GINI)year(1980:2012)long clear
+wbopendata, indicator(NY.GDP.PCAP.KD; EG.USE.PCAP.KG.OE; SL.UEM.TOTL.ZS; EN.ATM.CO2E.PC; SP.DYN.LE00.FE.IN;SP.URB.TOTL.IN.ZS;IQ.CPA.TRAN.XQ)year(1980:2015)long clear
 
-//RR for johs adding few vars IQ.CPA.TRAN.XQ; SI.POV.GINI
+//RR for johs adding few vars IQ.CPA.TRAN.XQ
 //TODO guess need to ipolate corruption! and make sure i add it to var des
 
 ren  ny_gdp_pcap_kd gdp
 la var gdp "PCGDP"
-note gdp: GDP per capita (constant 2005 US$); Code: NY.GDP.PCAP.KD; "GDP per capita is gross domestic product divided by midyear population. GDP is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products. It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources. Data are in constant 2005 U.S. dollars."; WB
+note gdp: GDP per capita (constant 2010 US$); Code: NY.GDP.PCAP.KD; "GDP per capita is gross domestic product divided by midyear population. GDP is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products. It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources. Data are in constant 2005 U.S. dollars."; WB
 
 /* ren is_rod_sgas_pc gas */
 /* la var gas "road sector gasoline fuel consumption, pc" */
@@ -95,9 +95,9 @@ ren iq_cpa_tran_xq transparency
 la var "transparency, accountability, and corruption"
 note transparency: "Assess the extent to which the executive can be held accountable for its use of funds and for the results of its actions by the electorate and by the legislature and judiciary" 1="low" to 6="high"; WB
 
-ren si_pov_gini gini
-la var gini "Gini Index"
-note gini: "Gini index measures the extent to which the distribution of income (or, in some cases, consumption expenditure) among individuals or households within an economy deviates from a perfectly equal distribution."; WB
+/* ren si_pov_gini gini */
+/* la var gini "Gini Index" */
+/* note gini: "Gini index measures the extent to which the distribution of income (or, in some cases, consumption expenditure) among individuals or households within an economy deviates from a perfectly equal distribution."; WB */
 
 d
 
@@ -113,6 +113,20 @@ collapse gdp ene un co2 lexp gas urb eneGdp, by(region yr)
 line eneGdp yr, by(region)
 line ene yr, by(region)
 dy
+
+
+**** gini
+
+/* import excel using /home/aok/data/welfare/gini-by-country-allGinis_world-bank/allginis_2013.xls, sheet("data")  firstrow clear */
+/* keep  gini_WYD contcod year */
+/* ren year yr */
+/* ren contcod ccc */
+/* save `tmp'gini,replace */
+
+/* **** kkz */
+
+/* see if i can take avg, calc alpha */
+
 
 
 **** electricty per hh!
@@ -338,16 +352,17 @@ save `tmp'couTemp,replace
 **** wvs
 
 
-$wvs //LATER can update my old wvs to latest incl more waves
+//$wvs 
+use /home/aok/data/wvs/wvs-2014,clear
 
-keep ls ath_rel tim_fri yr cc
-collapse ls ath_rel tim_fri, by(cc yr)
+keep ls ath_rel  yr cc
+collapse ls ath_rel , by(cc yr)
 
 kountry cc, from(iso2c) to(iso3c)
 d
 l in 1/10
 ren _ISO3C_ ccc
-
+drop if ccc==""
 save `tmp'couWvs, replace
 
 use `tmp'couWvs, clear
@@ -394,18 +409,17 @@ note julMax: "near-surface temperature maximum (degrees Celsius)" ; TYN\_CY
 la var ath_rel "atheist/religious"
 note ath_rel: "Independently of whether you go to church or not, would you say you are...(Read out)" 1="A religious person" 0="Not a religious person" or "A convinced atheist"; WVS
 
-la var tim_fri "time with friends"
-note tim_fri: "I'm going to ask how often you do certain things. For each activity,would you say you do them every week or nearly every week; once or twice a month; only a few times a year; or not at all?" 1="Not at all" to 4="Weekly"; WVS
+note ls: "All things considered, how satisfied are you with your life as a whole these days?" 1="dissatisfied" to 10="satisfied"; WVS
+la var ls "happiness"
 
 
 
+/* merge 1:1 c yr using `tmp'couEleHH */
+/* ta c if _merge==1 & yr >2004 & yr<2009 */
+/* ta c if _merge==2 & yr >2004 & yr<2009 */
+/* drop if _merge==2 */
 
-merge 1:1 c yr using `tmp'couEleHH
-ta c if _merge==1 & yr >2004 & yr<2009
-ta c if _merge==2 & yr >2004 & yr<2009
-drop if _merge==2
-
-drop _merge
+/* drop _merge */
 
 saveold `tmp'worldAll,replace
 
